@@ -1,0 +1,56 @@
+$text-size: 20px;
+$text-weight: bold;
+$bg-color: #C6D8FF; //7697c2
+$logo-hover: #bfa24b;
+$ul-type: none;
+$text-decor: none;
+$header-item-hover: #a18633;
+$header-item-hover-bg: #FED761;
+$header-item-hover-color: #596f85;
+$errors: #FF0000FF;
+$filter-bg-image: url('../src/images/bgMain.jpg');
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-size: 20px;
+}
+.user-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: -25px;
+  padding-top: 0px;
+}
+a {
+  text-decoration: $text-decor;
+  color: black;
+}
+
+.transition {
+  transition: 1s;
+}
+
+.error {
+  color: $errors;
+  height: 40px;
+  font-size: 15px;
+  margin-top: -40px;
+  margin-left: 148px;
+}
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.labels {
+  font-weight: $text-weight;
+  font-size: 24px;
+  margin-right: 7px;
+  width: 140px;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+
+  }
+}

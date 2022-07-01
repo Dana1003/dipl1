@@ -1,0 +1,20 @@
+@use './src/base';
+
+.reviews-block {
+  width: 100%;
+  background-color: base.$bg-color;
+  position: absolute;
+  left: 0px;
+  margin-top: 92px;
+  min-height: 100%;
+}
+.reviews-item {
+  text-align: center;
+  border: 1px solid;
+  width: 85%;
+  margin: 10px auto;
+}
+.pagination {
+  position: absolute;
+  margin-top: 870px;
+}
