@@ -13,7 +13,7 @@ import './MainKindsOfTourism.scss'
 
 export function MainKindsOfTourism() {
     return (
-        <div className="main-block">
+        <div className="main-tourism-block">
             <div className="text-over-picture">
                 <p className="kind-of-tourism">Рекреационный туризм</p>
                 <div className="appeared-text">

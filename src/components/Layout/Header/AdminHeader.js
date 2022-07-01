@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faUserTie,
     faDoorOpen
@@ -25,16 +25,24 @@ export function AdminHeader() {
                             <li className="nav-item"><a className="list-menu-item transition">Добавить</a></li>
                             <ul className="dropdown-content transition">
                                 <li>
-                                    <FontAwesomeIcon icon={faUserTie} />
-                                    <Link to="/addManager" className="dropdown-content-items">Менежер</Link>
+                                    <FontAwesomeIcon icon={faUserTie}/>
+                                    <Link to="/addManager" className="dropdown-content-items">Менеджер</Link>
                                 </li>
                             </ul>
                         </div>
                         <li className="nav-item"><a className="list-menu-item transition">Удалить</a></li>
                         <li className="nav-item"><a className="list-menu-item transition">Изменить</a></li>
-                        <li className="nav-item"><a className="list-menu-item transition">Данные о</a></li>
+                        <div className="dropdown">
+                            <li className="nav-item"><a className="list-menu-item transition">Данные о</a></li>
+                            <ul className="dropdown-content transition">
+                                <li>
+                                    <FontAwesomeIcon icon={faUserTie}/>
+                                    <Link to="/viewManagerDetails" className="dropdown-content-items">Менеджерe</Link>
+                                </li>
+                            </ul>
+                        </div>
                         <li className="nav-item">
-                            <FontAwesomeIcon icon={faDoorOpen} />
+                            <FontAwesomeIcon icon={faDoorOpen}/>
                             <Link to="/authorize" className="list-menu-item transition">Выход</Link>
                         </li>
                     </ul>
