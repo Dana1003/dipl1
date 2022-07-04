@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './ReviewPagination.scss';
+import './MainReviews/ReviewPagination.scss';
 import {Link} from "react-router-dom";
 
 export const Pagination = ({reviewsPerPage, totalReviews, paginate}) => {
