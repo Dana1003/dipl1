@@ -8,24 +8,13 @@ export function AdminManagersTable() {
     const [managers, setManagers] = useState([]);
     let table;
 
-    const data = managers.map(currentValue => {
-        let obj = {
+    const data = managers.map(currentValue => ({
             id:currentValue.managerId,
             fio:currentValue.lastName + ' ' + currentValue.firstName + ' ' + currentValue.patronymic,
             login:currentValue.login,
             experience:currentValue.workExperience,
             phoneNumber:currentValue.phone
-        }
-        return obj;
-    })
-    const tabledata = data;
-
-    let deleteItem = function () {
-        return "Удалить";
-    };
-    let updateItem = function () {
-        return "Изменить";
-    };
+        }))
 
     React.useEffect(() => {
         axios.get('https://localhost:7274/api/managers')
@@ -36,19 +25,19 @@ export function AdminManagersTable() {
 
         table = new Tabulator("#manager-table", {
             height:"311px",
-            data:tabledata,
+            data: data,
             layout:"fitColumns", //fit columns to width of table (optional)
             columns:[ //Define Table Columns
                 {title:"ФИО", field:"fio", width:200, editor: "input"},
                 {title:"Логин", field:"login", hozAlign:"left", editor: "input"},
                 {title:"Опыт работы", field:"experience", formatter: "progress", editor: "input"},
                 {title:"Телефон", field:"phoneNumber", hozAlign:"center", editor: "input"},
-                {title:"Удалить", hozAlign:"center", formatter: deleteItem,
+                {title:"Удалить", hozAlign:"center", formatter: () => "Delete",
                     cellClick: function (e, cell) {
                         axios.delete(`https://localhost:7274/api/managers/${cell.getRow().getData().id}`)
                              .then(response => cell.getRow().delete())
                     }},
-                {title:"Изменить", hozAlign:"center", formatter: updateItem,
+                {title:"Изменить", hozAlign:"center", formatter: () => "Изменить",
                     cellClick: function (e, cell) {
                         console.log("update=>" + cell.getRow().getData().id);
                         let fioArray = cell.getRow().getData().fio.split(" ");
@@ -63,7 +52,10 @@ export function AdminManagersTable() {
                                 axios.put(`https://localhost:7274/api/managers/${cell.getRow().getData().id}`, {
                                     "workExperience": cell.getRow().getData().experience
                                 })
-                                    .then(response =>  cell.getRow().update())
+                                    .then(response =>
+                                    {
+                                        cell.getRow().update()
+                                    })
                             })
                     }}
                 /*{title:"Удалить", field:"delete", hozAlign:"center"}*/
