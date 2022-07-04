@@ -10,6 +10,7 @@ import './base.scss';
 import {KindsOfTourism} from "./pages/KindsOfTourism/KindsOfTourism";
 import {AdminAddManager} from "./pages/AdminAddManager/AdminAddManager";
 import {AdminViewManagerDetails} from "./pages/AdminViewManagerDetails/AdminViewManagerDetails";
+import {AdminUpdateManager} from "./pages/AdminUpdateManager/AdminUpdateManager";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/review" element={<ReviewPage/>} exact></Route>
               <Route path="/adminMainPage" element={<AdminMainPage/>} exact></Route>
               <Route path="/addManager" element={<AdminAddManager />} exact></Route>
+              <Route path="/updateManager" element={<AdminUpdateManager />} exact></Route>
               <Route path="/viewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
               <Route path="/registration" element={<RegistrPage/>} exact></Route>
           </Routes>
