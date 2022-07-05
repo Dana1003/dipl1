@@ -20,7 +20,7 @@ export function AdminManagersTable() {
         axios.get('https://localhost:7274/api/managers')
             .then(res => {
                 setManagers(res.data)
-                console.log(res.data)
+                console.log(res.data);
             })
 
         table = new Tabulator("#manager-table", {
