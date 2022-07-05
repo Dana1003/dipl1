@@ -2,9 +2,20 @@
 
 #specialOffers {
   width: 100%;
-  background-color: base.$bg-color;
+  background-image: base.$main-bg-image;
+  background-size: 100% 100%;
+  //background-color: base.$bg-color;
   height: 700px;
   position: absolute;
   left: 0px;
-  margin-top: 420px;
+  font-family: Monotype Corsiva;
+  //margin-top: 420px;
+}
+
+.tagline {
+  font-size: 80px;
+  color: white;
+  width: 658px;
+  text-align: center;
+  margin: 115px auto;
 }

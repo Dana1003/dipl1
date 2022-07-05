@@ -5,8 +5,11 @@ import './MainPageBlock.scss';
 export function MainPageBlock() {
     return (
         <div>
-            <section id="specialOffers"></section>
-
+            <section id="specialOffers">
+                <div className="tagline">
+                    Начинайте покорять мир с нами
+                </div>
+            </section>
         </div>
     );
 };

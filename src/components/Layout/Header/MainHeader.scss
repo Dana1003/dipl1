@@ -1,7 +1,13 @@
 @use './src/base';
 
 .header {
-  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background: #FFF
+}
+/*.header {
+ // z-index: 1;
   margin-top: 0px;
   top: 0px;
   width: 100%;
@@ -13,7 +19,7 @@
   padding: 20px;
   left: 0px;
   background-color: base.$bg-color;
-}
+}*/
 
 ul {
   list-style-type: base.$ul-type;

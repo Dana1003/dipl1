@@ -13,7 +13,7 @@ export function MainPage() {
     return (
         <div>
             <MainHeader/>
-            <Filter applyFilter={onClick}/>
+            {/*<Filter applyFilter={onClick}/>*/}
             <MainPageBlock />
             {/*<List filter/>*/}
         </div>
