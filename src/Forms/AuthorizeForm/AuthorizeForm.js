@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import {Link} from "react-router-dom";
-import {Navigate, Redirect, useNavigate} from "react-router";
-import {useForm} from 'react-hook-form';
+import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { useForm } from 'react-hook-form';
+
 import {Button, Checkbox, Form, Input} from 'antd';
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 
 import './AuthorizeForm.scss';
-import axios from "axios";
 
 export function AuthorizeForm() {
     const [login, setLogin] = useState('');
@@ -14,7 +14,7 @@ export function AuthorizeForm() {
 
     const [user, setUser] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         console.log(user?.filter(x => x.login === login))
     }, [user]);
 
