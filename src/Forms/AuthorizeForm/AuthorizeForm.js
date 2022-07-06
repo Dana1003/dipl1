@@ -86,17 +86,6 @@ export function AuthorizeForm() {
                 <Form.Item wrapperCol={{offset: 10, span: 4,}}>
                     Нет аккуанта? <Link to="/registration">Регистрация</Link>
                 </Form.Item>
-
-{/*                <Form.Item
-                    wrapperCol={{
-                        offset: 11,
-                        span: 6,
-                    }}
-                >
-                    <Button type="primary" htmlType="submit">
-                        Submit
-                    </Button>
-                </Form.Item>*/}
             </Form>
         </div>
     );
