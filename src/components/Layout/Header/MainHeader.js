@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-import { Menu } from 'antd';
-import {CaretDownOutlined } from '@ant-design/icons';
+import {Menu} from 'antd';
+import {CaretDownOutlined} from '@ant-design/icons';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faEarthAmericas,
     faUmbrellaBeach,
@@ -28,8 +28,8 @@ export function MainHeader() {
         },
         {
             key: 'tourism',
-            label:  "Туристам",
-            icon: <CaretDownOutlined />,
+            label: "Туристам",
+            icon: <CaretDownOutlined/>,
             children: [
                 {
                     label: <Link to="/kindsOfTourism" className="dropdown-content-items">Виды туризма</Link>,
@@ -83,8 +83,9 @@ export function MainHeader() {
         <>
             <Menu key="zero" mode="horizontal" items={menuItems} className={styles.header}
                   style={{
-                      backgroundColor: "#808a9d", justifyContent: "center"
-            }}
+                      backgroundColor: "#808a9d",
+                      justifyContent: "center"
+                  }}
             />
         </>
         /*        <>
