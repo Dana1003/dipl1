@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {MainHeader} from "../../components/Layout/Header/MainHeader";
 import axios from "axios";
-import {Reviews} from "../../components/Layout/Main/MainReviews/Reviews";
-import {Pagination} from "../../components/Layout/Main/Pagination";
+
+import { MainHeader } from "../../components/Layout/Header/MainHeader";
+import { Reviews } from "../../components/Layout/Main/MainReviews/Reviews";
+import { Pagination } from "../../components/Layout/Main/Pagination";
+
 
 export function ReviewPage() {
     const [reviewsCount, setReviewsCount] = useState(0);

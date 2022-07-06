@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import userIcon from "../../../images/userIcon.png";
-import {Menu, Dropdown, Space, Layout} from 'antd';
-import {CaretDownOutlined, DownOutlined, HeartOutlined} from '@ant-design/icons';
 
-import styles from './MainHeader.scss';
+import { Link } from "react-router-dom";
+
+import { Menu } from 'antd';
+import {CaretDownOutlined } from '@ant-design/icons';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faEarthAmericas,
     faUmbrellaBeach,
@@ -15,6 +15,8 @@ import {
     faUser,
     faSun
 } from "@fortawesome/free-solid-svg-icons";
+
+import styles from './MainHeader.scss';
 
 export function MainHeader() {
 
