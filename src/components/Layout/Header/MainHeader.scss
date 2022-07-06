@@ -4,8 +4,17 @@
   display: flex;
   align-items: center;
   height: 50px;
-  background: #FFF
+  background: #FFF;
 }
+
+.header {
+  .ant-menu-horizontal {
+    line-height: 46px;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
 /*.header {
  // z-index: 1;
   margin-top: 0px;
@@ -46,6 +55,7 @@ ul {
     text-decoration: underline;
   }
 }
+
 .dropdown-content-items {
   margin-left: 5px;
 }
@@ -92,7 +102,7 @@ ul {
 
 .menu-item1 {
   font-size: 50px;
-  text-shadow: -3px 0 black ;
+  text-shadow: -3px 0 black;
   text-decoration: overline;
   color: base.$header-item-hover-bg;
   font-style: italic;

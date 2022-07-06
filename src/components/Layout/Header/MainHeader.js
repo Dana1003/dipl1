@@ -3,12 +3,12 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import userIcon from "../../../images/userIcon.png";
 import {Menu, Dropdown, Space, Layout} from 'antd';
-import {DownOutlined} from '@ant-design/icons';
+import {CaretDownOutlined, DownOutlined, HeartOutlined} from '@ant-design/icons';
 import {
     AntdLayout
 } from "@pankod/refine-antd";
 
-import './MainHeader.scss';
+import styles from './MainHeader.scss';
 import {
     faEarthAmericas,
     faUmbrellaBeach,
@@ -20,104 +20,72 @@ import {
 
 export function MainHeader() {
 
-    const menu = (
-        <Menu
-            items={[
+    const menuItems = [
+        {
+            key: 'logo',
+            label: <Link to="/">SunTour</Link>,
+            icon: <HeartOutlined/>
+        },
+        {
+            key: 'tourism',
+            label:  "Туристам",
+            icon: <CaretDownOutlined />,
+            children: [
                 {
-                    label: (
-                        <Link to="/kindsOfTourism" className="dropdown-content-items">Виды туризма</Link>
-                    ),
-                    key: '0',
+                    label: <Link to="/kindsOfTourism" className="dropdown-content-items">Виды туризма</Link>,
+                    key: 'kinds',
                     icon: <FontAwesomeIcon icon={faUmbrellaBeach}/>
 
                 },
                 {
-                    label: (
-                        <Link to="/" className="dropdown-content-items">Страны</Link>
-                    ),
-                    key: '1',
+                    label: <Link to="/" className="dropdown-content-items">Страны</Link>,
+                    key: 'countries',
                     icon: <FontAwesomeIcon icon={faEarthAmericas}/>
                 },
                 {
-                    label: (
-                        <Link to="/" className="dropdown-content-items">Каталог отелей</Link>
-                    ),
-                    key: '2',
+                    label: <Link to="/" className="dropdown-content-items">Каталог отелей</Link>,
+                    key: 'catalog',
                     icon: <FontAwesomeIcon icon={faHotel}/>
                 },
                 {
-                    label: (
-                        <Link to="/" className="dropdown-content-items">Страхование</Link>
-                    ),
-                    key: '3',
+                    label: <Link to="/" className="dropdown-content-items">Страхование</Link>,
+                    key: 'insurance',
                     icon: <FontAwesomeIcon icon={faFileMedical}/>
                 },
                 {
-                    label: (
-                        <Link to="/" className="dropdown-content-items">Памятка туриста</Link>
-                    ),
-                    key: '4',
+                    label: <Link to="/" className="dropdown-content-items">Памятка туриста</Link>,
+                    key: 'memo',
                     icon: <FontAwesomeIcon icon={faFilePen}/>
                 }
-            ]}
-        />
-    );
-
-    const menuItems = [
+            ],
+        },
         {
-            key: 'nav1',
+            key: 'sales',
             label: <Link to="/">Спецпредложения</Link>
         },
         {
-            key: 'nav2',
+            key: 'reviews',
             label: <Link to="/review">Отзывы</Link>
         },
         {
-            key: 'nav3',
+            key: 'about',
             label: <Link to="/">О нас</Link>
         },
         {
-            key: 'nav4',
+            key: 'auth',
             label: <Link to="/authorize">Личный кабинет</Link>,
-            icon:  <FontAwesomeIcon icon={faUser} />
+            icon: <FontAwesomeIcon icon={faUser}/>
         }
     ]
 
-    const logo = [
-        {
-            key: 'logo',
-            label: (
-                <Link to="/">SunTour</Link>
-            )
-        }
-    ]
 
     return (
         <>
-            <AntdLayout.Header
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    height: 50,
-                    background: "#FFF",
-                    justifyContent: "space-evenly"
-                }}
-            >
-                <React.Fragment>
-                    <Menu items={logo}/>
-                    <Dropdown overlay={menu} placement="bottom">
-                        <a onClick={(e) => e.preventDefault()}>
-                            Туристам
-                            <DownOutlined/>
-                        </a>
-                    </Dropdown>
-                    <Menu style={{lineHeight: '45px', width: "85%"}}
-                          mode="horizontal"
-                          items={menuItems}
-                    />
-
-                </React.Fragment>
-            </AntdLayout.Header>
+            <Menu key="zero" mode="horizontal" items={menuItems} className={styles.header}
+                  style={{
+                      backgroundColor: "#808a9d", justifyContent: "center"
+            }}
+            />
         </>
         /*        <>
                     <div className="header">
