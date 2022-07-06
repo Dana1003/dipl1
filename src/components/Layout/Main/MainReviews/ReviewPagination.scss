@@ -8,13 +8,21 @@
   //margin-top: 92px;
   min-height: 100%;
 }
+
 .reviews-item {
   text-align: center;
   border: 1px solid;
   width: 85%;
   margin: 10px auto;
 }
+
 .pagination {
   position: absolute;
-  margin-top: 870px;
+  display: inline-flex;
+  gap: 15px;
+}
+
+.pagination-align {
+  width: 145px;
+  margin: 10px auto;
 }

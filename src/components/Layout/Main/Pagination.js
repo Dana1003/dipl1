@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 import './MainReviews/ReviewPagination.scss';
-import {Link} from "react-router-dom";
 
 export const Pagination = ({reviewsPerPage, totalReviews, paginate}) => {
     const pageNumber = [];
@@ -11,7 +11,7 @@ export const Pagination = ({reviewsPerPage, totalReviews, paginate}) => {
     }
 
     return (
-        <div>
+        <div className='pagination-align'>
             <div className='pagination'>
                 {pageNumber.map(number => (
                     <div key={number}>
