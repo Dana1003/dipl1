@@ -8,7 +8,8 @@
   height: 700px;
   position: absolute;
   left: 0px;
-  font-family: Monotype Corsiva;
+  margin-top: -1px;
+  font-family: Monotype Corsiva, serif;
   //margin-top: 420px;
 }
 
@@ -17,5 +18,6 @@
   color: white;
   width: 658px;
   text-align: center;
+  text-shadow: 8px 6px 6px #22252c;
   margin: 115px auto;
 }
