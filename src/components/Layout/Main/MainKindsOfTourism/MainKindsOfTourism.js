@@ -9,7 +9,11 @@ import tourism6 from '../../../../images/tourism6.jpg';
 import tourism7 from '../../../../images/tourism7.jpg';
 import tourism8 from '../../../../images/tourism8.jpg';
 
+import {BackTop} from "antd";
+import {ArrowUpOutlined} from "@ant-design/icons";
+
 import './MainKindsOfTourism.scss'
+
 
 export function MainKindsOfTourism() {
     return (
@@ -96,7 +100,18 @@ export function MainKindsOfTourism() {
                 </div>
                 <img src={tourism8} className="pictures"/>
             </div>
-
+            <BackTop>
+                <div style={{
+                    height:40,
+                    width: 40,
+                    borderRadius: 4,
+                    backgroundColor: '#1088e9',
+                    color: '#fff',
+                    textAlign: 'center',
+                }}>
+                    <ArrowUpOutlined style={{fontSize: 37}}/>
+                </div>
+            </BackTop>
         </div>
     );
 };
