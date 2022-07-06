@@ -4,9 +4,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import userIcon from "../../../images/userIcon.png";
 import {Menu, Dropdown, Space, Layout} from 'antd';
 import {CaretDownOutlined, DownOutlined, HeartOutlined} from '@ant-design/icons';
-import {
-    AntdLayout
-} from "@pankod/refine-antd";
 
 import styles from './MainHeader.scss';
 import {
@@ -15,7 +12,8 @@ import {
     faHotel,
     faFileMedical,
     faFilePen,
-    faUser
+    faUser,
+    faSun
 } from "@fortawesome/free-solid-svg-icons";
 
 export function MainHeader() {
@@ -24,7 +22,7 @@ export function MainHeader() {
         {
             key: 'logo',
             label: <Link to="/">SunTour</Link>,
-            icon: <HeartOutlined/>
+            icon: <FontAwesomeIcon icon={faSun}/>
         },
         {
             key: 'tourism',
