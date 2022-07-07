@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {Form, Input} from "antd";
+import { Form, Input } from "antd";
 
 export function Patronymic() {
     const [setPatronymic] = useState('');

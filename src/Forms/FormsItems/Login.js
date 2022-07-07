@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import {Form, Input} from "antd";
-import {UserOutlined} from "@ant-design/icons";
+
+import { Form, Input } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 export function Login() {
     const [setLogin] = useState('');
 
     return (
-        <>
             <Form.Item
                 label="Логин"
                 name="login"
@@ -23,6 +23,5 @@ export function Login() {
                     onChange={(e) => setLogin(e.target.value)}
                 />
             </Form.Item>
-        </>
     );
 }
