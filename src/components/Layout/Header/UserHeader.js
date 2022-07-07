@@ -1,16 +1,23 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faDoorOpen,
-    faEarthAmericas, faFileMedical, faFilePen,
-    faHotel,
-    faSun,
-    faUmbrellaBeach, faUser,
-    faUserTie
-} from "@fortawesome/free-solid-svg-icons";
+
 import {CaretDownOutlined} from "@ant-design/icons";
 import {Menu} from "antd";
+
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {
+    faEarthAmericas,
+    faFileMedical,
+    faFilePen,
+    faHotel,
+    faSun,
+    faUmbrellaBeach,
+    faDoorOpen,
+    faPassport,
+    faList,
+    faGear,
+    faToriiGate
+} from "@fortawesome/free-solid-svg-icons";
 import styles from "./MainHeader.scss";
 
 export function UserHeader() {
@@ -37,14 +44,14 @@ export function UserHeader() {
                     icon: <FontAwesomeIcon icon={faEarthAmericas}/>
                 },
                 {
-                    key: 'catalog',
+                    key: 'hotels',
                     label: <Link to="/" className="dropdown-content-items">Каталог отелей</Link>,
                     icon: <FontAwesomeIcon icon={faHotel}/>
                 },
                 {
-                    key: 'catalog',
+                    key: 'tours',
                     label: <Link to="/" className="dropdown-content-items">Каталог туров</Link>,
-                    icon: <FontAwesomeIcon icon={faHotel}/>
+                    icon: <FontAwesomeIcon icon={faToriiGate}/>
                 },
                 {
                     key: 'insurance',
@@ -65,21 +72,24 @@ export function UserHeader() {
         {
             key: 'profile',
             label: 'Мой профиль',
+            icon: <FontAwesomeIcon icon={faGear} />,
             children: [
                 {
                   key: 'privateData',
-                  label: <Link to="/userPrivateData">Личные данные</Link>
+                  label: <Link to="/userPrivateData">Личные данные</Link>,
+                  icon: <FontAwesomeIcon icon={faPassport} />
                 },
                 {
                     key: 'review',
-                    label: <Link to="/userMainPage">Отзывы</Link>
+                    label: <Link to="/userMainPage">Отзывы</Link>,
+                    icon: <FontAwesomeIcon icon={faList} />
                 }
             ]
         },
         {
             key: 'auth',
             label: <Link to="/authorize">Выход</Link>,
-            icon: <FontAwesomeIcon icon={faUser}/>
+            icon: <FontAwesomeIcon icon={faDoorOpen}/>
         }
     ]
 
