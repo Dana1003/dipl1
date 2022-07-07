@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import {Form, Input} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons";
+import { Form } from "antd";
+
+import { Password } from "../FormsItems/Password";
+import { Login } from "../FormsItems/Login";
+import { LastName } from "../FormsItems/LastName";
+import { FirstName } from "../FormsItems/FirstName";
+import { Patronymic } from "../FormsItems/Patronymic";
+import { Phone } from "../FormsItems/Phone";
+import { PassportNumber } from "../FormsItems/PassportNumber";
+import { Email } from "../FormsItems/Email";
+import { SaveButton } from "../FormsItems/SaveButton";
 
 import './PrivateDataForm.scss';
-import {Password} from "../FormsItems/Password";
-import {Login} from "../FormsItems/Login";
 
 export function PrivateDataForm() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [patronymic, setPatronymic] = useState('');
-    const [phone, setPhone] = useState('');
-    const [passportNumber, setPassportNumber] = useState('');
-    const [email, setEmail] = useState('');
-
     return (
         <div className="form">
             <h1>Мой личные данные</h1>
@@ -33,39 +33,14 @@ export function PrivateDataForm() {
             >
                 <Login />
                 <Password />
-
-                <Form.Item
-                    label="Фамилия"
-                    name="lastName"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Вы не ввели фамилию!',
-                        },
-                    ]}
-                >
-                    <Input
-                        placeholder="Введите фамилию"
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                </Form.Item>
-
-                <Form.Item
-                    label="Фамилия"
-                    name="lastName"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Вы не ввели фамилию!',
-                        },
-                    ]}
-                >
-                    <Input
-                        placeholder="Введите фамилию"
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                </Form.Item>
+                <LastName />
+                <FirstName />
+                <Patronymic />
+                <Phone />
+                <Email />
+                <PassportNumber />
+                <SaveButton />
             </Form>
         </div>
     );
-};
+}
