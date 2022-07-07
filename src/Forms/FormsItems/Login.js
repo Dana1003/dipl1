@@ -3,7 +3,7 @@ import {Form, Input} from "antd";
 import {UserOutlined} from "@ant-design/icons";
 
 export function Login() {
-    const [login, setLogin] = useState('');
+    const [setLogin] = useState('');
 
     return (
         <>
@@ -25,4 +25,4 @@ export function Login() {
             </Form.Item>
         </>
     );
-};
+}
