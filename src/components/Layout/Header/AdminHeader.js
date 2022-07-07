@@ -37,7 +37,7 @@ export function AdminHeader() {
                             <ul className="dropdown-content transition">
                                 <li>
                                     <FontAwesomeIcon icon={faUserTie}/>
-                                    <Link to="/viewManagerDetails" className="dropdown-content-items">Менеджерe</Link>
+                                    <Link to="/adminViewManagerDetails" className="dropdown-content-items">Менеджерe</Link>
                                 </li>
                             </ul>
                         </div>
