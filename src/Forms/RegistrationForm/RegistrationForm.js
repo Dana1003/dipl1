@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { Form } from "antd";
 
-import {Login} from "../FormsItems/Login";
-import {Password} from "../FormsItems/Password";
-import {ConfirmPassword} from "../FormsItems/ConfirmPassword";
-import {RegistrationButton} from "../FormsItems/RegistrationButton";
+import { Login } from "../FormsItems/Login";
+import { Password } from "../FormsItems/Password";
+import { ConfirmPassword } from "../FormsItems/ConfirmPassword";
+import { RegistrationButton } from "../FormsItems/RegistrationButton";
 
 import './RegistrationForm.scss';
 
@@ -13,16 +13,6 @@ export function RegistrationForm() {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
-    const handlerLoginChange = (login) => {
-        setLogin(login)
-    }
-    const handlerPasswordChange = (password) => {
-        setPassword(password)
-    }
-    const handlerConfirmPasswordChange = (confirmPassword) => {
-        setConfirmPassword(confirmPassword)
-    }
 
     return (
         <div className="main-registration">
@@ -40,9 +30,9 @@ export function RegistrationForm() {
                 }}
                 autoComplete="off"
             >
-                <Login onChange={handlerLoginChange}/>
-                <Password onChange={handlerPasswordChange}/>
-                <ConfirmPassword onChange={handlerConfirmPasswordChange}/>
+                <Login onChange={(login) => {setLogin(login)}}/>
+                <Password onChange={(password) => {setPassword(password)}}/>
+                <ConfirmPassword onChange={(confirmPassword) => {setConfirmPassword(confirmPassword)}}/>
                 <RegistrationButton login={login} password={password} confirmPassword={confirmPassword}/>
             </Form>
         </div>
