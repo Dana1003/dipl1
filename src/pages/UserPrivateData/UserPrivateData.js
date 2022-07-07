@@ -1,9 +1,14 @@
 import React from 'react';
 
-export function UserPrivateData() {
-    return (
-        <div>
+import { UserHeader } from "../../components/Layout/Header/UserHeader";
+import { PrivateDataForm } from "../../Forms/PrivateDataForm/PrivateDataForm";
 
-        </div>
+export function UserPrivateData() {
+
+    return (
+        <>
+            <UserHeader />
+            <PrivateDataForm />
+        </>
     );
 };
