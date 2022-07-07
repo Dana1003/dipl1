@@ -2,22 +2,25 @@
 
 .main-tourism-block {
   margin-top: -1px;
-  width: 102%;
   background-color: base.$bg-color;
 }
 
 .pictures {
-  width: 50%;
-  height: 55%;
-  margin: 100px 0px 0px 60px;
+  width: 43%;
+  margin: 100px 0px 0px 80px;
+  transition: 2s;
+  box-shadow: 14px 16px 12px #9da0a8;
 
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .text-over-picture {
   position: relative;
 
   &:hover .appeared-text {
-    background-color: #bcc2cb;
+    background-color: base.$tourism-card-color;
     transition: 2s;
   }
 }
@@ -43,4 +46,5 @@
   transition: 2s;
   top: 100px;
   margin-left: 60%;
+  border: 1px solid #bcc2cb;
 }

@@ -32,7 +32,7 @@ export function MainKindsOfTourism() {
             <div className="text-over-picture">
                 <img src={tourism2} className="pictures"/>
                 <div className="appeared-text">
-                    <p className="kind-of-tourism">Лечебно-оздоровительный туризм</p>
+                    <p className="kind-of-tourism">Оздоровительный туризм</p>
                     Лечебно-оздоровительный туризм обусловлен потребностью в лечении различного рода заболеваний и
                     оздоровлении организма после перенесенных заболеваний. Здесь можно говорить о турах с исключительно
                     лечебной целью, для лечения каких-либо тяжелых заболеваний, реабилитации после травм, аварий,
@@ -108,7 +108,7 @@ export function MainKindsOfTourism() {
                     height: 40,
                     width: 40,
                     borderRadius: 4,
-                    backgroundColor: '#1088e9',
+                    backgroundColor: "#596f85",
                     color: '#fff',
                     textAlign: 'center',
                 }}>
