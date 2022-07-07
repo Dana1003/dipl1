@@ -17,27 +17,26 @@ export function AddManager({isModalVisible, saveHandler, handleCancel}) {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [workExperience, setWorkExperience] = useState('');
 
-    const [user, setUser] = useState([]);
-    const [manager, setManager] = useState([]);
-
     const {register, formState: {errors}, handleSubmit} = useForm({mode: "onBlur"});
 
     return (
-        <Modal title="Basic Modal"
+        <Modal title="Добавить менеджера"
+               okText="Сохранить"
+               cancelText="Закрыть"
                visible={isModalVisible}
                onOk={() => saveHandler({
+                   "workExperience": workExperience,
                    "firstName": firstName,
                    "lastName": lastName,
                    "patronymic": patronymic,
                    "phone": phoneNumber,
                    "login": login,
                    "password": password,
-                   "role": "manager"
-               }, workExperience)}
+                   "role": "Manager"
+               })}
                onCancel={handleCancel}>
             <div className="main-block">
                 <h1>Добавьте информацию о менеджере</h1>
-                <form className="add-manager-form" onSubmit={e => e.preventDefault()}>
                     <div className="flexbox">
                         <label htmlFor="addLastName" className="labels">Фамилия:</label>
                         <input type="text"
@@ -157,7 +156,6 @@ export function AddManager({isModalVisible, saveHandler, handleCancel}) {
                     <div className="error">
                         {errors?.experience && <p>{errors?.experience?.message}</p>}
                     </div>
-                </form>
             </div>
         </Modal>
     );

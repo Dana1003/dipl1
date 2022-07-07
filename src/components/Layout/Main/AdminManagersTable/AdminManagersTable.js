@@ -1,22 +1,21 @@
-import {Button, Modal, Popconfirm, Table} from 'antd';
-import React, { useState } from 'react';
+import {Button, Input, Modal, Pagination, Popconfirm, Table} from 'antd';
+import React, {useState} from 'react';
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import {AddManager} from "../../../../Forms/AddManager/AddManager";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
 export function AdminManagersTable() {
     const [managers, setManagers] = useState([]);
-    const [data, setData] = useState([]);
     const [isModalVisible, setIsModalVisible] = useState(false);
-
-    const [user, setUser] = useState([]);
-    const [manager, setManager] = useState([]);
+    const [isEditingVisible, setIsEditingVisible] = useState(false);
+    const [manager, setManager] = useState(null);
 
     const {register, formState: {errors}, handleSubmit} = useForm({mode: "onBlur"});
 
-    const filterExperience = managers.map(value => ({
-        text: value.workExperience,
-        value: value.workExperience
+    const filterExperience = [...new Set(managers.map(x => x.workExperience))].map(value => ({
+        text: value,
+        value: value
     }));
 
     const columns = [
@@ -40,7 +39,7 @@ export function AdminManagersTable() {
         {
             title: 'Опыт работы',
             dataIndex: 'experience',
-            filters : filterExperience,
+            filters: filterExperience,
             onFilter: (value, record) => record.experience === value,
             sorter: (a, b) => a.experience - b.experience
         },
@@ -49,14 +48,22 @@ export function AdminManagersTable() {
             dataIndex: 'phoneNumber',
         },
         {
-            title: 'Удаление',
-            dataIndex: 'delete',
-            render: (_, record) =>
-                managers.length >= 1 ? (
-                    <Popconfirm title="Подтвердите удаление" onConfirm={() => handleDelete(record.key)}>
-                        <a>Удалить</a>
-                    </Popconfirm>
-                ) : null,
+            title: 'Действия',
+            dataIndex: 'action',
+            render: (value, record) => {
+                return (
+                    <>
+                        <EditOutlined onClick={() => {
+                            onEditManager(record)
+                        }}
+                        />
+                        <DeleteOutlined style={{color: "red", marginLeft: 12}} onClick={() => {
+                            onDeleteManager(record)
+                        }}
+                        />
+                    </>
+                )
+            }
         },
     ];
 
@@ -67,38 +74,50 @@ export function AdminManagersTable() {
             });
     }, []);
 
+    const onEditManager = (record) => {
+        setIsEditingVisible(true)
+        setManager({...record})
+    }
+
+    const resetEditing = () =>{
+        setIsEditingVisible(false)
+        setManager(null)
+    }
+
+    const onDeleteManager = (record) => {
+        if(managers.length >=1)
+        Modal.confirm({
+            title:"Подтвердите удаление",
+            okType: 'danger',
+            okText: "Подтвердить",
+            cancelText: "Закрыть",
+            onOk : ()=>{
+                handleDelete(record.key)
+            }
+        })
+    }
+
+
     const handleDelete = (key) => {
         axios.delete(`https://localhost:7274/api/managers/${key}`)
             .then(response => {
                 setManagers(managers.filter((item) => item.managerId !== key));
+                console.log()
             })
     };
 
     //---- modal events ------------
-
-    const handleOk = (user, workExperience) => {
+    //сделать эндпоинт для добавления одного большого обьекта
+    const handleOk = (managerUser) => {
         setIsModalVisible(false);
-
-        axios.post('https://localhost:7274/api/users', user)
-            .then(response => {
-                setUser(response.data)
-                axios.post('https://localhost:7274/api/managers', {
-                    "workExperience": workExperience,
-                    "userId": response.data.userId
-                }).then(temp => {
-                    setManagers([...managers, temp.data]);
-                    alert('Менеджер успешно добавлен!');
-                }).catch(err => {
-                    if (err.response.status === 500) {
-                        alert('Не удалось добавить менеджера!\nВнутренняя ошибка сервера!')
-                    }
-                })
-            })
-            .catch(err => {
-                if (err.response.status === 500) {
-                    console.log('Менеджер с такими данными уже существует!')
-                }
-            });
+        axios.post('https://localhost:7274/api/managers/managerUser', managerUser).then(temp => {
+            setManagers([...managers, temp.data]);
+            alert('Менеджер успешно добавлен!');
+        }).catch(err => {
+            if (err.response.status === 500) {
+                alert('Не удалось добавить менеджера!\nВнутренняя ошибка сервера!')
+            }
+        })
     };
 
     const handleCancel = () => {
@@ -114,18 +133,101 @@ export function AdminManagersTable() {
             </Button>
 
             <div id="manager-table" style={{marginTop: 100}}>
-                <Table columns={columns} dataSource={managers.map(currentValue => ({
-                    key: currentValue.managerId,
-                    firstName: currentValue.firstName,
-                    lastName: currentValue.lastName,
-                    patronymic: currentValue.patronymic,
-                    login: currentValue.login,
-                    experience: currentValue.workExperience,
-                    phoneNumber: currentValue.phone
-                }))}/>;
+                <Table columns={columns}
+                       dataSource={managers.map(currentValue => ({
+                           key: currentValue.managerId,
+                           firstName: currentValue.firstName,
+                           lastName: currentValue.lastName,
+                           patronymic: currentValue.patronymic,
+                           login: currentValue.login,
+                           experience: currentValue.workExperience,
+                           phoneNumber: currentValue.phone
+                       }))}/>
             </div>
-
-            <AddManager isModalVisible={isModalVisible} saveHandler={handleOk} handleCancel={handleCancel} />
+            <Modal
+                title="Редактировать менеджера"
+                visible={isEditingVisible}
+                okText="Сохранить"
+                cancelText="Закрыть"
+                onCancel={() => {
+                    resetEditing()
+                }}
+                onOk={() => {
+                    setManagers(pre =>{
+                        return pre.map(m => {
+                            if(m.managerId == manager.key) {
+                                 let managerUser = ({
+                                    managerId: manager.key,
+                                    firstName: manager.firstName,
+                                    lastName: manager.lastName,
+                                    patronymic: manager.patronymic,
+                                    login: manager.login,
+                                    workExperience: manager.experience,
+                                    phone: manager.phoneNumber,
+                                    role: "Manager",
+                                    userId: manager.key,
+                                    password: ""
+                                })
+                                axios.put(`https://localhost:7274/api/managers/managerUser/${managerUser.managerId}`, managerUser).then(temp => {
+                                    alert('Данные менеджера успешно обновлены!');
+                                }).catch(err => {
+                                    if (err.response.status === 500) {
+                                        alert('Не удалось обновить менеджера!\nВнутренняя ошибка сервера!')
+                                    }
+                                })
+                                return managerUser
+                            }
+                            else
+                                return m
+                        })
+                    })
+                    resetEditing()
+                }}
+            >
+                <Input value={manager?.lastName}
+                       onChange={(e) =>{
+                           setManager(pre =>{
+                               return {...pre, lastName: e.target.value}
+                           })
+                       }}
+                />
+                <Input value={manager?.firstName}
+                       onChange={(e) =>{
+                           setManager(pre =>{
+                               return {...pre, firstName: e.target.value}
+                           })
+                       }}
+                />
+                <Input value={manager?.patronymic}
+                       onChange={(e) =>{
+                           setManager(pre =>{
+                               return {...pre, patronymic: e.target.value}
+                           })
+                       }}
+                />
+                <Input value={manager?.login}
+                       onChange={(e) =>{
+                           setManager(pre =>{
+                               return {...pre, login: e.target.value}
+                           })
+                       }}
+                />
+                <Input value={manager?.experience}
+                       onChange={(e) =>{
+                           setManager(pre =>{
+                               return {...pre, experience: e.target.value}
+                           })
+                       }}
+                />
+                <Input value={manager?.phoneNumber}
+                       onChange={(e) =>{
+                           setManager(pre =>{
+                               return {...pre, phoneNumber: e.target.value}
+                           })
+                       }}
+                />
+            </Modal>
+            <AddManager isModalVisible={isModalVisible} saveHandler={handleOk} handleCancel={handleCancel}/>
         </div>
     );
 };
