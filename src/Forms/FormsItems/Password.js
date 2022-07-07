@@ -4,7 +4,7 @@ import {Form, Input} from "antd";
 import {LockOutlined} from "@ant-design/icons";
 
 export function Password() {
-    const [password, setPassword] = useState('');
+    const [setPassword] = useState('');
 
     return (
         <>
@@ -26,4 +26,4 @@ export function Password() {
             </Form.Item>
         </>
     );
-};
+}
