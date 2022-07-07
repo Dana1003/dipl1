@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, Input } from "antd";
 
 export function LastName() {
-    const [setLastName] = useState('');
+    const [lastName, setLastName] = useState('');
 
     return (
         <Form.Item

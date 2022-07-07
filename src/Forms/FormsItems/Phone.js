@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, Input } from "antd";
 
 export function Phone() {
-    const [setPhone] = useState('');
+    const [phone, setPhone] = useState('');
 
     return (
         <Form.Item

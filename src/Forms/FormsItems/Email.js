@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, Input } from "antd";
 
 export function Email() {
-    const [setEmail] = useState('');
+    const [email, setEmail] = useState('');
 
     return (
         <Form.Item

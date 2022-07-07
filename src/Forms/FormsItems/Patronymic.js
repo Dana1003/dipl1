@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, Input } from "antd";
 
 export function Patronymic() {
-    const [setPatronymic] = useState('');
+    const [patronymic, setPatronymic] = useState('');
 
     return (
         <Form.Item

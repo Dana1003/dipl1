@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, Input } from "antd";
 
 export function PassportNumber() {
-    const [setPassportNumber] = useState('');
+    const [passportNumber, setPassportNumber] = useState('');
 
     return (
         <Form.Item
