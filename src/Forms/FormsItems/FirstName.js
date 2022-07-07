@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function FirstName() {
-    const [firstName, setFirstName] = useState('');
-
+export function FirstName({ onChange }) {
     return (
         <Form.Item
             label="Имя"
@@ -18,7 +16,7 @@ export function FirstName() {
         >
             <Input
                 placeholder="Введите имя"
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => {onChange(e.target.value)}}
             />
         </Form.Item>
     );

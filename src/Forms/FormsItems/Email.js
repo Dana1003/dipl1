@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function Email() {
-    const [email, setEmail] = useState('');
-
+export function Email({ onChange }) {
     return (
         <Form.Item
             label="Номер почту"
@@ -18,7 +16,7 @@ export function Email() {
         >
             <Input
                 placeholder="Введите почту"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {onChange(e.target.value)}}
             />
         </Form.Item>
     );

@@ -18,7 +18,7 @@ export function Login({ onChange }) {
                 <Input
                     prefix={<UserOutlined className="site-form-item-icon" />}
                     placeholder="Введите логин"
-                    onChange={(event) => {onChange(event.target.value)}}
+                    onChange={(e) => {onChange(e.target.value)}}
                 />
             </Form.Item>
     );

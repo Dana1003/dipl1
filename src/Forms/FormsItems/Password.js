@@ -18,7 +18,7 @@ export function Password({ onChange }) {
             <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon"/>}
                 placeholder="Введите пароль"
-                onChange={(event) => {onChange(event.target.value)}}
+                onChange={(e) => {onChange(e.target.value)}}
             />
         </Form.Item>
     );

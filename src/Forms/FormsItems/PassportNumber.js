@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function PassportNumber() {
-    const [passportNumber, setPassportNumber] = useState('');
-
+export function PassportNumber({ onChange }) {
     return (
         <Form.Item
             label="Номер паспорта"
@@ -18,7 +16,7 @@ export function PassportNumber() {
         >
             <Input
                 placeholder="Введите номер паспорта"
-                onChange={(e) => setPassportNumber(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
             />
         </Form.Item>
     );

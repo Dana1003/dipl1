@@ -18,7 +18,7 @@ export function ConfirmPassword({ onChange }) {
             <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon"/>}
                 placeholder="Введите пароль ещё раз"
-                onChange={(event) => {onChange(event.target.value)}}
+                onChange={(e) => {onChange(e.target.value)}}
             />
         </Form.Item>
     );

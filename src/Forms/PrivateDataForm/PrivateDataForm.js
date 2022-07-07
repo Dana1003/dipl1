@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Form } from "antd";
 
@@ -10,11 +10,20 @@ import { Patronymic } from "../FormsItems/Patronymic";
 import { Phone } from "../FormsItems/Phone";
 import { PassportNumber } from "../FormsItems/PassportNumber";
 import { Email } from "../FormsItems/Email";
-import { SaveButton } from "../FormsItems/SaveButton";
+import { SavePrivateDataButton } from "../FormsItems/SavePrivateDataButton";
 
 import './PrivateDataForm.scss';
 
 export function PrivateDataForm() {
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [patronymic, setPatronymic] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [passportNumber, setPassportNumber] = useState('');
+
     return (
         <div className="form">
             <h1>Мой личные данные</h1>
@@ -31,15 +40,15 @@ export function PrivateDataForm() {
                 }}
                 autoComplete="off"
             >
-                <Login />
-                <Password />
-                <LastName />
-                <FirstName />
-                <Patronymic />
-                <Phone />
-                <Email />
-                <PassportNumber />
-                <SaveButton />
+                <Login onChange={(login) => {setLogin(login)}}/>
+                <Password onChange={(password) => {setPassword(password)}}/>
+                <LastName onChange={(lastName) => {setLastName(lastName)}}/>
+                <FirstName onChange={(firstName) => {setFirstName(firstName)}}/>
+                <Patronymic onChange={(patronymic) => {setPatronymic(patronymic)}}/>
+                <Phone onChange={(phone) => {setPhone(phone)}}/>
+                <Email onChange={(email) => {setEmail(email)}}/>
+                <PassportNumber onChange={(passportNumber) => {setPassportNumber(passportNumber)}}/>
+                <SavePrivateDataButton />
             </Form>
         </div>
     );

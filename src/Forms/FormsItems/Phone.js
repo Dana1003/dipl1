@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function Phone() {
-    const [phone, setPhone] = useState('');
-
+export function Phone({ onChange}) {
     return (
         <Form.Item
             label="Номер телефона"
@@ -18,7 +16,7 @@ export function Phone() {
         >
             <Input
                 placeholder="Введите номер телефона"
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
             />
         </Form.Item>
     );

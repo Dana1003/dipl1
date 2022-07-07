@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function Patronymic() {
-    const [patronymic, setPatronymic] = useState('');
-
+export function Patronymic({ onChange}) {
     return (
         <Form.Item
             label="Отчество"
@@ -18,7 +16,7 @@ export function Patronymic() {
         >
             <Input
                 placeholder="Введите пароль"
-                onChange={(e) => setPatronymic(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
             />
         </Form.Item>
     );
