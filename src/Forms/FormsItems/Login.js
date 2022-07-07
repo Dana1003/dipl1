@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
-export function Login() {
-    const [setLogin] = useState('');
-
+export function Login({ onChange }) {
     return (
             <Form.Item
                 label="Логин"
@@ -20,7 +18,7 @@ export function Login() {
                 <Input
                     prefix={<UserOutlined className="site-form-item-icon" />}
                     placeholder="Введите логин"
-                    onChange={(e) => setLogin(e.target.value)}
+                    onChange={(event) => {onChange(event.target.value)}}
                 />
             </Form.Item>
     );

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Input } from "antd";
 import { LockOutlined } from "@ant-design/icons";
 
-export function Password() {
-    const [setPassword] = useState('');
-
+export function Password({ onChange }) {
     return (
         <Form.Item
             label="Пароль"
@@ -20,7 +18,7 @@ export function Password() {
             <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon"/>}
                 placeholder="Введите пароль"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(event) => {onChange(event.target.value)}}
             />
         </Form.Item>
     );
