@@ -1,0 +1,52 @@
+import React from 'react';
+import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faDoorOpen, faUserTie} from "@fortawesome/free-solid-svg-icons";
+
+export function UserHeader() {
+    return (
+        <>
+            return (
+            <>
+                <div className="header">
+                    <div>
+                        <ul className="list-menu1">
+                            <li>
+                                <Link to="/adminMainPage" className="menu-item1 transition">SunTour</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul className="list-menu">
+                            <div className="dropdown">
+                                <li className="nav-item"><a className="list-menu-item transition">Добавить</a></li>
+                                <ul className="dropdown-content transition">
+                                    <li>
+                                        <FontAwesomeIcon icon={faUserTie}/>
+                                        <Link to="/addManager" className="dropdown-content-items">Менеджер</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <li className="nav-item"><a className="list-menu-item transition">Удалить</a></li>
+                            <li className="nav-item"><a className="list-menu-item transition">Изменить</a></li>
+                            <div className="dropdown">
+                                <li className="nav-item"><a className="list-menu-item transition">Данные о</a></li>
+                                <ul className="dropdown-content transition">
+                                    <li>
+                                        <FontAwesomeIcon icon={faUserTie}/>
+                                        <Link to="/viewManagerDetails" className="dropdown-content-items">Менеджерe</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <li className="nav-item">
+                                <FontAwesomeIcon icon={faDoorOpen}/>
+                                <Link to="/authorize" className="list-menu-item transition">Выход</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </>
+            );
+        </>
+    );
+};
