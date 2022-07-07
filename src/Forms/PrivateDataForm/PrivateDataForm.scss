@@ -1,0 +1,16 @@
+@use "../../base";
+
+.form {
+  background-color: base.$bg-color;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  margin-top: -1px;
+
+  h1 {
+    text-align: center;
+    margin: 90px auto;
+    text-decoration:overline;
+  }
+}
