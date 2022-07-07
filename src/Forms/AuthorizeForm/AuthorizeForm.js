@@ -25,6 +25,9 @@ export function AuthorizeForm() {
         if (login === 'admin' && password === 'admin') {
             return navigate(`/adminMainPage`);
         }
+        if(login === 'user' && password === 'user') {
+            return navigate('/userMainPage');
+        }
     }
 
     return (
