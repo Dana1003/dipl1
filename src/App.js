@@ -11,6 +11,7 @@ import { AdminViewManagerDetails } from "./pages/AdminViewManagerDetails/AdminVi
 import { UserMainPage } from "./pages/UserMainPage/UserMainPage";
 
 import './base.scss';
+import {UserPrivateData} from "./pages/UserPrivateData/UserPrivateData";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/review" element={<ReviewPage/>} exact></Route>
               <Route path="/adminMainPage" element={<AdminMainPage/>} exact></Route>
               <Route path="/userMainPage" element={<UserMainPage/>} exact></Route>
+              <Route path="/userPrivateData" element={<UserPrivateData/>} exact></Route>
               <Route path="/addManager" element={<AdminAddManager />} exact></Route>
               <Route path="/viewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
               <Route path="/registration" element={<RegistrPage/>} exact></Route>
