@@ -1,52 +1,97 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDoorOpen, faUserTie} from "@fortawesome/free-solid-svg-icons";
+import {
+    faDoorOpen,
+    faEarthAmericas, faFileMedical, faFilePen,
+    faHotel,
+    faSun,
+    faUmbrellaBeach, faUser,
+    faUserTie
+} from "@fortawesome/free-solid-svg-icons";
+import {CaretDownOutlined} from "@ant-design/icons";
+import {Menu} from "antd";
+import styles from "./MainHeader.scss";
 
 export function UserHeader() {
+    const menuItems = [
+        {
+            key: 'logo',
+            label: <Link to="/userMainPage">SunTour</Link>,
+            icon: <FontAwesomeIcon icon={faSun}/>
+        },
+        {
+            key: 'tourism',
+            label: 'Туристам',
+            icon: <CaretDownOutlined/>,
+            children: [
+                {
+                    key: 'kinds',
+                    label: <Link to="/kindsOfTourism" className="dropdown-content-items">Виды туризма</Link>,
+                    icon: <FontAwesomeIcon icon={faUmbrellaBeach}/>
+
+                },
+                {
+                    key: 'countries',
+                    label: <Link to="/" className="dropdown-content-items">Страны</Link>,
+                    icon: <FontAwesomeIcon icon={faEarthAmericas}/>
+                },
+                {
+                    key: 'catalog',
+                    label: <Link to="/" className="dropdown-content-items">Каталог отелей</Link>,
+                    icon: <FontAwesomeIcon icon={faHotel}/>
+                },
+                {
+                    key: 'catalog',
+                    label: <Link to="/" className="dropdown-content-items">Каталог туров</Link>,
+                    icon: <FontAwesomeIcon icon={faHotel}/>
+                },
+                {
+                    key: 'insurance',
+                    label: <Link to="/" className="dropdown-content-items">Страхование</Link>,
+                    icon: <FontAwesomeIcon icon={faFileMedical}/>
+                },
+                {
+                    key: 'memo',
+                    label: <Link to="/" className="dropdown-content-items">Памятка туриста</Link>,
+                    icon: <FontAwesomeIcon icon={faFilePen}/>
+                }
+            ],
+        },
+        {
+            key: 'reviews',
+            label: <Link to="/review">Бронь</Link>
+        },
+        {
+            key: 'profile',
+            label: 'Мой профиль',
+            children: [
+                {
+                  key: 'privateData',
+                  label: <Link to="/userPrivateData">Личные данные</Link>
+                },
+                {
+                    key: 'review',
+                    label: <Link to="/userMainPage">Отзывы</Link>
+                }
+            ]
+        },
+        {
+            key: 'auth',
+            label: <Link to="/authorize">Выход</Link>,
+            icon: <FontAwesomeIcon icon={faUser}/>
+        }
+    ]
+
+
     return (
         <>
-            return (
-            <>
-                <div className="header">
-                    <div>
-                        <ul className="list-menu1">
-                            <li>
-                                <Link to="/adminMainPage" className="menu-item1 transition">SunTour</Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul className="list-menu">
-                            <div className="dropdown">
-                                <li className="nav-item"><a className="list-menu-item transition">Добавить</a></li>
-                                <ul className="dropdown-content transition">
-                                    <li>
-                                        <FontAwesomeIcon icon={faUserTie}/>
-                                        <Link to="/addManager" className="dropdown-content-items">Менеджер</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <li className="nav-item"><a className="list-menu-item transition">Удалить</a></li>
-                            <li className="nav-item"><a className="list-menu-item transition">Изменить</a></li>
-                            <div className="dropdown">
-                                <li className="nav-item"><a className="list-menu-item transition">Данные о</a></li>
-                                <ul className="dropdown-content transition">
-                                    <li>
-                                        <FontAwesomeIcon icon={faUserTie}/>
-                                        <Link to="/viewManagerDetails" className="dropdown-content-items">Менеджерe</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <li className="nav-item">
-                                <FontAwesomeIcon icon={faDoorOpen}/>
-                                <Link to="/authorize" className="list-menu-item transition">Выход</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </>
-            );
+            <Menu key="userMenu" mode="horizontal" items={menuItems} className={styles.header}
+                  style={{
+                      backgroundColor: "#808a9d",
+                      justifyContent: "center"
+                  }}
+            />
         </>
     );
-};
+}
