@@ -13,11 +13,6 @@ export function RegistrationForm() {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        console.log(user)
-    }, [user]);
 
     const handlerLoginChange = (login) => {
         setLogin(login)
