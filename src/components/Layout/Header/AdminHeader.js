@@ -21,7 +21,7 @@ export function AdminHeader() {
                 </div>
                 <div>
                     <ul className="list-menu">
-                        <div className="dropdown">
+ {/*                       <div className="dropdown">
                             <li className="nav-item"><a className="list-menu-item transition">Добавить</a></li>
                             <ul className="dropdown-content transition">
                                 <li>
@@ -31,13 +31,16 @@ export function AdminHeader() {
                             </ul>
                         </div>
                         <li className="nav-item"><a className="list-menu-item transition">Удалить</a></li>
-                        <li className="nav-item"><a className="list-menu-item transition">Изменить</a></li>
+                        <li className="nav-item"><a className="list-menu-item transition">Изменить</a></li>*/}
                         <div className="dropdown">
-                            <li className="nav-item"><a className="list-menu-item transition">Данные о</a></li>
+                            <li className="nav-item"><a className="list-menu-item transition">Данные</a></li>
                             <ul className="dropdown-content transition">
                                 <li>
                                     <FontAwesomeIcon icon={faUserTie}/>
-                                    <Link to="/viewManagerDetails" className="dropdown-content-items">Менеджерe</Link>
+                                    <Link to="/viewManagerDetails" className="dropdown-content-items">Менеджера</Link>
+                                </li>
+                                <li>
+                                    <Link to="/adminAddSchedule" className="dropdown-content-items">График работы</Link>
                                 </li>
                             </ul>
                         </div>
