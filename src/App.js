@@ -8,6 +8,7 @@ import {ReviewPage} from "./pages/ReviewPage/ReviewPage";
 import {KindsOfTourism} from "./pages/KindsOfTourism/KindsOfTourism";
 import {AdminAddManager} from "./pages/AdminAddManager/AdminAddManager";
 import {AdminViewManagerDetails} from "./pages/AdminViewManagerDetails/AdminViewManagerDetails";
+import {AdminAddSchedule} from "./pages/AdminAddSchedule/AdminAddSchedule";
 
 import './base.scss';
 
@@ -23,6 +24,7 @@ function App() {
               <Route path="/addManager" element={<AdminAddManager />} exact></Route>
               <Route path="/viewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
               <Route path="/registration" element={<RegistrPage/>} exact></Route>
+              <Route path="/adminAddSchedule" element={<AdminAddSchedule />} exact></Route>
           </Routes>
       </>
   );
