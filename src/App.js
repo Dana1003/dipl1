@@ -12,6 +12,7 @@ import { UserMainPage } from "./pages/UserMainPage/UserMainPage";
 
 import './base.scss';
 import {UserPrivateData} from "./pages/UserPrivateData/UserPrivateData";
+import {AdminManagersTable} from "./components/Layout/Main/AdminManagersTable/AdminManagersTable";
 
 function App() {
   return (

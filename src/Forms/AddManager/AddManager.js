@@ -187,4 +187,4 @@ export function AddManager() {
             </form>
         </div>
     );
-};
+}

@@ -26,7 +26,7 @@ export function AdminHeader() {
             icon: <CaretDownOutlined/>,
             children: [
                 {
-                    label: <Link to="/">Менежджере</Link>,
+                    label: <Link to="/adminViewManagerDetails">Менежджере</Link>,
                     key: 'kinds',
                     icon: <FontAwesomeIcon icon={faUserTie}/>
                 }
