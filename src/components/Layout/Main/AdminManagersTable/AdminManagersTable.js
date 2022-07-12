@@ -5,6 +5,11 @@ import {AddManager} from "../../../../Forms/AddManager/AddManager";
 import {Button, Input, Modal, Table, Form} from 'antd';
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {Login} from "../../../../Forms/FormsItems/Login";
+import {LastName} from "../../../../Forms/FormsItems/LastName";
+import {FirstName} from "../../../../Forms/FormsItems/FirstName";
+import {Patronymic} from "../../../../Forms/FormsItems/Patronymic";
+import {WorkExperience} from "../../../../Forms/FormsItems/WorkExperience";
+import {Phone} from "../../../../Forms/FormsItems/Phone";
 
 export function AdminManagersTable() {
     const [managers, setManagers] = useState([]);
@@ -175,72 +180,55 @@ export function AdminManagersTable() {
                     resetEditing()
                 }}
             >
-                <Form>
-                    <Form.Item
-                        label="Фамилия"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Вы не ввели фамилию!',
-                            },
-                        ]}
-                    >
-                        <Input value={manager?.lastName}
-                               placeholder={'Введите фамилию'}
+                <Form
+                    name="basic"
+                    labelCol={{
+                        span: 8,
+                    }}
+                    wrapperCol={{
+                        span: 14,
+                    }}
+                    initialValues={{
+                        remember: true,
+                    }}
+                    autoComplete="off"
+                >
+                    <LastName value={manager?.lastName}
+                              onChange={(e) => {
+                                  setManager(pre => {
+                                      return {...pre, lastName: e.target.value}
+                                  })
+                              }}/>
+                    <FirstName value={manager?.firstName}
                                onChange={(e) => {
                                    setManager(pre => {
-                                       return {...pre, lastName: e.target.value}
+                                       return {...pre, firstName: e.target.value}
                                    })
-                               }}
-                        />
-                    </Form.Item>
+                               }}/>
+                    <Patronymic value={manager?.patronymic}
+                                onChange={(e) => {
+                                    setManager(pre => {
+                                        return {...pre, patronymic: e.target.value}
+                                    })
+                                }}/>
                     <Login value={manager?.login}
-                           placeholder={'Введите логин'}
                            onChange={(e) => {
                                setManager(pre => {
                                    return {...pre, login: e.target.value}
                                })
                            }}/>
-                    <Input value={manager?.firstName}
-                           placeholder={'Введите имя'}
-                           onChange={(e) => {
-                               setManager(pre => {
-                                   return {...pre, firstName: e.target.value}
-                               })
-                           }}
-                    />
-                    <Input value={manager?.patronymic}
-                           placeholder={'Введите отчество'}
-                           onChange={(e) => {
-                               setManager(pre => {
-                                   return {...pre, patronymic: e.target.value}
-                               })
-                           }}
-                    />
-                    {/*                    <Input value={manager?.login}
-                           placeholder={'Введите логин'}
-                           onChange={(e) => {
-                               setManager(pre => {
-                                   return {...pre, login: e.target.value}
-                               })
-                           }}
-                    />*/}
-                    <Input value={manager?.experience}
-                           placeholder={'Введите опыт работы'}
-                           onChange={(e) => {
-                               setManager(pre => {
-                                   return {...pre, experience: e.target.value}
-                               })
-                           }}
-                    />
-                    <Input value={manager?.phoneNumber}
-                           placeholder={'Введите номер телефона'}
+                    <WorkExperience value={manager?.experience}
+                                    onChange={(e) => {
+                                        setManager(pre => {
+                                            return {...pre, experience: e.target.value}
+                                        })
+                                    }}/>
+                    <Phone value={manager?.phoneNumber}
                            onChange={(e) => {
                                setManager(pre => {
                                    return {...pre, phoneNumber: e.target.value}
                                })
-                           }}
-                    />
+                           }}/>
                 </Form>
             </Modal>
             <Modal title="Добавить менеджера"
