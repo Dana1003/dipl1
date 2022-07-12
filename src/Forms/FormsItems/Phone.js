@@ -2,11 +2,10 @@ import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function Phone({ onChange}) {
+export function Phone({ onChange, value}) {
     return (
         <Form.Item
             label="Номер телефона"
-            name="phone"
             rules={[
                 {
                     required: true,
@@ -15,8 +14,9 @@ export function Phone({ onChange}) {
             ]}
         >
             <Input
+                value={value}
                 placeholder="Введите номер телефона"
-                onChange={(e) => onChange(e.target.value)}
+                onChange={onChange}
             />
         </Form.Item>
     );

@@ -2,11 +2,10 @@ import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function Patronymic({ onChange}) {
+export function Patronymic({ onChange, value}) {
     return (
         <Form.Item
             label="Отчество"
-            name="patronymic"
             rules={[
                 {
                     required: true,
@@ -15,8 +14,9 @@ export function Patronymic({ onChange}) {
             ]}
         >
             <Input
+                value={value}
                 placeholder="Введите пароль"
-                onChange={(e) => onChange(e.target.value)}
+                onChange={onChange}
             />
         </Form.Item>
     );

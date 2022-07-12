@@ -2,11 +2,10 @@ import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function LastName({ onChange }) {
+export function LastName({ onChange, value }) {
     return (
         <Form.Item
             label="Фамилия"
-            name="lastName"
             rules={[
                 {
                     required: true,
@@ -15,8 +14,9 @@ export function LastName({ onChange }) {
             ]}
         >
             <Input
+                value={value}
                 placeholder="Введите фамилию"
-                onChange={(e) => {onChange(e.target.value)}}
+                onChange={ onChange }
             />
         </Form.Item>
     );
