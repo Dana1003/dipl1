@@ -62,10 +62,9 @@ export function AddManager() {
 
     return (
         <div className="main-block">
-            <h1>Добавьте информацию о менеджере</h1>
-            <form className="add-manager-form" onSubmit={e => e.preventDefault()}>
-                <div className="flexbox">
-                    <label htmlFor="addLastName" className="labels">Фамилия:</label>
+            <form onSubmit={e => e.preventDefault()}>
+                <div>
+                    <label htmlFor="addLastName">Фамилия:</label>
                     <input type="text"
                            id="addLastName"
                            placeholder="Введите фамилию"
@@ -81,8 +80,8 @@ export function AddManager() {
                 <div className="error">
                     {errors?.lastName && <p>{errors?.lastName?.message}</p>}
                 </div>
-                <div className="flexbox">
-                    <label htmlFor="addFirstName" className="labels">Имя:</label>
+                <div>
+                    <label htmlFor="addFirstName">Имя:</label>
                     <input type="text"
                            id="addFirstName"
                            placeholder="Введите имя"
@@ -98,8 +97,8 @@ export function AddManager() {
                 <div className="error">
                     {errors?.firstName && <p>{errors?.firstName?.message}</p>}
                 </div>
-                <div className="flexbox">
-                    <label htmlFor="addPatronymic" className="labels">Отчество:</label>
+                <div>
+                    <label htmlFor="addPatronymic">Отчество:</label>
                     <input type="text"
                            id="addPatronymic"
                            placeholder="Введите отчество"
@@ -115,8 +114,8 @@ export function AddManager() {
                 <div className="error">
                     {errors?.patronymic && <p>{errors?.patronymic?.message}</p>}
                 </div>
-                <div className="flexbox">
-                    <label htmlFor="phoneNumber" className="labels">Номер телефона:</label>
+                <div>
+                    <label htmlFor="phoneNumber">Номер телефона:</label>
                     <input type="text"
                            id="phoneNumber"
                            placeholder="Введите номер телефона"
@@ -132,8 +131,8 @@ export function AddManager() {
                 <div className="error">
                     {errors?.phone && <p>{errors?.phone?.message}</p>}
                 </div>
-                <div className="flexbox">
-                    <label htmlFor="login" className="labels">Логин:</label>
+                <div>
+                    <label htmlFor="login">Логин:</label>
                     <input type="text"
                            id="login"
                            placeholder="Введите логин"
@@ -149,8 +148,8 @@ export function AddManager() {
                 <div className="error">
                     {errors?.login && <p>{errors?.login?.message}</p>}
                 </div>
-                <div className="flexbox">
-                    <label htmlFor="password" className="labels">Пароль:</label>
+                <div>
+                    <label htmlFor="password">Пароль:</label>
                     <input
                         type="password"
                         id="password"
@@ -167,8 +166,8 @@ export function AddManager() {
                 <div className="error">
                     {errors?.password && <p>{errors?.password?.message}</p>}
                 </div>
-                <div className="flexbox">
-                    <label htmlFor="WorkExperience" className="labels">Опыт работы:</label>
+                <div>
+                    <label htmlFor="WorkExperience">Опыт работы:</label>
                     <input
                         type="number"
                         id="WorkExperience"
@@ -183,7 +182,6 @@ export function AddManager() {
                 <div className="error">
                     {errors?.experience && <p>{errors?.experience?.message}</p>}
                 </div>
-                <button className="saveBut transition" onClick={saveHandler}>Сохранить</button>
             </form>
         </div>
     );

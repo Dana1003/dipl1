@@ -6,13 +6,11 @@ import { RegistrPage } from "./pages/RegistrPage/RegistrPage";
 import { AdminMainPage } from "./pages/AdminMainPage/AdminMainPage";
 import { ReviewPage } from "./pages/ReviewPage/ReviewPage";
 import { KindsOfTourism } from "./pages/KindsOfTourism/KindsOfTourism";
-import { AdminAddManager } from "./pages/AdminAddManager/AdminAddManager";
 import { AdminViewManagerDetails } from "./pages/AdminViewManagerDetails/AdminViewManagerDetails";
 import { UserMainPage } from "./pages/UserMainPage/UserMainPage";
+import { UserPrivateData } from "./pages/UserPrivateData/UserPrivateData";
 
 import './base.scss';
-import {UserPrivateData} from "./pages/UserPrivateData/UserPrivateData";
-import {AdminManagersTable} from "./components/Layout/Main/AdminManagersTable/AdminManagersTable";
 
 function App() {
   return (
@@ -27,7 +25,6 @@ function App() {
               <Route path="/review" element={<ReviewPage/>} exact></Route>
 
               <Route path="/adminMainPage" element={<AdminMainPage/>} exact></Route>
-              <Route path="/addManager" element={<AdminAddManager />} exact></Route>
               <Route path="/adminViewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
 
               <Route path="/userMainPage" element={<UserMainPage/>} exact></Route>

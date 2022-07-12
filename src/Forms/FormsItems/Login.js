@@ -3,11 +3,10 @@ import React from 'react';
 import { Form, Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
-export function Login({ onChange }) {
+export function Login({ onChange, value }) {
     return (
             <Form.Item
                 label="Логин"
-                name="login"
                 rules={[
                     {
                         required: true,
@@ -16,9 +15,10 @@ export function Login({ onChange }) {
                 ]}
             >
                 <Input
+                    value={value}
                     prefix={<UserOutlined className="site-form-item-icon" />}
                     placeholder="Введите логин"
-                    onChange={(e) => {onChange(e.target.value)}}
+                    onChange={ onChange/*(e) => {onChange(e.target.value)}*/}
                 />
             </Form.Item>
     );
