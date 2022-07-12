@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useForm } from "react-hook-form";
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
-import { AddManager } from "../../../../Forms/AddManager/AddManager";
+import {AddManager} from "../../../../Forms/AddManager/AddManager";
 
-import { Button, Input, Modal, Table } from 'antd';
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {Button, Input, Modal, Table, Form} from 'antd';
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import {Login} from "../../../../Forms/FormsItems/Login";
 
 export function AdminManagersTable() {
     const [managers, setManagers] = useState([]);
@@ -71,45 +71,46 @@ export function AdminManagersTable() {
             .then(res => {
                 setManagers(res.data);
             });
-    }, []);
+    }, [managers]);
 
     const onEditManager = (record) => {
         setIsEditingVisible(true)
         setManager({...record})
     }
 
-    const resetEditing = () =>{
-        setIsEditingVisible(false)
-        setManager(null)
-    }
-
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-
     const onDeleteManager = (record) => {
-        if(managers.length >=1)
+        if (managers.length >= 1)
             Modal.confirm({
-                title:"Подтвердите удаление",
+                title: "Подтвердите удаление",
                 okType: 'danger',
                 okText: "Подтвердить",
                 cancelText: "Закрыть",
-                onOk : ()=>{
+                onOk: () => {
                     handleDelete(record.key)
                 }
             })
     }
 
+    const resetEditing = () => {
+        setIsEditingVisible(false)
+        setManager(null)
+    };
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     const handleDelete = (key) => {
         axios.delete(`https://localhost:7274/api/managers/${key}`)
             .then(response => {
                 setManagers(managers.filter((item) => item.managerId !== key));
-                console.log()
             })
     };
 
-    //---- modal events ------------
     //сделать эндпоинт для добавления одного большого обьекта
     const handleOk = (managerUser) => {
         setIsModalVisible(false);
@@ -123,14 +124,9 @@ export function AdminManagersTable() {
         })
     };
 
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
-
-    //------------------------------
 
     return (
-        <div>
+        <>
             <Button type="primary" onClick={showModal} style={{marginTop: 100}}>
                 Добавить менеджера
             </Button>
@@ -148,6 +144,7 @@ export function AdminManagersTable() {
                            phoneNumber: currentValue.phone
                        }))}/>
             </div>
+
             <Modal
                 title="Редактировать менеджера"
                 visible={isEditingVisible}
@@ -157,83 +154,105 @@ export function AdminManagersTable() {
                     resetEditing()
                 }}
                 onOk={() => {
-                    setManagers(pre =>{
-                        return pre.map(m => {
-                            if(m.managerId == manager.key) {
-                                let managerUser = ({
-                                    managerId: manager.key,
-                                    firstName: manager.firstName,
-                                    lastName: manager.lastName,
-                                    patronymic: manager.patronymic,
-                                    login: manager.login,
-                                    workExperience: manager.experience,
-                                    phone: manager.phoneNumber,
-                                    role: "Manager",
-                                    userId: manager.key,
-                                    password: ""
-                                })
-                                axios.put(`https://localhost:7274/api/managers/managerUser/${managerUser.managerId}`, managerUser).then(temp => {
-                                    alert('Данные менеджера успешно обновлены!');
-                                }).catch(err => {
-                                    if (err.response.status === 500) {
-                                        alert('Не удалось обновить менеджера!\nВнутренняя ошибка сервера!')
-                                    }
-                                })
-                                return managerUser
-                            }
-                            else
-                                return m
-                        })
+                    axios.put(`https://localhost:7274/api/managers/managerUser/${manager.key}`, ({
+                        managerId: manager.key,
+                        firstName: manager.firstName,
+                        lastName: manager.lastName,
+                        patronymic: manager.patronymic,
+                        login: manager.login,
+                        workExperience: manager.experience,
+                        phone: manager.phoneNumber,
+                        role: "Manager",
+                        userId: manager.key,
+                        password: ""
+                    })).then(temp => {
+                        alert('Данные менеджера успешно обновлены!');
+                    }).catch(err => {
+                        if (err.response.status === 500) {
+                            alert('Не удалось обновить менеджера!\nВнутренняя ошибка сервера!')
+                        }
                     })
                     resetEditing()
                 }}
             >
-                <Input value={manager?.lastName}
-                       onChange={(e) =>{
-                           setManager(pre =>{
-                               return {...pre, lastName: e.target.value}
-                           })
-                       }}
-                />
-                <Input value={manager?.firstName}
-                       onChange={(e) =>{
-                           setManager(pre =>{
-                               return {...pre, firstName: e.target.value}
-                           })
-                       }}
-                />
-                <Input value={manager?.patronymic}
-                       onChange={(e) =>{
-                           setManager(pre =>{
-                               return {...pre, patronymic: e.target.value}
-                           })
-                       }}
-                />
-                <Input value={manager?.login}
-                       onChange={(e) =>{
-                           setManager(pre =>{
-                               return {...pre, login: e.target.value}
-                           })
-                       }}
-                />
-                <Input value={manager?.experience}
-                       onChange={(e) =>{
-                           setManager(pre =>{
-                               return {...pre, experience: e.target.value}
-                           })
-                       }}
-                />
-                <Input value={manager?.phoneNumber}
-                       onChange={(e) =>{
-                           setManager(pre =>{
-                               return {...pre, phoneNumber: e.target.value}
-                           })
-                       }}
-                />
+                <Form>
+                    <Form.Item
+                        label="Фамилия"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Вы не ввели фамилию!',
+                            },
+                        ]}
+                    >
+                        <Input value={manager?.lastName}
+                               placeholder={'Введите фамилию'}
+                               onChange={(e) => {
+                                   setManager(pre => {
+                                       return {...pre, lastName: e.target.value}
+                                   })
+                               }}
+                        />
+                    </Form.Item>
+                    <Login value={manager?.login}
+                           placeholder={'Введите логин'}
+                           onChange={(e) => {
+                               setManager(pre => {
+                                   return {...pre, login: e.target.value}
+                               })
+                           }}/>
+                    <Input value={manager?.firstName}
+                           placeholder={'Введите имя'}
+                           onChange={(e) => {
+                               setManager(pre => {
+                                   return {...pre, firstName: e.target.value}
+                               })
+                           }}
+                    />
+                    <Input value={manager?.patronymic}
+                           placeholder={'Введите отчество'}
+                           onChange={(e) => {
+                               setManager(pre => {
+                                   return {...pre, patronymic: e.target.value}
+                               })
+                           }}
+                    />
+                    {/*                    <Input value={manager?.login}
+                           placeholder={'Введите логин'}
+                           onChange={(e) => {
+                               setManager(pre => {
+                                   return {...pre, login: e.target.value}
+                               })
+                           }}
+                    />*/}
+                    <Input value={manager?.experience}
+                           placeholder={'Введите опыт работы'}
+                           onChange={(e) => {
+                               setManager(pre => {
+                                   return {...pre, experience: e.target.value}
+                               })
+                           }}
+                    />
+                    <Input value={manager?.phoneNumber}
+                           placeholder={'Введите номер телефона'}
+                           onChange={(e) => {
+                               setManager(pre => {
+                                   return {...pre, phoneNumber: e.target.value}
+                               })
+                           }}
+                    />
+                </Form>
             </Modal>
-            <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                <AddManager />
+            <Modal title="Добавить менеджера"
+                   visible={isModalVisible}
+                   onOk={handleOk}
+                   onCancel={handleCancel}
+                   okText="Сохранить"
+                   cancelText="Закрыть"
+            >
+                <AddManager/>
             </Modal>
-        </div>
-    );
+        </>
+    )
+        ;
 }
