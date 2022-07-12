@@ -29,8 +29,8 @@ export function AuthorizeForm() {
                 }}
                 autoComplete="off"
             >
-                <Login onChange={(login) => {setLogin(login)}}/>
-                <Password onChange={(password) => {setPassword(password)}}/>
+                <Login onChange={(login) => {setLogin(login.target.value)}}/>
+                <Password onChange={(password) => {setPassword(password.target.value)}}/>
                 <EntryButton login={login} password={password}/>
                 <RegistrationLink />
             </Form>
