@@ -16,7 +16,7 @@ import {
     faSun
 } from "@fortawesome/free-solid-svg-icons";
 
-import styles from './MainHeader.scss';
+import './MainHeader.scss';
 
 export function MainHeader() {
     const menuItems = [
@@ -79,9 +79,6 @@ export function MainHeader() {
 
 
     return (
-        <Menu key="zero" mode="horizontal" items={menuItems} /*className={styles.header}*/ style={{
-            backgroundColor: "#808a9d",
-            justifyContent: "center"
-        }}/>
+        <Menu key="zero" mode="horizontal" items={menuItems}/>
     );
 }

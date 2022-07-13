@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import {CaretDownOutlined} from "@ant-design/icons";
-import {Menu} from "antd";
+import { CaretDownOutlined } from "@ant-design/icons";
+import { Menu } from "antd";
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faEarthAmericas,
     faFileMedical,
@@ -18,7 +18,8 @@ import {
     faGear,
     faToriiGate
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "./MainHeader.scss";
+
+import "./MainHeader.scss";
 
 export function UserHeader() {
     const menuItems = [
@@ -67,7 +68,7 @@ export function UserHeader() {
         },
         {
             key: 'reviews',
-            label: <Link to="/review">Бронь</Link>
+            label: <Link to="/userMainPage">Бронь</Link>
         },
         {
             key: 'profile',
@@ -81,7 +82,7 @@ export function UserHeader() {
                 },
                 {
                     key: 'review',
-                    label: <Link to="/userMainPage">Отзывы</Link>,
+                    label: <Link to="/userReviews">Отзывы</Link>,
                     icon: <FontAwesomeIcon icon={faList} />
                 }
             ]
@@ -96,12 +97,7 @@ export function UserHeader() {
 
     return (
         <>
-            <Menu key="userMenu" mode="horizontal" items={menuItems} className={styles.header}
-                  style={{
-                      backgroundColor: "#808a9d",
-                      justifyContent: "center"
-                  }}
-            />
+            <Menu key="userMenu" mode="horizontal" items={menuItems}/>
         </>
     );
 }

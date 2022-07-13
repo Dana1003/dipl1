@@ -40,7 +40,6 @@ export function AdminHeader() {
     ]
 
     return (
-
         <Menu key="zero" mode="horizontal" items={menuItems}/>
     );
 }
