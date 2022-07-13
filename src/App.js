@@ -8,7 +8,7 @@ import { ReviewPage } from "./pages/ReviewPage/ReviewPage";
 import { KindsOfTourism } from "./pages/KindsOfTourism/KindsOfTourism";
 import { AdminViewManagerDetails } from "./pages/AdminViewManagerDetails/AdminViewManagerDetails";
 import { UserMainPage } from "./pages/UserMainPage/UserMainPage";
-import { UserPrivateData } from "./pages/UserPrivateData/UserPrivateData";
+import { UserPrivateDataPage } from "./pages/UserPrivateDataPage/UserPrivateDataPage";
 
 import './base.scss';
 
@@ -28,7 +28,7 @@ function App() {
               <Route path="/adminViewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
 
               <Route path="/userMainPage" element={<UserMainPage/>} exact></Route>
-              <Route path="/userPrivateData" element={<UserPrivateData/>} exact></Route>
+              <Route path="/userPrivateData" element={<UserPrivateDataPage/>} exact></Route>
           </Routes>
       </>
   );
