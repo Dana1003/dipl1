@@ -125,6 +125,7 @@ export function AdminManagersTable() {
 
             <div className="manager-table">
                 <Table columns={columns}
+                       title={() => 'Данные о менеджерах'}
                        pagination={{pageSize: 5}}
                        dataSource={managers.map(currentValue => ({
                            key: currentValue.managerId,
