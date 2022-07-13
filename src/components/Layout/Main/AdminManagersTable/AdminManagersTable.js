@@ -10,6 +10,7 @@ export function AdminManagersTable() {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isEditingVisible, setIsEditingVisible] = useState(false);
     const [manager, setManager] = useState(null);
+    const [sss,setsss] = useState([]);
 
     const {register, formState: {errors}, handleSubmit} = useForm({mode: "onBlur"});
 
@@ -72,7 +73,7 @@ export function AdminManagersTable() {
             .then(res => {
                 setManagers(res.data);
             });
-    }, []);
+    }, [sss]);
 
     const onEditManager = (record) => {
         setIsEditingVisible(true)

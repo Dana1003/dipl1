@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Button, DatePicker, Select, Space, TimePicker} from 'antd';
 import moment from "moment";
 import axios from "axios";
@@ -27,8 +27,6 @@ export function AddSchedule({managers}) {
 
     const onChangeTime = (t) => {
         setTime(t);
-        //if (t != null)
-            //setTime(t.format('HH:mm:ss'))
     }
 
     const onChangeDateTime = (value, dateString) => setDateTime(value);
@@ -39,8 +37,6 @@ export function AddSchedule({managers}) {
     }
 
     const addDatesAndTime = () => {
-        console.log(date)
-        console.log(time)
         if (date != null && time != null) {
             axios.post('https://localhost:7274/api/managerSchedule/managerSchedules', ({
                 "managerId": selectedValue,
@@ -50,7 +46,9 @@ export function AddSchedule({managers}) {
 
             }))
                 .then(res => {
-
+                    alert("Расписания успешно добавлено");
+                    clear();
+                    setIsManyDatesVisible(false);
                 });
         }
     }
@@ -94,6 +92,7 @@ export function AddSchedule({managers}) {
                 {isDateVisible && (
                     <>
                         <DatePicker
+                            allowClear={false}
                             disabledDate={disabledDate}
                             showTime={{
                                 defaultValue: moment('00:00', 'HH:mm'),
@@ -107,10 +106,12 @@ export function AddSchedule({managers}) {
                 {isManyDatesVisible && (
                     <>
                         <RangePicker
+                            allowClear={false}
                             disabledDate={disabledDate}
                             onChange={onChangeDate}
                         />
                         <TimePicker
+                            allowClear={false}
                             onChange={onChangeTime}
                             defaultValue={moment('00:00', 'HH:mm')}
                             format={('HH:mm')}

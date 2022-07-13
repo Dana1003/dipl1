@@ -11,6 +11,9 @@ import {AdminViewManagerDetails} from "./pages/AdminViewManagerDetails/AdminView
 import {AdminAddSchedule} from "./pages/AdminAddSchedule/AdminAddSchedule";
 
 import './base.scss';
+import {
+    AdminUpdateDeleteManagerSchedule
+} from "./pages/AdminUpdateDeleteManagerSchedule/AdminUpdateDeleteManagerSchedule";
 
 function App() {
   return (
@@ -25,6 +28,7 @@ function App() {
               <Route path="/viewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
               <Route path="/registration" element={<RegistrPage/>} exact></Route>
               <Route path="/adminAddSchedule" element={<AdminAddSchedule />} exact></Route>
+              <Route path="/adminUpdateDeleteManagerSchedule" element={<AdminUpdateDeleteManagerSchedule/>} exact></Route>
           </Routes>
       </>
   );
