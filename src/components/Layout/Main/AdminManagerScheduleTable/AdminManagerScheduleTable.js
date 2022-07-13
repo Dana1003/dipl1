@@ -1,4 +1,4 @@
-import {DatePicker, Modal,Select, Table} from 'antd';
+import {DatePicker, Modal, Select, Table} from 'antd';
 import React, {useState} from 'react';
 import axios from "axios";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
@@ -62,6 +62,16 @@ export function AdminManagerScheduleTable() {
             });
     }, []);
 
+    React.useEffect(() => {
+    }, [managersSchedule]);
+
+    const getAllManagerSchedule = () => {
+        axios.get('https://localhost:7274/api/managerSchedule')
+            .then(res => {
+                setManagersSchedule(res.data);
+            });
+    }
+
     const onChangeDateTime = (value, dateString) => setSelectedTime(value);
 
     const disabledDate = (current) => {
@@ -70,7 +80,7 @@ export function AdminManagerScheduleTable() {
 
     const onEditManagerSchedule = (record) => {
         setSelectedRow(record);
-        setSelectedTime(record.date.props.defaultValue.utcOffset('GMT').format())
+        setSelectedTime(record.date.props.value.utcOffset('GMT').format())
         setSelectedManager(record.managerId)
         setIsEditingVisible(true)
     }
@@ -89,13 +99,17 @@ export function AdminManagerScheduleTable() {
                     "managerId": selectedManager,
                     "scheduleId": temp.data.scheduleId
                 }))
-                alert('Данные расписания успешно обновлены!');
+                    .then(r => {
+                        getAllManagerSchedule();
+                        alert('Данные расписания успешно обновлены!');
+                    });
             }).catch(err => {
                 if (err.response.status === 500) {
                     alert('Не удалось обновить запись!\nВнутренняя ошибка сервера!')
                 }
             })
         }
+        resetEditing()
     }
 
     const deleteHandler = (key) => {
@@ -103,7 +117,7 @@ export function AdminManagerScheduleTable() {
             .then(temp => {
                 axios.delete(`https://localhost:7274/api/schedules/${temp.data.scheduleId}`)
                     .then(obj => {
-                        alert('Данные успешно удалены')
+                        getAllManagerSchedule();
                     }).catch(err => {
                     if (err.response.status === 500) {
                         alert('Не удалось удалить запись!\nВнутренняя ошибка сервера!')
@@ -123,7 +137,7 @@ export function AdminManagerScheduleTable() {
                 okType: 'danger',
                 okText: "Подтвердить",
                 cancelText: "Закрыть",
-                onOk: () => {
+                onOk: ()=> {
                     deleteHandler(record.key)
                 }
             })
@@ -142,7 +156,7 @@ export function AdminManagerScheduleTable() {
                                patronymic: currentValue.patronymic,
                                scheduleId: currentValue.scheduleId,
                                date: <DatePicker
-                                   defaultValue={moment(currentValue.date)}
+                                   value={moment(currentValue.date)}
                                    showTime={{
                                        defaultValue: moment((currentValue.date), 'HH:mm'),
                                        format: ('HH:mm')
@@ -157,13 +171,8 @@ export function AdminManagerScheduleTable() {
                     visible={isEditingVisible}
                     okText="Сохранить"
                     cancelText="Закрыть"
-                    onCancel={() => {
-                        resetEditing()
-                    }}
-                    onOk={() => {
-                        updateHandler()
-                        resetEditing()
-                    }}
+                    onCancel={resetEditing}
+                    onOk={updateHandler}
                 >
                     <Select style={{width: 250}} value={selectedManager} onChange={setSelectedManager}>
                         {
@@ -189,4 +198,5 @@ export function AdminManagerScheduleTable() {
             </div>
         </>
     );
-};
+}
+;

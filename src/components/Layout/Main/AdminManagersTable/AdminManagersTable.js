@@ -1,7 +1,6 @@
 import {Button, Input, Modal, Pagination, Popconfirm, Table} from 'antd';
 import React, {useState} from 'react';
 import axios from "axios";
-import {useForm} from "react-hook-form";
 import {AddManager} from "../../../../Forms/AddManager/AddManager";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
@@ -10,9 +9,7 @@ export function AdminManagersTable() {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isEditingVisible, setIsEditingVisible] = useState(false);
     const [manager, setManager] = useState(null);
-    const [sss,setsss] = useState([]);
 
-    const {register, formState: {errors}, handleSubmit} = useForm({mode: "onBlur"});
 
     const filterExperience = [...new Set(managers.map(x => x.workExperience))].map(value => ({
         text: value,
@@ -73,7 +70,7 @@ export function AdminManagersTable() {
             .then(res => {
                 setManagers(res.data);
             });
-    }, [sss]);
+    }, []);
 
     const onEditManager = (record) => {
         setIsEditingVisible(true)
@@ -103,7 +100,6 @@ export function AdminManagersTable() {
         axios.delete(`https://localhost:7274/api/managers/${key}`)
             .then(response => {
                 setManagers(managers.filter((item) => item.managerId !== key));
-                console.log()
             })
     };
 
