@@ -84,10 +84,10 @@ export function AdminManagersTable() {
     const onDeleteManager = (record) => {
         if (managers.length >= 1)
             Modal.confirm({
-                title: "Подтвердите удаление",
+                title: "Нажмите 'Удалить' для удаления записи о менеджере",
                 okType: 'danger',
-                okText: "Подтвердить",
-                cancelText: "Закрыть",
+                okText: "Удалить",
+                cancelText: "Отменить",
                 onOk: () => {
                     handleDelete(record.key)
                 }
