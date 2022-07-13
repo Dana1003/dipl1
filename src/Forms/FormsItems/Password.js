@@ -7,7 +7,6 @@ export function Password({ onChange }) {
     return (
         <Form.Item
             label="Пароль"
-            name="password"
             rules={[
                 {
                     required: true,
@@ -18,7 +17,7 @@ export function Password({ onChange }) {
             <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon"/>}
                 placeholder="Введите пароль"
-                onChange={(e) => {onChange(e.target.value)}}
+                onChange={onChange}
             />
         </Form.Item>
     );
