@@ -1,1 +1,32 @@
 @use '././src/base';
+
+.main-block {
+  background: base.$bg-color;
+  margin-top: -1px;
+  height: 94%;
+  width: 100%;
+  position: absolute;
+}
+
+.manager-table {
+  margin: 50px auto;
+  width: 80%;
+}
+
+.ant-btn-primary {
+  background: base.$bg-header-color !important;
+  border-color: base.$bg-header-color !important;
+  margin-left: 150px;
+
+  &:hover {
+    background: base.$dark-gray !important;
+    border-color: base.$dark-gray !important;
+  }
+}
+
+.ant-table-tbody>tr>td {
+  text-align-last: center !important;
+}
+.ant-table-thead > tr {
+  text-align-last: center !important;
+}
