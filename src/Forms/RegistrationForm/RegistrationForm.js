@@ -33,7 +33,7 @@ export function RegistrationForm() {
                 <Login onChange={(login) => {setLogin(login.target.value)}}/>
                 <Password onChange={(password) => {setPassword(password.target.value)}}/>
                 <ConfirmPassword onChange={(confirmPassword) => {setConfirmPassword(confirmPassword.target.value)}}/>
-                <RegistrationButton login={login} password={password} confirmPassword={confirmPassword.target.value}/>
+                <RegistrationButton login={login} password={password} confirmPassword={confirmPassword}/>
             </Form>
         </div>
     );
