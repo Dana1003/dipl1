@@ -17,7 +17,7 @@ export function AdminHeader() {
     const menuItems = [
         {
             key: 'logo',
-            label: <Link to="/">SunTour</Link>,
+            label: <Link to="/adminMainPage">SunTour</Link>,
             icon: <FontAwesomeIcon icon={faSun}/>
         },
         {
@@ -26,7 +26,7 @@ export function AdminHeader() {
             icon: <CaretDownOutlined/>,
             children: [
                 {
-                    label: <Link to="/adminViewManagerDetails">Менежджере</Link>,
+                    label: <Link to="/adminViewManagerDetails">Менеджере</Link>,
                     key: 'kinds',
                     icon: <FontAwesomeIcon icon={faUserTie}/>
                 }
@@ -41,11 +41,6 @@ export function AdminHeader() {
 
     return (
 
-        <Menu key="zero" mode="horizontal" items={menuItems}
-              style={{
-                  backgroundColor: "#808a9d",
-                  justifyContent: "center"
-              }}
-        />
+        <Menu key="zero" mode="horizontal" items={menuItems}/>
     );
 }
