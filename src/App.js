@@ -11,6 +11,7 @@ import { UserMainPage } from "./pages/UserMainPage/UserMainPage";
 import { UserPrivateDataPage } from "./pages/UserPrivateDataPage/UserPrivateDataPage";
 
 import './base.scss';
+import {UserReviewPage} from "./pages/UserReviewPage/UserReviewPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
 
               <Route path="/userMainPage" element={<UserMainPage/>} exact></Route>
               <Route path="/userPrivateData" element={<UserPrivateDataPage/>} exact></Route>
+              <Route path="/userReviews" element={<UserReviewPage />} exact></Route>
           </Routes>
       </>
   );
