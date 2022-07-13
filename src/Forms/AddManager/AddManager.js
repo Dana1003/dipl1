@@ -3,7 +3,7 @@ import * as React from 'react';
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 
-import {Button, Modal, Popconfirm, Table} from 'antd';
+import {Modal} from 'antd';
 
 import './AddManager.scss'
 
