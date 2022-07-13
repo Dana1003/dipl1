@@ -76,6 +76,10 @@ export function AdminManagersTable() {
             });
     }, []);
 
+    useEffect(() => {
+    }, [managers]);
+
+
     const onEditManager = (record) => {
         setIsEditingVisible(true)
         setManager({...record})
@@ -138,7 +142,7 @@ export function AdminManagersTable() {
                        }))}/>
             </div>
 
-            <EditManagerDetailsModal isEditingVisible={isEditingVisible} setIsEditingVisible={setIsEditingVisible} manager={manager} setManager={setManager}/>
+            <EditManagerDetailsModal setManagers={setManagers} isEditingVisible={isEditingVisible} setIsEditingVisible={setIsEditingVisible} manager={manager} setManager={setManager}/>
             <AddManagerModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} handleOk={handleOk} setManager={setManager}/>
         </div>
     );

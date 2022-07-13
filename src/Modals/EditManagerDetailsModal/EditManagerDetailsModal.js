@@ -5,7 +5,7 @@ import { EditManagerDetailsForm } from "../../Forms/EditManagerDetailsForm/EditM
 
 import { Modal } from "antd";
 
-export function EditManagerDetailsModal({setIsEditingVisible, setManager, isEditingVisible, manager}) {
+export function EditManagerDetailsModal({setIsEditingVisible, setManager, isEditingVisible, manager, setManagers}) {
     const resetEditing = () => {
         setIsEditingVisible(false)
         setManager(null)
@@ -24,12 +24,16 @@ export function EditManagerDetailsModal({setIsEditingVisible, setManager, isEdit
             userId: manager.key,
             password: ""
         })).then(temp => {
-            alert('Данные менеджера успешно обновлены!');
+            axios.get('https://localhost:7274/api/managers')
+                .then(res => {
+                    setManagers(res.data);
+                });
         }).catch(err => {
             if (err.response.status === 500) {
                 alert('Не удалось обновить менеджера!\nВнутренняя ошибка сервера!')
             }
         })
+        resetEditing();
     }
 
     return (
@@ -38,13 +42,8 @@ export function EditManagerDetailsModal({setIsEditingVisible, setManager, isEdit
             visible={isEditingVisible}
             okText="Сохранить"
             cancelText="Закрыть"
-            onCancel={() => {
-                resetEditing()
-            }}
-            onOk={() => {
-                updatedManager()
-                resetEditing()
-            }}
+            onCancel={resetEditing}
+            onOk={updatedManager}
         >
             <EditManagerDetailsForm manager={manager} setManager={setManager}/>
         </Modal>
