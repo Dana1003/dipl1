@@ -12,8 +12,8 @@ export const Reviews = ({reviews}) => {
     return (
         <Card title="Отзывы" style={{background: "#d3d8e2"}}>
             {reviews.map(reviews => (
-                <Card type="inner" title={reviews.login} style={{marginTop: 15}}>
-                    <div key={reviews.reviewId}>
+                <Card key={reviews.reviewId} type="inner" title={reviews.login} style={{marginTop: 15}}>
+                    <div >
                         {reviews.reviewText}
                     </div>
                 </Card>
