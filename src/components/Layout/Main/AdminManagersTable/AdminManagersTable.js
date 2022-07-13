@@ -1,15 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import {AddManager} from "../../../../Forms/AddManager/AddManager";
 
-import {Button, Input, Modal, Table, Form} from 'antd';
-import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
-import {Login} from "../../../../Forms/FormsItems/Login";
-import {LastName} from "../../../../Forms/FormsItems/LastName";
-import {FirstName} from "../../../../Forms/FormsItems/FirstName";
-import {Patronymic} from "../../../../Forms/FormsItems/Patronymic";
-import {WorkExperience} from "../../../../Forms/FormsItems/WorkExperience";
-import {Phone} from "../../../../Forms/FormsItems/Phone";
+import { EditManagerDetailsModal } from "../../../../Modals/EditManagerDetailsModal/EditManagerDetailsModal";
+import { AddManagerModal } from "../../../../Modals/AddManagerModal/AddManagerModal";
+
+import { Button, Modal, Table } from 'antd';
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+
+import './AdminManagersTable.scss';
 
 export function AdminManagersTable() {
     const [managers, setManagers] = useState([]);
@@ -76,7 +74,7 @@ export function AdminManagersTable() {
             .then(res => {
                 setManagers(res.data);
             });
-    }, [managers]);
+    }, []);
 
     const onEditManager = (record) => {
         setIsEditingVisible(true)
@@ -96,18 +94,12 @@ export function AdminManagersTable() {
             })
     }
 
-    const resetEditing = () => {
-        setIsEditingVisible(false)
-        setManager(null)
-    };
 
     const showModal = () => {
         setIsModalVisible(true);
     };
 
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
+
 
     const handleDelete = (key) => {
         axios.delete(`https://localhost:7274/api/managers/${key}`)
@@ -116,7 +108,6 @@ export function AdminManagersTable() {
             })
     };
 
-    //сделать эндпоинт для добавления одного большого обьекта
     const handleOk = (managerUser) => {
         setIsModalVisible(false);
         axios.post('https://localhost:7274/api/managers/managerUser', managerUser).then(temp => {
@@ -131,14 +122,14 @@ export function AdminManagersTable() {
 
 
     return (
-        <>
-            <Button type="primary" onClick={showModal} style={{marginTop: 100}}>
+        <div className="main-block">
+            <Button type="primary" onClick={showModal} style={{marginTop: 50}}>
                 Добавить менеджера
             </Button>
 
-            <div id="manager-table" style={{marginTop: 100}}>
+            <div className="manager-table">
                 <Table columns={columns}
-                       pagination={{pageSize: 7}}
+                       pagination={{pageSize: 5}}
                        dataSource={managers.map(currentValue => ({
                            key: currentValue.managerId,
                            firstName: currentValue.firstName,
@@ -150,97 +141,8 @@ export function AdminManagersTable() {
                        }))}/>
             </div>
 
-            <Modal
-                title="Редактировать менеджера"
-                visible={isEditingVisible}
-                okText="Сохранить"
-                cancelText="Закрыть"
-                onCancel={() => {
-                    resetEditing()
-                }}
-                onOk={() => {
-                    axios.put(`https://localhost:7274/api/managers/managerUser/${manager.key}`, ({
-                        managerId: manager.key,
-                        firstName: manager.firstName,
-                        lastName: manager.lastName,
-                        patronymic: manager.patronymic,
-                        login: manager.login,
-                        workExperience: manager.experience,
-                        phone: manager.phoneNumber,
-                        role: "Manager",
-                        userId: manager.key,
-                        password: ""
-                    })).then(temp => {
-                        alert('Данные менеджера успешно обновлены!');
-                    }).catch(err => {
-                        if (err.response.status === 500) {
-                            alert('Не удалось обновить менеджера!\nВнутренняя ошибка сервера!')
-                        }
-                    })
-                    resetEditing()
-                }}
-            >
-                <Form
-                    name="basic"
-                    labelCol={{
-                        span: 8,
-                    }}
-                    wrapperCol={{
-                        span: 14,
-                    }}
-                    initialValues={{
-                        remember: true,
-                    }}
-                    autoComplete="off"
-                >
-                    <LastName value={manager?.lastName}
-                              onChange={(e) => {
-                                  setManager(pre => {
-                                      return {...pre, lastName: e.target.value}
-                                  })
-                              }}/>
-                    <FirstName value={manager?.firstName}
-                               onChange={(e) => {
-                                   setManager(pre => {
-                                       return {...pre, firstName: e.target.value}
-                                   })
-                               }}/>
-                    <Patronymic value={manager?.patronymic}
-                                onChange={(e) => {
-                                    setManager(pre => {
-                                        return {...pre, patronymic: e.target.value}
-                                    })
-                                }}/>
-                    <Login value={manager?.login}
-                           onChange={(e) => {
-                               setManager(pre => {
-                                   return {...pre, login: e.target.value}
-                               })
-                           }}/>
-                    <WorkExperience value={manager?.experience}
-                                    onChange={(e) => {
-                                        setManager(pre => {
-                                            return {...pre, experience: e.target.value}
-                                        })
-                                    }}/>
-                    <Phone value={manager?.phoneNumber}
-                           onChange={(e) => {
-                               setManager(pre => {
-                                   return {...pre, phoneNumber: e.target.value}
-                               })
-                           }}/>
-                </Form>
-            </Modal>
-            <Modal title="Добавить менеджера"
-                   visible={isModalVisible}
-                   onOk={handleOk}
-                   onCancel={handleCancel}
-                   okText="Сохранить"
-                   cancelText="Закрыть"
-            >
-                <AddManager/>
-            </Modal>
-        </>
-    )
-        ;
+            <EditManagerDetailsModal isEditingVisible={isEditingVisible} setIsEditingVisible={setIsEditingVisible} manager={manager} setManager={setManager}/>
+            <AddManagerModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} handleOk={handleOk} setManager={setManager}/>
+        </div>
+    );
 }
