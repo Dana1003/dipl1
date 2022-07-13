@@ -5,7 +5,7 @@
   width: 100%;
   min-height: 100%;
   position: absolute;
-  left: 0px;
+  left: 0;
 
   h1 {
     text-align: center;
@@ -21,13 +21,13 @@
   input{
     outline: none;
     background-color: base.$bg-color;
-    box-shadow: 5px 6px 10px 0px;
+    box-shadow: 5px 6px 10px 0;
     border: none;
     border-radius: 10px;
     font-size: 20px;
     width: 380px;
     height: 55px;
-    margin: 0px 0px 40px auto;
+    margin: 0 0 40px auto;
     padding-left: 20px;
   }
 }
@@ -37,9 +37,9 @@
   height: 55px;
   border: none;
   border-radius: 10px;
-  box-shadow: 5px 6px 10px 0px;
+  box-shadow: 5px 6px 10px 0;
   font-size: 20px;
-  margin: 0px auto;
+  margin: 0 auto;
   background-color: base.$bg-color;
   font-weight: base.$text-weight;
 
