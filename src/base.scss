@@ -57,6 +57,11 @@ a {
 .ant-btn-primary {
   background: $bg-header-color !important;
   border-color: $bg-header-color !important;
+
+  &:hover {
+    background: $dark-gray !important;
+    border-color: $dark-gray !important;
+  }
 }
 
 @media only screen and (max-width: 768px) {
