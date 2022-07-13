@@ -13,6 +13,7 @@ $header-item-hover-color: #596f85;
 $errors: #FF0000FF;
 $filter-bg-image: url('../src/images/bgMain.jpg');
 $main-bg-image: url('../src/images/background.jpg');
+
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -51,6 +52,11 @@ a {
   font-size: 24px;
   margin-right: 7px;
   width: 140px;
+}
+
+.ant-btn-primary {
+  background: $bg-header-color !important;
+  border-color: $bg-header-color !important;
 }
 
 @media only screen and (max-width: 768px) {

@@ -123,7 +123,7 @@ export function AdminManagersTable() {
 
     return (
         <div className="main-block">
-            <Button type="primary" onClick={showModal} style={{marginTop: 50}}>
+            <Button type="primary" className="add-button" onClick={showModal} style={{marginTop: 50}}>
                 Добавить менеджера
             </Button>
 
