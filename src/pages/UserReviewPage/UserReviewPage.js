@@ -4,6 +4,7 @@ import axios from "axios";
 import { UserHeader } from "../../components/Layout/Header/UserHeader";
 import { Reviews } from "../../components/Layout/Main/MainReviews/Reviews";
 import { Pagination } from "../../components/Layout/Main/Pagination";
+import { CreateReview } from "../../components/Layout/Main/UserCreateReview/CreateReview";
 
 export function UserReviewPage() {
     const [reviewsCount, setReviewsCount] = useState(0);
@@ -27,8 +28,9 @@ export function UserReviewPage() {
     return (
         <>
             <UserHeader />
+            <CreateReview />
             <Reviews reviews={reviewsText}/>
-            <Pagination reviewsPerPage={reviewsPerPage} totalReviews={reviewsCount} paginate={paginate}/>
+            <Pagination reviewsPerPage={reviewsPerPage} totalReviews={reviewsCount} paginate={paginate} link="/userReviews"/>
         </>
     );
 }
