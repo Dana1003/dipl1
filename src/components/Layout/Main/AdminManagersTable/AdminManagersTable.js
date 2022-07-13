@@ -79,7 +79,7 @@ export function AdminManagersTable() {
     const onEditManager = (record) => {
         setIsEditingVisible(true)
         setManager({...record})
-    }
+    };
 
     const onDeleteManager = (record) => {
         if (managers.length >= 1)
@@ -92,14 +92,11 @@ export function AdminManagersTable() {
                     handleDelete(record.key)
                 }
             })
-    }
-
+    };
 
     const showModal = () => {
         setIsModalVisible(true);
     };
-
-
 
     const handleDelete = (key) => {
         axios.delete(`https://localhost:7274/api/managers/${key}`)
@@ -119,7 +116,6 @@ export function AdminManagersTable() {
             }
         })
     };
-
 
     return (
         <div className="main-block">
