@@ -30,7 +30,7 @@ export function ReviewPage() {
         <>
             <MainHeader/>
             <Reviews reviews={reviewsText} /*loading={loading}*//>
-            <Pagination reviewsPerPage={reviewsPerPage} totalReviews={reviewsCount} paginate={paginate}/>
+            <Pagination reviewsPerPage={reviewsPerPage} totalReviews={reviewsCount} paginate={paginate} link='/review'/>
         </>
     );
-};
+}
