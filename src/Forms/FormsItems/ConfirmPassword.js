@@ -7,7 +7,6 @@ export function ConfirmPassword({ onChange }) {
     return (
         <Form.Item
             label="Подтвердите пароль"
-            name="confirmPassword"
             rules={[
                 {
                     required: true,
