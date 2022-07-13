@@ -5,8 +5,7 @@ import { Form, Input } from "antd";
 export function Email({ onChange }) {
     return (
         <Form.Item
-            label="Номер почту"
-            name="email"
+            label="Адрес почты"
             rules={[
                 {
                     required: true,
@@ -16,7 +15,7 @@ export function Email({ onChange }) {
         >
             <Input
                 placeholder="Введите почту"
-                onChange={(e) => {onChange(e.target.value)}}
+                onChange={onChange}
             />
         </Form.Item>
     );

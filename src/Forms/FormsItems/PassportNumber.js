@@ -6,7 +6,6 @@ export function PassportNumber({ onChange }) {
     return (
         <Form.Item
             label="Номер паспорта"
-            name="passportNumber"
             rules={[
                 {
                     required: true,
@@ -16,7 +15,7 @@ export function PassportNumber({ onChange }) {
         >
             <Input
                 placeholder="Введите номер паспорта"
-                onChange={(e) => onChange(e.target.value)}
+                onChange={onChange}
             />
         </Form.Item>
     );

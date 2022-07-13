@@ -8,6 +8,7 @@ export function RegistrationButton({login, password, confirmPassword}) {
     const navigate = useNavigate();
 
     async function registrationHandler() {
+        alert(confirmPassword)
         if (password === confirmPassword) {
             axios.post('https://localhost:7274/api/users', {
                 "login": login,
