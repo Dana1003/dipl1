@@ -1,11 +1,12 @@
 import React from 'react';
-
 import { Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faUserTie,
     faDoorOpen,
-    faSun
+    faSun,
+    faCalendarDays
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Menu } from "antd";
@@ -27,8 +28,13 @@ export function AdminHeader() {
             children: [
                 {
                     label: <Link to="/adminViewManagerDetails">Менеджере</Link>,
-                    key: 'kinds',
+                    key: 'managers',
                     icon: <FontAwesomeIcon icon={faUserTie}/>
+                },
+                {
+                    label: <Link to="/adminViewScheduleDetails">Графике работы</Link>,
+                    key: 'schedules',
+                    icon: <FontAwesomeIcon icon={faCalendarDays}/>
                 }
             ],
         },
