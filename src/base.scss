@@ -54,6 +54,13 @@ a {
   width: 140px;
 }
 
+.add-review-button {
+  background: $bg-color;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
 .ant-btn-primary {
   background: $bg-header-color !important;
   border-color: $bg-header-color !important;

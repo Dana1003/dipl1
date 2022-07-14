@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 
-import {UserHeader} from "../../components/Layout/Header/UserHeader";
-import {Reviews} from "../../components/Layout/Main/MainReviews/Reviews";
-import {Pagination} from "../../components/Layout/Main/Pagination";
-import {Footer} from "../../components/Layout/Footer/Footer";
+import { UserHeader } from "../../components/Layout/Header/UserHeader";
+import { Reviews } from "../../components/Layout/Main/MainReviews/Reviews";
+import { Pagination } from "../../components/Layout/Main/Pagination";
+import { Footer } from "../../components/Layout/Footer/Footer";
+import { AddUserReviewModal } from "../../Modals/AddUserReviewModal/AddUserReviewModal";
+
 import {Button} from "antd";
-import {AddUserReviewModal} from "../../Modals/AddUserReviewModal/AddUserReviewModal";
+
+import '../../base.scss';
 
 export function UserReviewPage() {
     const [reviewsCount, setReviewsCount] = useState(0);
@@ -47,9 +50,11 @@ export function UserReviewPage() {
         <>
             <UserHeader/>
             <Reviews reviews={reviewsText}/>
-            <Button type="primary" className="add-button" onClick={showModal} style={{width: "100%"}}>
-                Добавить отзыв
-            </Button>
+            <div className="add-review-button">
+                <Button type="primary" className="add-button" onClick={showModal} style={{width: "150px"}}>
+                    Добавить отзыв
+                </Button>
+            </div>
             <AddUserReviewModal setIsModalVisible={setIsModalVisible} isModalVisible={isModalVisible} handleOk={handleOk}/>
             <Pagination reviewsPerPage={reviewsPerPage} totalReviews={reviewsCount} paginate={paginate}
                         link="/userReviews"/>
