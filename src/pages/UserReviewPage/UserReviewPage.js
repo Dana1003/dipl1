@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
-
 import { UserHeader } from "../../components/Layout/Header/UserHeader";
 import { Reviews } from "../../components/Layout/Main/MainReviews/Reviews";
-import { Pagination } from "../../components/Layout/Main/Pagination";
+import { Pagination } from "../../components/Layout/Main/MainReviews/Pagination";
 import { Footer } from "../../components/Layout/Footer/Footer";
 import { AddUserReviewModal } from "../../Modals/AddUserReviewModal/AddUserReviewModal";
 
