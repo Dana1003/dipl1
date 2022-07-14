@@ -49,7 +49,7 @@ export function UserReviewPage() {
         <>
             <UserHeader/>
             <Reviews reviews={reviewsText}/>
-            <div className="add-review-button">
+            <div className="add-button">
                 <Button type="primary" className="add-button" onClick={showModal} style={{width: "150px"}}>
                     Добавить отзыв
                 </Button>

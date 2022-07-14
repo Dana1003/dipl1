@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-
 import { EditManagerDetailsModal } from "../../../../Modals/EditManagerDetailsModal/EditManagerDetailsModal";
 import { AddManagerModal } from "../../../../Modals/AddManagerModal/AddManagerModal";
 
@@ -125,9 +124,11 @@ export function AdminManagersTable() {
 
     return (
         <div className="main-block">
-            <Button type="primary" className="add-button" onClick={showModal} style={{marginTop: 50}}>
-                Добавить менеджера
-            </Button>
+            <div className="add-button">
+                <Button type="primary" className="add-button" onClick={showModal} style={{marginTop: 50}}>
+                    Добавить менеджера
+                </Button>
+            </div>
 
             <div className="manager-table">
                 <Table columns={columns}
