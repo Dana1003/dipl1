@@ -47,7 +47,7 @@ export function UserReviewPage() {
         <>
             <UserHeader/>
             <Reviews reviews={reviewsText}/>
-            <Button type="primary" className="add-button" onClick={showModal} style={{marginTop: 50}}>
+            <Button type="primary" className="add-button" onClick={showModal} style={{width: "100%"}}>
                 Добавить отзыв
             </Button>
             <AddUserReviewModal setIsModalVisible={setIsModalVisible} isModalVisible={isModalVisible} handleOk={handleOk}/>
