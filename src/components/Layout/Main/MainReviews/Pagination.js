@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import './MainReviews/ReviewPagination.scss';
+import './ReviewPagination.scss';
 
 export const Pagination = ({reviewsPerPage, totalReviews, paginate, link}) => {
     const pageNumber = [];
