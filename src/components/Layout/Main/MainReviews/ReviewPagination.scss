@@ -32,6 +32,10 @@
 }
 
 .pagination-align {
-  width: 145px;
-  margin: 10px auto;
+  padding: 10px;
+  height: 40px;
+  background: base.$bg-header-color;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
