@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-
 import { MainHeader } from "../../components/Layout/Header/MainHeader";
 import { Reviews } from "../../components/Layout/Main/MainReviews/Reviews";
-import { Pagination } from "../../components/Layout/Main/Pagination";
+import { Pagination } from "../../components/Layout/Main/MainReviews/Pagination";
 
 
 export function ReviewPage() {
