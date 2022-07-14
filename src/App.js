@@ -9,9 +9,10 @@ import { KindsOfTourism } from "./pages/KindsOfTourism/KindsOfTourism";
 import { AdminViewManagerDetails } from "./pages/AdminViewManagerDetails/AdminViewManagerDetails";
 import { UserMainPage } from "./pages/UserMainPage/UserMainPage";
 import { UserPrivateDataPage } from "./pages/UserPrivateDataPage/UserPrivateDataPage";
+import { UserReviewPage } from "./pages/UserReviewPage/UserReviewPage";
+import { AdminViewScheduleDetails } from "./pages/AdminViewScheduleDetails/AdminViewScheduleDetails";
 
 import './base.scss';
-import {UserReviewPage} from "./pages/UserReviewPage/UserReviewPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
 
               <Route path="/adminMainPage" element={<AdminMainPage/>} exact></Route>
               <Route path="/adminViewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
+              <Route path="/adminViewScheduleDetails" element={<AdminViewScheduleDetails />} exact></Route>
 
               <Route path="/userMainPage" element={<UserMainPage/>} exact></Route>
               <Route path="/userPrivateData" element={<UserPrivateDataPage/>} exact></Route>
