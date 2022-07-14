@@ -64,6 +64,10 @@ a {
   }
 }
 
+.ant-input-affix-wrapper, .ant-input {
+  border-radius: 20px !important;
+}
+
 @media only screen and (max-width: 768px) {
   body {
 
