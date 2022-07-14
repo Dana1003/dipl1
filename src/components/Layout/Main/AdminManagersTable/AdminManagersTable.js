@@ -111,14 +111,16 @@ export function AdminManagersTable() {
 
     const handleOk = (managerUser) => {
         setIsModalVisible(false);
-        axios.post('https://localhost:7274/api/managers/managerUser', managerUser).then(temp => {
-            setManagers([...managers, temp.data]);
-            alert('Менеджер успешно добавлен!');
-        }).catch(err => {
-            if (err.response.status === 500) {
-                alert('Не удалось добавить менеджера!\nВнутренняя ошибка сервера!')
-            }
-        })
+        axios.post('https://localhost:7274/api/managers/managerUser', managerUser)
+            .then(temp => {
+                setManagers([...managers, temp.data]);
+                alert('Менеджер успешно добавлен!');
+            })
+            .catch(err => {
+                if (err.response.status === 500) {
+                    alert('Не удалось добавить менеджера!\nВнутренняя ошибка сервера!')
+                }
+            })
     };
 
     return (
@@ -142,8 +144,11 @@ export function AdminManagersTable() {
                        }))}/>
             </div>
 
-            <EditManagerDetailsModal setManagers={setManagers} isEditingVisible={isEditingVisible} setIsEditingVisible={setIsEditingVisible} manager={manager} setManager={setManager}/>
-            <AddManagerModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} handleOk={handleOk} setManager={setManager}/>
+            <EditManagerDetailsModal setManagers={setManagers} isEditingVisible={isEditingVisible}
+                                     setIsEditingVisible={setIsEditingVisible} manager={manager}
+                                     setManager={setManager}/>
+            <AddManagerModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} handleOk={handleOk}
+                             setManager={setManager}/>
         </div>
     );
 }
