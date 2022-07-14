@@ -144,10 +144,14 @@ export function AdminManagersTable() {
                        }))}/>
             </div>
 
-            <EditManagerDetailsModal setManagers={setManagers} isEditingVisible={isEditingVisible}
-                                     setIsEditingVisible={setIsEditingVisible} manager={manager}
+            <EditManagerDetailsModal setManagers={setManagers}
+                                     isEditingVisible={isEditingVisible}
+                                     setIsEditingVisible={setIsEditingVisible}
+                                     manager={manager}
                                      setManager={setManager}/>
-            <AddManagerModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} handleOk={handleOk}
+            <AddManagerModal isModalVisible={isModalVisible}
+                             setIsModalVisible={setIsModalVisible}
+                             handleOk={handleOk}
                              setManager={setManager}/>
         </div>
     );
