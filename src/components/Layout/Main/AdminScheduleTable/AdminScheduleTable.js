@@ -59,6 +59,7 @@ export function AdminScheduleTable() {
     React.useEffect(() => {
         axios.get('https://localhost:7274/api/managerSchedule')
             .then(res => {
+                console.log(res.data)
                 setManagersSchedule(res.data);
                 axios.get('https://localhost:7274/api/managers')
                     .then(res => {
@@ -186,7 +187,7 @@ export function AdminScheduleTable() {
                                       selectedTime={selectedTime}
                                       setSelectedTime={setSelectedTime}
             />
-            <AddScheduleModal
+            <AddScheduleModal setManagersSchedule={setManagersSchedule}
                 isEditingVisible={isEditingVisible}
                 setIsEditingVisible={setIsEditingVisible}
                 managersSchedule={managersSchedule}/>

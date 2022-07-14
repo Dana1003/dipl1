@@ -5,7 +5,7 @@ import axios from "axios";
 
 const {RangePicker} = DatePicker;
 
-export function AddScheduleModal({isEditingVisible, setIsEditingVisible, getAllManagerSchedule, managersSchedule}) {
+export function AddScheduleModal({isEditingVisible, setIsEditingVisible, managersSchedule, setManagersSchedule}) {
     const [selectedValue, setSelectedValue] = useState(null);
     const [isManyDatesVisible, setIsManyDatesVisible] = useState(false);
     const [isDateVisible, setIsDateVisible] = useState(false);
@@ -53,9 +53,13 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, getAllM
 
             }))
                 .then(res => {
-                    alert("Расписания успешно добавлено");
+                    axios.get('https://localhost:7274/api/managerSchedule')
+                        .then(res => {
+                            setManagersSchedule(res.data);
+                        });
                     clear();
                     setIsManyDatesVisible(false);
+                    alert("Расписания успешно добавлено");
                 });
         }
     }
@@ -71,6 +75,10 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, getAllM
                         "scheduleId": res.data.scheduleId
                     })
                         .then(response => {
+                                axios.get('https://localhost:7274/api/managerSchedule')
+                                .then(res => {
+                                    setManagersSchedule(res.data);
+                                });
                                 alert("Расписание успешно добавлено");
                                 clear();
                                 setIsDateVisible(false);
