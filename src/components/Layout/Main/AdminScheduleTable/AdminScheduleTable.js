@@ -7,6 +7,7 @@ import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
 import '../AdminManagersTable/AdminManagersTable.scss';
 import {EditScheduleDetailsModal} from "../../../../Modals/EditScheduleDetailsModal/EditScheduleDetailsModal";
+import {AddScheduleModal} from "../../../../Modals/AddScheduleModal/AddScheduleModal";
 
 export function AdminScheduleTable() {
     const [managersSchedule, setManagersSchedule] = useState([]);
@@ -110,6 +111,9 @@ export function AdminScheduleTable() {
         }
         resetEditing()
     }
+
+    const showModal = () => setIsEditingVisible(true);
+
     const deleteHandler = (key) => {
         axios.delete(`https://localhost:7274/api/managerSchedule/${key}`)
             .then(temp => {
@@ -144,7 +148,7 @@ export function AdminScheduleTable() {
     return (
         <div className="main-block">
             <div className="add-button">
-                <Button type="primary" className="add-button" /*onClick={showModal}*/ style={{marginTop: 50}}>
+                <Button type="primary" className="add-button" onClick={showModal} style={{marginTop: 50}}>
                     Добавить график работы
                 </Button>
             </div>
@@ -182,6 +186,10 @@ export function AdminScheduleTable() {
                                       selectedTime={selectedTime}
                                       setSelectedTime={setSelectedTime}
             />
+            <AddScheduleModal
+                isEditingVisible={isEditingVisible}
+                setIsEditingVisible={setIsEditingVisible}
+                managersSchedule={managersSchedule}/>
         </div>
     );
 }
