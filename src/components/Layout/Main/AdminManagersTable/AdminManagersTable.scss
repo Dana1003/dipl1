@@ -27,6 +27,12 @@
 .ant-table-tbody>tr>td {
   text-align-last: center !important;
 }
+
 .ant-table-thead > tr {
   text-align-last: center !important;
+}
+
+.ant-table-title {
+  display: flex !important;
+  justify-content: center !important;
 }
