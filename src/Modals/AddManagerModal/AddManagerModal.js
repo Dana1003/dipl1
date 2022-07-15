@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { AddManagerForm } from "../../Forms/AddManagerForm/AddManagerForm";
 
 import { Modal } from "antd";

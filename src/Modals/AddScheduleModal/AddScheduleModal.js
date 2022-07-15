@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Button, DatePicker, Modal, Select, TimePicker, notification} from 'antd';
-import { CheckCircleOutlined} from '@ant-design/icons';
 import moment from "moment";
 import axios from "axios";
 
-const {RangePicker} = DatePicker;
+import { Button, DatePicker, Modal, Select, TimePicker, notification } from 'antd';
+import { CheckCircleOutlined} from '@ant-design/icons';
+const { RangePicker } = DatePicker;
 
 export function AddScheduleModal({isEditingVisible, setIsEditingVisible, managersSchedule, setManagersSchedule}) {
     const [selectedValue, setSelectedValue] = useState(null);

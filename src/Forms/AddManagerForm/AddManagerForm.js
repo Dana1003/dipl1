@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { LastName } from "../FormsItems/LastName";
 import { FirstName } from "../FormsItems/FirstName";
 import { Patronymic } from "../FormsItems/Patronymic";
