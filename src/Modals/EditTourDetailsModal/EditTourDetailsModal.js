@@ -1,13 +1,21 @@
 import React from 'react';
-import {Modal} from "antd";
 import axios from "axios";
-import {EditTourDetailsForm} from "../../Forms/EditTourDetailsForm/EditTourDetailsForm";
+import { EditTourDetailsForm } from "../../Forms/EditTourDetailsForm/EditTourDetailsForm";
+
+import { Modal, notification } from "antd";
+import { CloseCircleOutlined } from '@ant-design/icons';
 
 export function EditTourDetailsModal({editingModalVisibility, setEditingModalVisibility, tour, setTour, setTours}) {
     const resetEditing = () => {
         setEditingModalVisibility(false)
         setTour(null)
     };
+    function errorNotification() {
+        notification.open({
+            message: 'Данные не были добавлены! Что-то пошло не так!',
+            icon: <CloseCircleOutlined style={{color: "red"}} />
+        });
+    }
 
     const updatedTour = () => {
         axios.put(`https://localhost:7274/api/tours/${tour.key}`, ({
@@ -25,7 +33,7 @@ export function EditTourDetailsModal({editingModalVisibility, setEditingModalVis
                 });
         }).catch(err => {
             if (err.response.status === 500) {
-                alert('Внутренняя ошибка сервера!')
+                errorNotification()
             }
         })
         resetEditing();

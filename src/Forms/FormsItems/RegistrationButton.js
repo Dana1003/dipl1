@@ -2,13 +2,20 @@ import React from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-import { Button, Form } from "antd";
+import {Button, Form, notification} from "antd";
+import { CloseCircleOutlined } from '@ant-design/icons';
 
 export function RegistrationButton({login, password, confirmPassword}) {
     const navigate = useNavigate();
 
+    function errorNotification() {
+        notification.open({
+            message: 'Вы ввели разные пароли!',
+            icon: <CloseCircleOutlined style={{color: "red"}} />
+        });
+    }
+
     async function registrationHandler() {
-        alert(confirmPassword)
         if (password === confirmPassword) {
             axios.post('https://localhost:7274/api/users', {
                 "login": login,
@@ -25,7 +32,7 @@ export function RegistrationButton({login, password, confirmPassword}) {
                     }
                 });
         } else {
-            alert('Вы ввели разные пароли!')
+            errorNotification()
         }
     }
 

@@ -3,8 +3,9 @@ import axios from "axios";
 import { EditManagerDetailsModal } from "../../../../Modals/EditManagerDetailsModal/EditManagerDetailsModal";
 import { AddManagerModal } from "../../../../Modals/AddManagerModal/AddManagerModal";
 
-import { Button, Modal, Table } from 'antd';
+import { Button, Modal, Table, notification } from 'antd';
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import '../AdminTables.scss';
 
@@ -108,16 +109,30 @@ export function AdminManagersTable() {
             })
     };
 
+    function successNotification() {
+        notification.open({
+            message: 'Данные успешно добавлены!',
+            icon: <CheckCircleOutlined style={{color: "green"}} />
+        });
+    };
+
+    function errorNotification() {
+        notification.open({
+            message: 'Данные не были добавлены! Что-то пошло не так!',
+            icon: <CloseCircleOutlined style={{color: "red"}} />
+        });
+    }
+
     const handleOk = (managerUser) => {
         setIsModalVisible(false);
         axios.post('https://localhost:7274/api/managers/managerUser', managerUser)
             .then(temp => {
                 setManagers([...managers, temp.data]);
-                alert('Менеджер успешно добавлен!');
+                successNotification()
             })
             .catch(err => {
                 if (err.response.status === 500) {
-                    alert('Не удалось добавить менеджера!\nВнутренняя ошибка сервера!')
+                    errorNotification()
                 }
             })
     };

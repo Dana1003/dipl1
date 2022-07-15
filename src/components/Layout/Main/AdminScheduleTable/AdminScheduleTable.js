@@ -4,8 +4,8 @@ import moment from "moment";
 import { EditScheduleDetailsModal } from "../../../../Modals/EditScheduleDetailsModal/EditScheduleDetailsModal";
 import { AddScheduleModal } from "../../../../Modals/AddScheduleModal/AddScheduleModal";
 
-import { Button, DatePicker, Modal, Table } from 'antd';
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Button, DatePicker, Modal, Table, notification} from 'antd';
+import { DeleteOutlined, EditOutlined, CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 import '../AdminTables.scss';
 
@@ -91,6 +91,20 @@ export function AdminScheduleTable() {
         setSelectedManager(null);
     };
 
+    function successNotification() {
+        notification.open({
+            message: 'Данные успешно добавлены!',
+            icon: <CheckCircleOutlined style={{color: "green"}} />
+        });
+    }
+
+    function errorNotification() {
+        notification.open({
+            message: 'Что-то пошло не так!',
+            icon: <CloseCircleOutlined style={{color: "red"}} />
+        });
+    }
+
     const updateHandler = () => {
         if (selectedTime != null && selectedManager != null) {
             axios.put(`https://localhost:7274/api/schedules/${selectedRow.scheduleId}`, ({
@@ -102,11 +116,11 @@ export function AdminScheduleTable() {
                 }))
                     .then(r => {
                         getAllManagerSchedule();
-                        alert('Данные расписания успешно обновлены!');
+                        successNotification()
                     });
             }).catch(err => {
                 if (err.response.status === 500) {
-                    alert('Не удалось обновить запись!\nВнутренняя ошибка сервера!')
+                    errorNotification()
                 }
             })
         }

@@ -3,13 +3,21 @@ import axios from "axios";
 
 import { EditManagerDetailsForm } from "../../Forms/EditManagerDetailsForm/EditManagerDetailsForm";
 
-import { Modal } from "antd";
+import { Modal, notification } from "antd";
+import { CloseCircleOutlined } from '@ant-design/icons';
 
 export function EditManagerDetailsModal({setIsEditingVisible, setManager, isEditingVisible, manager, setManagers}) {
     const resetEditing = () => {
         setIsEditingVisible(false)
         setManager(null)
     };
+
+    function errorNotification() {
+        notification.open({
+            message: 'Что-то пошло не так!',
+            icon: <CloseCircleOutlined style={{color: "red"}} />
+        });
+    }
 
     const updatedManager = () => {
         axios.put(`https://localhost:7274/api/managers/managerUser/${manager.key}`, ({
@@ -30,7 +38,7 @@ export function EditManagerDetailsModal({setIsEditingVisible, setManager, isEdit
                 });
         }).catch(err => {
             if (err.response.status === 500) {
-                alert('Внутренняя ошибка сервера!')
+                errorNotification()
             }
         })
         resetEditing();
