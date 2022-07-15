@@ -3,9 +3,9 @@ import {Modal} from "antd";
 import axios from "axios";
 import {EditTourDetailsForm} from "../../Forms/EditTourDetailsForm/EditTourDetailsForm";
 
-export function EditTourDetailsModal({modalVisibility, setModalVisibility, tour, setTour, setTours}) {
+export function EditTourDetailsModal({editingModalVisibility, setEditingModalVisibility, tour, setTour, setTours}) {
     const resetEditing = () => {
-        setModalVisibility(false)
+        setEditingModalVisibility(false)
         setTour(null)
     };
 
@@ -34,7 +34,7 @@ export function EditTourDetailsModal({modalVisibility, setModalVisibility, tour,
     return (
         <Modal
             title="Редактировать тур"
-            visible={modalVisibility}
+            visible={editingModalVisibility}
             okText="Сохранить"
             cancelText="Закрыть"
             onCancel={resetEditing}

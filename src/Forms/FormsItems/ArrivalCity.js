@@ -3,7 +3,7 @@ import React from 'react';
 import { Form, Select } from "antd";
 const { Option } = Select;
 
-export function ArrivalCity({onChange}) {
+export function ArrivalCity({onChange, value}) {
     return (
         <Form.Item
             label="Город отправления"
@@ -15,6 +15,7 @@ export function ArrivalCity({onChange}) {
             ]}
         >
             <Select
+                value={value}
                 showSearch
                 placeholder="Выберите город отправления"
                 optionFilterProp="children"

@@ -3,7 +3,7 @@ import React from 'react';
 import { Form, Select } from "antd";
 const { Option } = Select;
 
-export function TourType({onChange}) {
+export function TourType({onChange, value}) {
     return (
         <Form.Item
             label="Тип тура"
@@ -15,6 +15,7 @@ export function TourType({onChange}) {
             ]}
         >
             <Select
+                value={value}
                 showSearch
                 placeholder="Введите тип тура"
                 optionFilterProp="children"

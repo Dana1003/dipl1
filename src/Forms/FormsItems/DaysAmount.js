@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function DaysAmount({onChange}) {
+export function DaysAmount({onChange, value}) {
     return (
         <Form.Item
             label="Количество дней"
@@ -14,6 +14,7 @@ export function DaysAmount({onChange}) {
             ]}
         >
             <Input
+                value={value}
                 placeholder="Введите количество дней"
                 onChange={onChange}
             />

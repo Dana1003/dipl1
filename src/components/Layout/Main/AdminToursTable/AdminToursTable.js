@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+
+import { Button, Modal, Table } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+
 import { AddTourModal } from "../../../../Modals/AddTourModal/AddTourModal";
 import { EditTourDetailsModal } from "../../../../Modals/EditTourDetailsModal/EditTourDetailsModal";
-
-import { Button, Table } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import '../AdminTables.scss';
 
 export function AdminToursTable() {
     const [tours, setTours] = useState([]);
-    const [modalVisibility ,setModalVisibility] = useState(false);
+    const [modalVisibility, setModalVisibility] = useState(false);
+    const [editingModalVisibility, setEditingModalVisibility] = useState(false);
     const [tour, setTour] = useState(null);
 
     useEffect(() => {
@@ -23,7 +25,7 @@ export function AdminToursTable() {
     useEffect(() => {
     }, [tours]);
 
-    const filterData = (field) =>  [...new Set(tours.map(x => x[field]))].map( item => ({
+    const filterData = (field) => [...new Set(tours.map(x => x[field]))].map(item => ({
         text: item,
         value: item
     }));
@@ -83,21 +85,28 @@ export function AdminToursTable() {
     ];
 
     const onEditTour = (record) => {
-        /*        setIsEditingVisible(true)
-                setManager({...record})*/
+        setEditingModalVisibility(true)
+        setTour({...record})
+    };
+
+    const handleDelete = (key) => {
+        axios.delete(`https://localhost:7274/api/tours/${key}`)
+            .then(response => {
+                setTours(tours.filter((item) => item.tourId !== key));
+            })
     };
 
     const onDeleteTour = (record) => {
-        /*        if (managers.length >= 1)
-                    Modal.confirm({
-                        title: "Нажмите 'Удалить' для удаления записи о менеджере",
-                        okType: 'danger',
-                        okText: "Удалить",
-                        cancelText: "Отменить",
-                        onOk: () => {
-                            handleDelete(record.key)
-                        }
-                    })*/
+        if (tours.length >= 1)
+            Modal.confirm({
+                title: "Нажмите 'Удалить' для удаления записи о туре",
+                okType: 'danger',
+                okText: "Удалить",
+                cancelText: "Отменить",
+                onOk: () => {
+                    handleDelete(record.key)
+                }
+            })
     };
 
     const handleOk = (newTour) => {
@@ -148,8 +157,8 @@ export function AdminToursTable() {
             <EditTourDetailsModal setTours={setTours}
                                   tour={tour}
                                   setTour={setTour}
-                                  setModalVisibility={setModalVisibility}
-                                  modalVisibility={modalVisibility}
+                                  setEditingModalVisibility={setEditingModalVisibility}
+                                  editingModalVisibility={editingModalVisibility}
             />
         </div>
     );

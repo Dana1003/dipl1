@@ -30,7 +30,7 @@ export function EditManagerDetailsModal({setIsEditingVisible, setManager, isEdit
                 });
         }).catch(err => {
             if (err.response.status === 500) {
-                alert('Не удалось обновить менеджера!\nВнутренняя ошибка сервера!')
+                alert('Внутренняя ошибка сервера!')
             }
         })
         resetEditing();
