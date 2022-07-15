@@ -1,6 +1,7 @@
 import React from 'react';
 import {Modal} from "antd";
 import axios from "axios";
+import {EditTourDetailsForm} from "../../Forms/EditTourDetailsForm/EditTourDetailsForm";
 
 export function EditTourDetailsModal({modalVisibility, setModalVisibility, tour, setTour, setTours}) {
     const resetEditing = () => {
@@ -39,7 +40,7 @@ export function EditTourDetailsModal({modalVisibility, setModalVisibility, tour,
             onCancel={resetEditing}
             onOk={updatedTour}
         >
-{/*            <EditManagerDetailsForm manager={manager} setManager={setManager}/>*/}
+            <EditTourDetailsForm tour={tour} setTour={setTour}/>
         </Modal>
     );
 }
