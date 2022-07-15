@@ -22,9 +22,9 @@ export function AddTourForm({onChangeArrivalCity, onChangeDepartureCity, onChang
             }}
             autoComplete="off"
         >
-            <ArrivalCity onChange={(e) => {onChangeArrivalCity(e.target.value)}}/>
-            <DepartureCity onChange={(e) => {onChangeDepartureCity(e.target.value)}}/>
-            <TourType onChange={(e) => {onChangeTourType(e.target.value)}}/>
+            <ArrivalCity onChange={(e) => {onChangeArrivalCity(e)}}/>
+            <DepartureCity onChange={(e) => {onChangeDepartureCity(e)}}/>
+            <TourType onChange={(e) => {onChangeTourType(e)}}/>
             <TourName onChange={(e) => {onChangeNameOfTour(e.target.value)}}/>
             <DaysAmount onChange={(e) => {onChangeAmountOfDays(e.target.value)}}/>
         </Form>

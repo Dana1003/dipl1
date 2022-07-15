@@ -19,7 +19,6 @@ export function ArrivalCity({onChange}) {
                 placeholder="Выберите город отправления"
                 optionFilterProp="children"
                 onChange={onChange}
-                onSearch
                 filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
                 <Option value="Минск">Минск</Option>

@@ -14,7 +14,7 @@ export function TourName({onChange}) {
             ]}
         >
             <Input
-                placeholder="Введите логин"
+                placeholder="Введите название тура"
                 onChange={onChange}
             />
         </Form.Item>
