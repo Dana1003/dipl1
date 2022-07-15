@@ -14,16 +14,16 @@ export function AdminManagersTable() {
     const [isEditingVisible, setIsEditingVisible] = useState(false);
     const [manager, setManager] = useState(null);
 
-    const filterExperience = [...new Set(managers.map(x => x.workExperience))].map(value => ({
-        text: value,
-        value: value
+    const filterData = (field) =>  [...new Set(managers.map(x => x[field]))].map( item => ({
+        text: item,
+        value: item
     }));
 
     const columns = [
         {
             title: 'Фамилия',
             dataIndex: 'lastName',
-            sorter: (a, b) => a.lastName.length - b.lastName.length,
+            sorter: (a, b) => a.lastName.localeCompare(b.lastName)
         },
         {
             title: 'Имя',
@@ -40,7 +40,7 @@ export function AdminManagersTable() {
         {
             title: 'Опыт работы',
             dataIndex: 'experience',
-            filters: filterExperience,
+            filters: filterData('workExperience'),
             onFilter: (value, record) => record.experience === value,
             sorter: (a, b) => a.experience - b.experience
         },
