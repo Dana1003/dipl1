@@ -6,7 +6,8 @@ import { Pagination } from "../../components/Layout/Main/MainReviews/Pagination"
 import { Footer } from "../../components/Layout/Footer/Footer";
 import { AddUserReviewModal } from "../../Modals/AddUserReviewModal/AddUserReviewModal";
 
-import {Button} from "antd";
+import { Button, notification } from "antd";
+import { CloseCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
 import '../../base.scss';
 
@@ -32,15 +33,30 @@ export function UserReviewPage() {
         setIsModalVisible(true);
     };
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    function errorNotification() {
+        notification.open({
+            message: 'Что-то пошло не так!',
+            icon: <CloseCircleOutlined style={{color: "red"}} />
+        });
+    }
+
+    function successNotification() {
+        notification.open({
+            message: 'Данные успешно добавлены!',
+            icon: <CheckCircleOutlined style={{color: "green"}} />
+        });
+    }
+
     const handleOk = (userReview) => {
         setIsModalVisible(false);
         axios.post('https://localhost:7274/api/reviews', userReview)
             .then(temp => {
-                alert('Отзыв успешно добавлен!');
+                successNotification()
             })
             .catch(err => {
                 if (err.response.status === 500) {
-                    alert('Внутренняя ошибка сервера!')
+                    errorNotification()
                 }
             })
     };
