@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
-import { Button, Modal, Table } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Button, Modal, Table, notification } from "antd";
+import { DeleteOutlined, EditOutlined, CloseCircleOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 import { AddTourModal } from "../../../../Modals/AddTourModal/AddTourModal";
 import { EditTourDetailsModal } from "../../../../Modals/EditTourDetailsModal/EditTourDetailsModal";
@@ -109,16 +109,30 @@ export function AdminToursTable() {
             })
     };
 
+    function errorNotification() {
+        notification.open({
+            message: 'Что-то пошло не так!',
+            icon: <CloseCircleOutlined style={{color: "red"}} />
+        });
+    }
+
+    function successNotification() {
+        notification.open({
+            message: 'Данные успешно добавлены!',
+            icon: <CheckCircleOutlined style={{color: "green"}} />
+        });
+    }
+
     const handleOk = (newTour) => {
         setModalVisibility(false);
         axios.post('https://localhost:7274/api/tours', newTour)
             .then(temp => {
                 setTours([...tours, temp.data]);
-                alert('Менеджер успешно добавлен!');
+                successNotification()
             })
             .catch(err => {
                 if (err.response.status === 500) {
-                    alert('Не удалось добавить менеджера!\nВнутренняя ошибка сервера!')
+                    errorNotification()
                 }
             })
     };

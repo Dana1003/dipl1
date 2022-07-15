@@ -137,12 +137,12 @@ export function AdminScheduleTable() {
                         getAllManagerSchedule();
                     }).catch(err => {
                     if (err.response.status === 500) {
-                        alert('Не удалось удалить запись!\nВнутренняя ошибка сервера!')
+                       errorNotification()
                     }
                 })
             }).catch(err => {
             if (err.response.status === 500) {
-                alert('Не удалось удалить запись!\nВнутренняя ошибка сервера!')
+                errorNotification()
             }
         })
     }
