@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import { AddTourModal } from "../../../../Modals/AddTourModal/AddTourModal";
+import { EditTourDetailsModal } from "../../../../Modals/EditTourDetailsModal/EditTourDetailsModal";
 
 import { Button, Table } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import '../AdminTables.scss';
-import axios from "axios";
-import {AddTourModal} from "../../../../Modals/AddTourModal/AddTourModal";
 
 export function AdminToursTable() {
     const [tours, setTours] = useState([]);
@@ -22,30 +23,44 @@ export function AdminToursTable() {
     useEffect(() => {
     }, [tours]);
 
+    const filterData = (field) =>  [...new Set(tours.map(x => x[field]))].map( item => ({
+        text: item,
+        value: item
+    }));
+
     const columns = [
         {
             title: 'Город отправления',
             dataIndex: 'arrivalCity',
-/*            sorter: (a, b) => a.lastName.length - b.lastName.length,*/
+            filters: filterData('arrivalCity'),
+            onFilter: (value, record) => record.arrivalCity === value,
+            sorter: (a, b) => a.arrivalCity.localeCompare(b.arrivalCity)
         },
         {
             title: 'Город прибытия',
             dataIndex: 'departureCity',
+            filters: filterData('departureCity'),
+            onFilter: (value, record) => record.departureCity === value,
+            sorter: (a, b) => a.departureCity.localeCompare(b.departureCity)
         },
         {
             title: 'Тип тура',
             dataIndex: 'tourType',
+            filters: filterData('tourType'),
+            onFilter: (value, record) => record.tourType === value,
+            sorter: (a, b) => a.tourType.localeCompare(b.tourType)
         },
         {
             title: 'Количество дней',
             dataIndex: 'amountOfDays',
+            filters: filterData('amountOfDays'),
+            onFilter: (value, record) => record.amountOfDays === value,
+            sorter: (a, b) => a.amountOfDays - b.amountOfDays,
         },
         {
             title: 'Название тура',
             dataIndex: 'nameOfTour',
-/*            filters: filterExperience,
-            onFilter: (value, record) => record.experience === value,
-            sorter: (a, b) => a.experience - b.experience*/
+            sorter: (a, b) => a.nameOfTour.localeCompare(b.nameOfTour)
         },
         {
             title: 'Действия',
@@ -130,16 +145,12 @@ export function AdminToursTable() {
                           setTour={setTour}
                           handleOk={handleOk}
             />
-
-{/*            <EditManagerDetailsModal setManagers={setManagers}
-                                     isEditingVisible={isEditingVisible}
-                                     setIsEditingVisible={setIsEditingVisible}
-                                     manager={manager}
-                                     setManager={setManager}/>
-            <AddManagerModal isModalVisible={isModalVisible}
-                             setIsModalVisible={setIsModalVisible}
-                             handleOk={handleOk}
-                             setManager={setManager}/>*/}
+            <EditTourDetailsModal setTours={setTours}
+                                  tour={tour}
+                                  setTour={setTour}
+                                  setModalVisibility={setModalVisibility}
+                                  modalVisibility={modalVisibility}
+            />
         </div>
     );
 }
