@@ -11,10 +11,10 @@ import { UserMainPage } from "./pages/UserMainPage/UserMainPage";
 import { UserPrivateDataPage } from "./pages/UserPrivateDataPage/UserPrivateDataPage";
 import { UserReviewPage } from "./pages/UserReviewPage/UserReviewPage";
 import { AdminViewScheduleDetails } from "./pages/AdminViewScheduleDetails/AdminViewScheduleDetails";
+import { AdminViewHotelDetails } from "./pages/AdminViewHotelDatails/AdminViewHotelDetails";
+import { AdminViewTourDetails } from "./pages/AdminViewTourDetails/AdminViewTourDetails";
 
 import './base.scss';
-import {AdminViewHotelDetails} from "./pages/AdminViewHotelDatails/AdminViewHotelDetails";
-import {AdminViewTourDetails} from "./pages/AdminViewTourDetails/AdminViewTourDetails";
 
 function App() {
   return (
