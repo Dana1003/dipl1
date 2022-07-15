@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Button, DatePicker, Modal, Select, Space, TimePicker} from 'antd';
+import {Button, DatePicker, Modal, Select, TimePicker, notification} from 'antd';
+import { CheckCircleOutlined} from '@ant-design/icons';
 import moment from "moment";
 import axios from "axios";
 
@@ -23,6 +24,13 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
     React.useEffect(() => {
     }, [managersSchedule]);
 
+    function successNotification() {
+        notification.open({
+            message: 'Данные успешно добавлены!',
+            icon: <CheckCircleOutlined style={{color: "green"}} />
+        });
+    }
+
     const clear = () => setSelectedValue(null);
 
     const onOpenManyDates = () => isManyDatesVisible || isDateVisible ? setIsManyDatesVisible(false) : setIsManyDatesVisible(true);
@@ -38,10 +46,7 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
 
     const onChangeDateTime = (value) => setDateTime(value);
 
-    const onChangeDate = (value) => {
-        if (value != null)
-            setDate(value.map(x => x.toDate()))
-    }
+    const onChangeDate = (value) =>  setDate(value.map(x => x.toDate()))
 
     const addDatesAndTime = () => {
         if (date != null && time != null) {
@@ -59,7 +64,7 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
                         });
                     clear();
                     setIsManyDatesVisible(false);
-                    alert("Расписания успешно добавлено");
+                    successNotification();
                 });
         }
     }
@@ -79,9 +84,9 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
                                 .then(res => {
                                     setManagersSchedule(res.data);
                                 });
-                                alert("Расписание успешно добавлено");
                                 clear();
                                 setIsDateVisible(false);
+                                successNotification();
                             }
                         )
                 });
@@ -96,7 +101,7 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
                onOk={() => {
                    if (isManyDatesVisible)
                        addDatesAndTime();
-                   if (isDateVisible)
+                   else if (isDateVisible)
                        addDateTime();
                    setIsEditingVisible(false);
                }}
