@@ -13,6 +13,8 @@ import { UserReviewPage } from "./pages/UserReviewPage/UserReviewPage";
 import { AdminViewScheduleDetails } from "./pages/AdminViewScheduleDetails/AdminViewScheduleDetails";
 
 import './base.scss';
+import {AdminViewHotelDetails} from "./pages/AdminViewHotelDatails/AdminViewHotelDetails";
+import {AdminViewTourDetails} from "./pages/AdminViewTourDetails/AdminViewTourDetails";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
               <Route path="/adminMainPage" element={<AdminMainPage/>} exact></Route>
               <Route path="/adminViewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
               <Route path="/adminViewScheduleDetails" element={<AdminViewScheduleDetails />} exact></Route>
+              <Route path="/adminViewHotelDetails" element={<AdminViewHotelDetails />} exact></Route>
+              <Route path="/adminViewTourDetails" element={<AdminViewTourDetails />} exact></Route>
 
               <Route path="/userMainPage" element={<UserMainPage/>} exact></Route>
               <Route path="/userPrivateData" element={<UserPrivateDataPage/>} exact></Route>
