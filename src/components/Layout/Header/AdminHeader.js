@@ -39,7 +39,7 @@ export function AdminHeader() {
                     icon: <FontAwesomeIcon icon={faCalendarDays}/>
                 },
                 {
-                    label: <Link to="adminViewHotelDetails/">Отелях</Link>,
+                    label: <Link to="/adminViewHotelDetails">Отелях</Link>,
                     key: 'hotels',
                     icon: <FontAwesomeIcon icon={faHotel}/>
                 },
