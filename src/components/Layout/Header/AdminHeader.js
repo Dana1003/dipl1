@@ -6,7 +6,9 @@ import {
     faUserTie,
     faDoorOpen,
     faSun,
-    faCalendarDays
+    faCalendarDays,
+    faHotel,
+    faUmbrellaBeach
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Menu } from "antd";
@@ -35,6 +37,16 @@ export function AdminHeader() {
                     label: <Link to="/adminViewScheduleDetails">Графике работы</Link>,
                     key: 'schedules',
                     icon: <FontAwesomeIcon icon={faCalendarDays}/>
+                },
+                {
+                    label: <Link to="/adminViewHotelDetails">Отелях</Link>,
+                    key: 'hotels',
+                    icon: <FontAwesomeIcon icon={faHotel}/>
+                },
+                {
+                    label: <Link to="/adminViewTourDetails">Турах</Link>,
+                    key: 'tours',
+                    icon: <FontAwesomeIcon icon={faUmbrellaBeach}/>
                 }
             ],
         },
