@@ -22,6 +22,9 @@ export function ArrivalCity({onChange}) {
                 filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
                 <Option value="Минск">Минск</Option>
+                <Option value="Гродно">Гродно</Option>
+                <Option value="Могилёв">Могилёв</Option>
+                <Option value="Брест">Брест</Option>
                 <Option value="Гомель">Гомель</Option>
                 <Option value="Витебск">Витебск</Option>
             </Select>
