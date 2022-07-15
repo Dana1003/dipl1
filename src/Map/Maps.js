@@ -14,40 +14,40 @@ export function Maps() {
             modules: ["geoObject.addon.balloon"],
             geometry: [53.944, 27.60],
             properties: {
-                balloonContentHeader: "Travel House",
-                balloonContent: "Travel House | Туристическая компания"
+                balloonContentHeader: "Офис 1",
+                balloonContent: "Филиал SunTour 1"
             }
         },
         {
             modules: ["geoObject.addon.balloon"],
             geometry: [53.930, 27.588],
             properties: {
-                balloonContentHeader: "Тур. агенство «А»",
-                balloonContent: "Туристическое агентство «А»"
+                balloonContentHeader: "Офис 2",
+                balloonContent: "Филиал SunTour 2"
             }
         },
         {
             modules: ["geoObject.addon.balloon"],
             geometry: [53.908, 27.572],
             properties: {
-                balloonContentHeader: "Atlas mira",
-                balloonContent: "Туристическое агентство Атлас мира"
+                balloonContentHeader: "Офис 3",
+                balloonContent: "Филиал SunTour 3"
             }
         },
         {
             modules: ["geoObject.addon.balloon"],
             geometry: [53.916, 27.565],
             properties: {
-                balloonContentHeader: "Ecotravel",
-                balloonContent: "Турагентство Ecotravel"
+                balloonContentHeader: "Офис 4",
+                balloonContent: "Филиал SunTour 4"
             }
         },
         {
             modules: ["geoObject.addon.balloon"],
             geometry: [53.858, 27.476],
             properties: {
-                balloonContentHeader: "Coral travel",
-                balloonContent: "Турагентство «Coral travel»"
+                balloonContentHeader: "Офис 4",
+                balloonContent: "Филиал SunTour 4"
             }
         }
     ]
