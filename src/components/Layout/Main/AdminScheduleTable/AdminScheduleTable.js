@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import moment from "moment";
+import { EditScheduleDetailsModal } from "../../../../Modals/EditScheduleDetailsModal/EditScheduleDetailsModal";
+import { AddScheduleModal } from "../../../../Modals/AddScheduleModal/AddScheduleModal";
 
-import {Button, DatePicker, Modal, Table} from 'antd';
-import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import { Button, DatePicker, Modal, Table } from 'antd';
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import '../AdminManagersTable/AdminManagersTable.scss';
-import {EditScheduleDetailsModal} from "../../../../Modals/EditScheduleDetailsModal/EditScheduleDetailsModal";
-import {AddScheduleModal} from "../../../../Modals/AddScheduleModal/AddScheduleModal";
 
 export function AdminScheduleTable() {
     const [managersSchedule, setManagersSchedule] = useState([]);
@@ -136,7 +136,7 @@ export function AdminScheduleTable() {
     const onDeleteManagerSchedule = (record) => {
         if (managers.length >= 1)
             Modal.confirm({
-                title: "Подтвердите удаление",
+                title: "Нажмите 'Удалить' для удаления записи о графике работы",
                 okType: 'danger',
                 okText: "Подтвердить",
                 cancelText: "Закрыть",
