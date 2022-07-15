@@ -1,5 +1,6 @@
 import React from 'react';
-import {Form, Select} from "antd";
+
+import { Form, Select } from "antd";
 const { Option } = Select;
 
 export function TourType({onChange}) {
@@ -18,7 +19,6 @@ export function TourType({onChange}) {
                 placeholder="Введите тип тура"
                 optionFilterProp="children"
                 onChange={onChange}
-                onSearch
                 filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
                 <Option value="Экскурсионный тур">Экскурсионный тур</Option>
