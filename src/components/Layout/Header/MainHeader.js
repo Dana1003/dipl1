@@ -37,7 +37,7 @@ export function MainHeader() {
 
                 },
                 {
-                    label: <Link to="/" className="dropdown-content-items">Города</Link>,
+                    label: <Link to="/cities" className="dropdown-content-items">Города</Link>,
                     key: 'cities',
                     icon: <FontAwesomeIcon icon={faCity}/>
                 },

@@ -68,7 +68,7 @@ export function UserHeader() {
         },
         {
             key: 'reviews',
-            label: <Link to="/userMainPage">Бронь</Link>
+            label: <Link to="/booking">Бронь</Link>
         },
         {
             key: 'profile',
