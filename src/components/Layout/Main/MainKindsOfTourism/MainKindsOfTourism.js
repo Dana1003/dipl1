@@ -9,10 +9,10 @@ import tourism6 from '../../../../images/tourism6.jpg';
 import tourism7 from '../../../../images/tourism7.jpg';
 import tourism8 from '../../../../images/tourism8.jpg';
 
-import { BackTop, Spin } from "antd";
-import { ArrowUpOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
 
 import './MainKindsOfTourism.scss';
+import {MyBackTop} from "../../../BackTop/MyBackTop";
 
 export function MainKindsOfTourism() {
     const [loading, setLoading] = useState(true);
@@ -117,18 +117,7 @@ export function MainKindsOfTourism() {
                         знаний иностранного языка.
                     </div>
                 </div>
-                <BackTop>
-                    <div style={{
-                        height: 40,
-                        width: 40,
-                        borderRadius: 4,
-                        backgroundColor: "#596f85",
-                        color: '#fff',
-                        textAlign: 'center',
-                    }}>
-                        <ArrowUpOutlined style={{fontSize: 37}}/>
-                    </div>
-                </BackTop>
+                <MyBackTop />
             </Spin>
         </div>
     );

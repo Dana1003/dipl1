@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-
-import { Spin } from "antd";
+import { MyBackTop } from "../../../BackTop/MyBackTop";
 
 import minsk from "../../../../images/Minsk.jpg";
 import coatOfArmsMinsk from "../../../../images/CoatOfArmsOfMinsk.jpg";
@@ -14,6 +13,8 @@ import brest from "../../../../images/Brest.jpg";
 import CoatOfArmsOfBrest from "../../../../images/CoatOfArmsOfBrest.jpg";
 import grodno from "../../../../images/Grodno.jpg";
 import CoatOfArmsOfGrodno from "../../../../images/CoatOfArmsOfGrodno.jpg";
+
+import { Spin } from "antd";
 
 import '../MainKindsOfTourism/MainKindsOfTourism.scss';
 
@@ -111,6 +112,7 @@ export function MainCities() {
                         до польского Щецина более 1000 км нам не попадется такой же крупный город!
                     </div>
                 </div>
+                <MyBackTop />
             </Spin>
         </div>
     );
