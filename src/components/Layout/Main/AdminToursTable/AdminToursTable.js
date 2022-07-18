@@ -48,6 +48,7 @@ export function AdminToursTable() {
         {
             title: 'Тип тура',
             dataIndex: 'tourType',
+            filterSearch: true,
             filters: filterData('tourType'),
             onFilter: (value, record) => record.tourType === value,
             sorter: (a, b) => a.tourType.localeCompare(b.tourType)
@@ -62,6 +63,9 @@ export function AdminToursTable() {
         {
             title: 'Название тура',
             dataIndex: 'nameOfTour',
+            filterSearch: true,
+            filters: filterData('nameOfTour'),
+            onFilter: (value, record) => record.nameOfTour === value,
             sorter: (a, b) => a.nameOfTour.localeCompare(b.nameOfTour)
         },
         {
