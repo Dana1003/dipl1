@@ -24,8 +24,13 @@ export function MainCities() {
     function toggle() {
         setLoading(false);
     }
+/*    function scrolling() {
+        document.body.style.overflow = "hidden";
+    }*/
 
     setTimeout(toggle, 5000);
+    //setTimeout(scrolling, 0);
+
     return (
         <div className="main-cities-block">
             <Spin spinning={loading} size={"large"}>
