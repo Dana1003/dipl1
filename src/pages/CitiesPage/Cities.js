@@ -6,7 +6,7 @@ import { Footer } from "../../components/Layout/Footer/Footer";
 export function Cities() {
     return (
         <>
-            <MainHeader/>
+            <MainHeader />
             <MainCities />
             <Footer />
         </>
