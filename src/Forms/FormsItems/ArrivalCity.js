@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Form, Select } from "antd";
-const { Option } = Select;
 
 export function ArrivalCity({onChange, value}) {
     return (
@@ -22,12 +21,24 @@ export function ArrivalCity({onChange, value}) {
                 onChange={onChange}
                 filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
-                <Option value="Минск">Минск</Option>
-                <Option value="Гродно">Гродно</Option>
-                <Option value="Могилёв">Могилёв</Option>
-                <Option value="Брест">Брест</Option>
-                <Option value="Гомель">Гомель</Option>
-                <Option value="Витебск">Витебск</Option>
+                <Select.Option key={'Минск'} value={'Минск'}>
+                    Минск
+                </Select.Option>
+                <Select.Option key={'Брест'} value={'Брест'}>
+                    Брест
+                </Select.Option>
+                <Select.Option key={'Гродно'} value={'Гродно'}>
+                    Гродно
+                </Select.Option>
+                <Select.Option key={'Витебск'} value={'Витебск'}>
+                    Витебск
+                </Select.Option>
+                <Select.Option key={'Гомель'} value={'Гомель'}>
+                    Гомель
+                </Select.Option>
+                <Select.Option key={'Могилев'} value={'Могилев'}>
+                    Могилев
+                </Select.Option>
             </Select>
         </Form.Item>
     );
