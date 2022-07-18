@@ -7,7 +7,7 @@ import { CaretDownOutlined} from '@ant-design/icons';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faEarthAmericas,
+    faCity,
     faUmbrellaBeach,
     faHotel,
     faFileMedical,
@@ -37,9 +37,9 @@ export function MainHeader() {
 
                 },
                 {
-                    label: <Link to="/" className="dropdown-content-items">Страны</Link>,
-                    key: 'countries',
-                    icon: <FontAwesomeIcon icon={faEarthAmericas}/>
+                    label: <Link to="/" className="dropdown-content-items">Города</Link>,
+                    key: 'cities',
+                    icon: <FontAwesomeIcon icon={faCity}/>
                 },
                 {
                     label: <Link to="/" className="dropdown-content-items">Каталог отелей</Link>,
