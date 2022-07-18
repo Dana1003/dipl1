@@ -1,13 +1,23 @@
 @use './src/base';
 
-.main-tourism-block {
+.main-tourism-block, .main-cities-block {
   margin-top: -1px;
   background-color: base.$bg-color;
 }
 
+h4 {
+  display: inline;
+}
+
+.coats-of-arms {
+  width: 100px;
+  height: 100px;
+}
+
 .pictures {
   width: 43%;
-  margin: 100px 0px 0px 80px;
+  height: 435px;
+  margin: 100px 0 0 80px;
   transition: 2s;
   box-shadow: 14px 16px 12px #9da0a8;
 
@@ -23,17 +33,23 @@
     background-color: base.$tourism-card-color;
     transition: 2s;
   }
+  &:hover .city-card {
+    background-color: base.$tourism-card-color;
+    transition: 2s;
+  }
 }
 
-.kind-of-tourism {
-  //margin-left: 60%;
+.kind-of-tourism, .cities-of-belarus {
   letter-spacing: 3px;
   font-size: 50px;
   text-align: center;
-  //position: absolute;
   font-family: Monotype Corsiva, serif;
   text-shadow: 8px 6px 6px #22252c;
   color: white;
+}
+
+.cities-of-belarus {
+  margin-bottom: 20px;
 }
 
 .appeared-text {
@@ -46,5 +62,18 @@
   transition: 2s;
   top: 100px;
   margin-left: 60%;
+  border: 1px solid #bcc2cb;
+}
+
+.city-card {
+  position: absolute;
+  padding: 20px;
+  color: black;
+  border-radius: 16px;
+  width: 40%;
+  opacity: 1;
+  transition: 2s;
+  top: 100px;
+  margin-left: 55%;
   border: 1px solid #bcc2cb;
 }
