@@ -8,6 +8,7 @@ export function AddHotelModal({isModalVisible, handleOk, setHotel, setIsModalVis
     const [countOfStars, setCountOfStars] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
+    const [roomCost, setRoomCost] = useState('');
 
     const handleCancel = () => {
         setIsModalVisible(false);
@@ -23,7 +24,8 @@ export function AddHotelModal({isModalVisible, handleOk, setHotel, setIsModalVis
                    "nameOfHotel": nameOfHotel,
                    "city": city,
                    "countOfStars": countOfStars,
-                   "address": address
+                   "address": address,
+                   "roomCost": roomCost
                })}
                onCancel={() => {
                    handleCancel()
@@ -34,6 +36,7 @@ export function AddHotelModal({isModalVisible, handleOk, setHotel, setIsModalVis
                 onChangeAddress={(address) => {setAddress(address)} }
                 onChangeCity={(city) => {setCity(city)}}
                 onChangeCountOfStars={(countOfStars) => setCountOfStars(countOfStars)}
+                onChangeRoomCost={(roomCost) => {setRoomCost(roomCost)}}
             />
         </Modal>
     );

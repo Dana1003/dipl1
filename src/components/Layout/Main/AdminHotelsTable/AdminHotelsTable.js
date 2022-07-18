@@ -45,6 +45,13 @@ export function AdminHotelsTable() {
             dataIndex: 'address',
         },
         {
+            title: 'Цена за номер',
+            dataIndex: 'roomCost',
+            filters: filter('roomCost'),
+            onFilter: (value, record) => record.roomCost === value,
+            sorter: (a, b) => a.roomCost - b.roomCost
+        },
+        {
             title: 'Действия',
             dataIndex: 'action',
             render: (value, record) => {
@@ -148,7 +155,8 @@ export function AdminHotelsTable() {
                            nameOfHotel: currentValue.nameOfHotel,
                            countOfStars: currentValue.countOfStars,
                            city: currentValue.city,
-                           address: currentValue.address
+                           address: currentValue.address,
+                           roomCost: currentValue.roomCost
                        }))}/>
             </div>
             <EditHotelDetailsModal setIsEditingVisible={setIsEditingVisible} setHotels={setHotels}

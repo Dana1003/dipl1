@@ -23,7 +23,8 @@ export function EditHotelDetailsModal({setIsEditingVisible, setHotel, isEditingV
             "nameOfHotel": hotel.nameOfHotel,
             "city": hotel.city,
             "countOfStars": hotel.countOfStars,
-            "address": hotel.address
+            "address": hotel.address,
+            "roomCost": hotel.roomCost
         })).then(temp => {
             axios.get('https://localhost:7274/api/hotels')
                 .then(res => {

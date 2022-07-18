@@ -5,6 +5,7 @@ import { HotelName } from "../FormsItems/HotelName";
 import { CountOfStars } from "../FormsItems/CountOfStars";
 
 import {Form} from "antd";
+import {RoomCost} from "../FormsItems/RoomCost";
 
 export function EditHotelDetailsForm({hotel, setHotel}) {
     return (
@@ -45,6 +46,12 @@ export function EditHotelDetailsForm({hotel, setHotel}) {
                                   return {...pre, countOfStars: e}
                               })
                           }}/>
+            <RoomCost value={hotel.roomCost}
+                      onChange={(e) => {
+                          setHotel(pre => {
+                              return {...pre, roomCost: e.target.value}
+                          })
+                      }}/>
         </Form>
     );
 }

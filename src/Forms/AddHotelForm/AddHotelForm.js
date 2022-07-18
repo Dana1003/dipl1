@@ -3,10 +3,11 @@ import { HotelName } from "../FormsItems/HotelName";
 import { CountOfStars } from "../FormsItems/CountOfStars";
 import { Address } from "../FormsItems/Address";
 import { City } from "../FormsItems/City";
+import { RoomCost } from "../FormsItems/RoomCost";
 
 import { Form } from "antd";
 
-export function AddHotelForm({onChangeNameOfHotel, onChangeCountOfStars, onChangeAddress, onChangeCity}) {
+export function AddHotelForm({onChangeNameOfHotel, onChangeCountOfStars, onChangeAddress, onChangeCity, onChangeRoomCost}) {
 
     return (
         <Form
@@ -26,6 +27,7 @@ export function AddHotelForm({onChangeNameOfHotel, onChangeCountOfStars, onChang
             <CountOfStars onChange={(e) => {onChangeCountOfStars(e)}}/>
             <Address onChange={(e) => {onChangeAddress(e.target.value)}}/>
             <City onChange={(e) => {onChangeCity(e)}}/>
+            <RoomCost onChange={(e) => {onChangeRoomCost(e.target.value)}} />
         </Form>
     );
 }
