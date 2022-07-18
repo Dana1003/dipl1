@@ -6,7 +6,7 @@ import { Footer } from "../../components/Layout/Footer/Footer";
 export function KindsOfTourism() {
     return (
         <>
-            <MainHeader/>
+            <MainHeader />
             <MainKindsOfTourism />
             <Footer />
         </>
