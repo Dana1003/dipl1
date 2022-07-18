@@ -1,11 +1,10 @@
 import React from 'react';
 import { HotelName } from "../FormsItems/HotelName";
-import { CountOfStars } from "../FormsItems/CountOfStars";
 import { Address } from "../FormsItems/Address";
 import { City } from "../FormsItems/City";
 import { RoomCost } from "../FormsItems/RoomCost";
 
-import { Form } from "antd";
+import {Form, Rate} from "antd";
 
 export function AddHotelForm({onChangeNameOfHotel, onChangeCountOfStars, onChangeAddress, onChangeCity, onChangeRoomCost}) {
 
@@ -24,7 +23,7 @@ export function AddHotelForm({onChangeNameOfHotel, onChangeCountOfStars, onChang
             autoComplete="off"
         >
             <HotelName onChange={(e) => {onChangeNameOfHotel(e.target.value)}}/>
-            <CountOfStars onChange={(e) => {onChangeCountOfStars(e)}}/>
+            <Rate allowClear={false} onChange={(e) => onChangeCountOfStars(e)}/>
             <Address onChange={(e) => {onChangeAddress(e.target.value)}}/>
             <City onChange={(e) => {onChangeCity(e)}}/>
             <RoomCost onChange={(e) => {onChangeRoomCost(e.target.value)}} />

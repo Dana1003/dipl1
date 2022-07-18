@@ -22,7 +22,7 @@ export function EditHotelDetailsModal({setIsEditingVisible, setHotel, isEditingV
         axios.put(`https://localhost:7274/api/hotels/${hotel.key}`, ({
             "nameOfHotel": hotel.nameOfHotel,
             "city": hotel.city,
-            "countOfStars": hotel.countOfStars,
+            "countOfStars": hotel.countOfStars.props.value,
             "address": hotel.address,
             "roomCost": hotel.roomCost
         })).then(temp => {

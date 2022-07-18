@@ -15,7 +15,6 @@ import { AdminViewHotelDetails } from "./pages/AdminViewHotelDatails/AdminViewHo
 import { AdminViewTourDetails } from "./pages/AdminViewTourDetails/AdminViewTourDetails";
 
 import './base.scss';
-import {Cities} from "./pages/CitiesPage/Cities";
 import {BookingPage} from "./pages/BookingPage/BookingPage";
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
               <Route path="/authorize" element={<AuthPage/>} exact></Route>
               <Route path="/registration" element={<RegistrPage/>} exact></Route>
 
-              <Route path="/cities" element={<Cities />} exact></Route>
               <Route path="/kindsOfTourism" element={<KindsOfTourism />} exact></Route>
               <Route path="/review" element={<ReviewPage/>} exact></Route>
 

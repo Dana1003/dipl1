@@ -8,10 +8,10 @@ export function EntryButton({ login, password }) {
 
     let entryHandler = () => {
         if (login === 'admin' && password === 'admin') {
-            return navigate(`/adminMainPage`);
+            navigate(`/adminMainPage`, { state: { managerId:1 } });
         }
         if(login === 'user' && password === 'user') {
-            return navigate('/userMainPage');
+            navigate('/userMainPage');
         }
     }
 

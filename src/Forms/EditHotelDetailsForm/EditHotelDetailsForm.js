@@ -1,10 +1,9 @@
 import React from 'react';
-import { Address } from "../FormsItems/Address";
-import { City } from "../FormsItems/City";
-import { HotelName } from "../FormsItems/HotelName";
-import { CountOfStars } from "../FormsItems/CountOfStars";
+import {Address} from "../FormsItems/Address";
+import {City} from "../FormsItems/City";
+import {HotelName} from "../FormsItems/HotelName";
 
-import {Form} from "antd";
+import {Form, Rate} from "antd";
 import {RoomCost} from "../FormsItems/RoomCost";
 
 export function EditHotelDetailsForm({hotel, setHotel}) {
@@ -23,11 +22,11 @@ export function EditHotelDetailsForm({hotel, setHotel}) {
             autoComplete="off"
         >
             <HotelName value={hotel?.nameOfHotel}
-                         onChange={(e) => {
-                             setHotel(pre => {
-                                 return {...pre, nameOfHotel: e.target.value}
-                             })
-                         }}/>
+                       onChange={(e) => {
+                           setHotel(pre => {
+                               return {...pre, nameOfHotel: e.target.value}
+                           })
+                       }}/>
             <City value={hotel?.city}
                   onChange={(e) => {
                       setHotel(pre => {
@@ -40,12 +39,15 @@ export function EditHotelDetailsForm({hotel, setHotel}) {
                              return {...pre, address: e.target.value}
                          })
                      }}/>
-            <CountOfStars value={hotel.countOfStars}
-                          onChange={(e) => {
-                              setHotel(pre => {
-                                  return {...pre, countOfStars: e}
-                              })
-                          }}/>
+            <Rate
+                allowClear={false}
+                value={hotel.countOfStars.props.value}
+                onChange={(e) => {
+                    setHotel(pre => {
+                        return {...pre, countOfStars: <Rate value={e}/>}
+                    })
+                }}
+            />
             <RoomCost value={hotel.roomCost}
                       onChange={(e) => {
                           setHotel(pre => {

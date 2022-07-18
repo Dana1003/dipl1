@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +15,24 @@ import { Menu } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 
 import './MainHeader.scss';
+import moment from "moment";
 
-export function AdminHeader() {
+export function AdminHeader({managerId}) {
+    const [startDate, setStartDate] = useState(null);
+
+    const onExitHandler = () =>{
+        let obj = ({
+            startDate:startDate,
+            endDate:moment().format(),
+            managerId:managerId
+        })
+        console.log(obj)
+    }
+
+    useEffect(() => {
+        setStartDate(moment().format())
+    }, []);
+
     const menuItems = [
         {
             key: 'logo',
@@ -53,7 +69,8 @@ export function AdminHeader() {
         {
             key: 'auth',
             label: <Link to="/authorize">Выход</Link>,
-            icon: <FontAwesomeIcon icon={faDoorOpen}/>
+            icon: <FontAwesomeIcon icon={faDoorOpen}/>,
+            onClick: onExitHandler
         }
     ]
 

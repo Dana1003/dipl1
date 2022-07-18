@@ -3,7 +3,7 @@ import axios from "axios";
 import { EditHotelDetailsModal } from "../../../../Modals/EditHotelDetailsModal/EditHotelDetailsModal";
 import { AddHotelModal } from "../../../../Modals/AddHotelModal/AddHotelModal";
 
-import {Button, Modal, notification, Table} from "antd";
+import {Button, Modal, notification, Rate, Table} from "antd";
 import {CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
 export function AdminHotelsTable() {
@@ -153,7 +153,7 @@ export function AdminHotelsTable() {
                        dataSource={hotels.map(currentValue => ({
                            key: currentValue.hotelId,
                            nameOfHotel: currentValue.nameOfHotel,
-                           countOfStars: currentValue.countOfStars,
+                           countOfStars: <Rate allowClear={false} value={currentValue.countOfStars}/>,
                            city: currentValue.city,
                            address: currentValue.address,
                            roomCost: currentValue.roomCost
