@@ -9,6 +9,7 @@ export function AddTourModal({modalVisibility, setModalVisibility, setTour, hand
     const [tourType, setTourType] = useState('');
     const [amountOfDays, setAmountOfDays] = useState('');
     const [nameOfTour, setNameOfTour] = useState('');
+    const [tourCost, setTourCost] = useState('');
 
     const handleCancel = () => {
         setModalVisibility(false);
@@ -26,7 +27,8 @@ export function AddTourModal({modalVisibility, setModalVisibility, setTour, hand
                    "tourType": tourType,
                    "amountOfDays": amountOfDays,
                    "operator": "SunTour",
-                   "nameOfTour": nameOfTour
+                   "nameOfTour": nameOfTour,
+                   "tourCost": tourCost
                })}
                onCancel={() => {
                    handleCancel()
@@ -38,6 +40,7 @@ export function AddTourModal({modalVisibility, setModalVisibility, setTour, hand
                 onChangeTourType={(tourType) => {setTourType(tourType)}}
                 onChangeAmountOfDays={(amountOfDays) => {setAmountOfDays(amountOfDays)}}
                 onChangeNameOfTour={(nameOfTour) => {setNameOfTour(nameOfTour)}}
+                onChangeTourCost={(tourCost) => {setTourCost(tourCost)}}
             />
         </Modal>
     );

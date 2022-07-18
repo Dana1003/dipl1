@@ -25,7 +25,8 @@ export function EditTourDetailsModal({editingModalVisibility, setEditingModalVis
             tourType: tour.tourType,
             amountOfDays: tour.amountOfDays,
             operator: "SunTour",
-            nameOfTour: tour.nameOfTour
+            nameOfTour: tour.nameOfTour,
+            tourCost: tour.tourCost
         })).then(temp => {
             axios.get('https://localhost:7274/api/tours')
                 .then(res => {

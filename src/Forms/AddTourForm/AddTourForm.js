@@ -4,10 +4,11 @@ import { DepartureCity } from "../FormsItems/DepartureCity";
 import { TourType } from "../FormsItems/TourType";
 import { TourName } from "../FormsItems/TourName";
 import { DaysAmount } from "../FormsItems/DaysAmount";
+import { TourCost } from "../FormsItems/TourCost";
 
 import { Form } from "antd";
 
-export function AddTourForm({onChangeArrivalCity, onChangeDepartureCity, onChangeTourType, onChangeNameOfTour, onChangeAmountOfDays}) {
+export function AddTourForm({onChangeArrivalCity, onChangeDepartureCity, onChangeTourType, onChangeNameOfTour, onChangeAmountOfDays, onChangeTourCost}) {
     return (
         <Form
             name="basic"
@@ -27,6 +28,7 @@ export function AddTourForm({onChangeArrivalCity, onChangeDepartureCity, onChang
             <TourType onChange={(e) => {onChangeTourType(e)}}/>
             <TourName onChange={(e) => {onChangeNameOfTour(e.target.value)}}/>
             <DaysAmount onChange={(e) => {onChangeAmountOfDays(e.target.value)}}/>
+            <TourCost onChange={(e) => {onChangeTourCost(e.target.value)}}/>
         </Form>
     );
 }

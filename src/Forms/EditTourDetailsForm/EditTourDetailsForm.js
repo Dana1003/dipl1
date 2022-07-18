@@ -4,6 +4,7 @@ import { DepartureCity } from "../FormsItems/DepartureCity";
 import { TourType } from "../FormsItems/TourType";
 import { DaysAmount } from "../FormsItems/DaysAmount";
 import { TourName } from "../FormsItems/TourName";
+import { TourCost } from "../FormsItems/TourCost";
 
 import { Form } from "antd";
 
@@ -25,38 +26,39 @@ export function EditTourDetailsForm({tour, setTour}) {
             <ArrivalCity value={tour?.arrivalCity}
                          onChange={(e) => {
                              setTour(pre => {
-                                 return{...pre, arrivalCity: e}
+                                 return {...pre, arrivalCity: e}
                              })
-                         }}
-            />
+                         }}/>
             <DepartureCity value={tour?.departureCity}
                          onChange={(e) => {
                              setTour(pre => {
-                                 return{...pre, departureCity: e}
+                                 return {...pre, departureCity: e}
                              })
-                         }}
-            />
+                         }}/>
             <TourType value={tour?.tourType}
                            onChange={(e) => {
                                setTour(pre => {
-                                   return{...pre, tourType: e}
+                                   return {...pre, tourType: e}
                                })
-                           }}
-            />
+                           }}/>
             <DaysAmount value={tour?.amountOfDays}
                       onChange={(e) => {
                           setTour(pre => {
-                              return{...pre, amountOfDays: e.target.value}
+                              return {...pre, amountOfDays: e.target.value}
                           })
-                      }}
-            />
+                      }}/>
             <TourName value={tour?.nameOfTour}
                         onChange={(e) => {
                             setTour(pre => {
-                                return{...pre, nameOfTour: e.target.value}
+                                return {...pre, nameOfTour: e.target.value}
                             })
-                        }}
-            />
+                        }}/>
+            <TourCost value={tour?.tourCost}
+                      onChange={(e) => {
+                          setTour(pre => {
+                              return {...pre, tourCost: e.target.value}
+                          })
+                      }}/>
         </Form>
     );
 }

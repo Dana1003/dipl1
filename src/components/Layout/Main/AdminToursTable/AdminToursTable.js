@@ -69,6 +69,14 @@ export function AdminToursTable() {
             sorter: (a, b) => a.nameOfTour.localeCompare(b.nameOfTour)
         },
         {
+            title: 'Цена тура',
+            dataIndex: 'tourCost',
+            filterSearch: true,
+            filters: filterData('tourCost'),
+            onFilter: (value, record) => record.tourCost === value,
+            sorter: (a, b) => a.tourCost - b.tourCost,
+        },
+        {
             title: 'Действия',
             dataIndex: 'action',
             render: (value, record) => {
@@ -163,7 +171,8 @@ export function AdminToursTable() {
                            departureCity: currentValue.departureCity,
                            tourType: currentValue.tourType,
                            amountOfDays: currentValue.amountOfDays,
-                           nameOfTour: currentValue.nameOfTour
+                           nameOfTour: currentValue.nameOfTour,
+                           tourCost: currentValue.tourCost
                        }))}/>
             </div>
 
