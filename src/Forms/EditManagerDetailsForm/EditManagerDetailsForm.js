@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { LastName } from "../FormsItems/LastName";
 import { FirstName } from "../FormsItems/FirstName";
 import { Patronymic } from "../FormsItems/Patronymic";
@@ -10,9 +9,15 @@ import { Phone } from "../FormsItems/Phone";
 import { Form } from "antd";
 
 export function EditManagerDetailsForm({manager, setManager}) {
-
+    let dividedManager = [];
+    for (let field in manager)
+        dividedManager.push({
+            name: [`${field}`],
+            value: manager[field]
+        })
     return (
         <Form
+            fields={dividedManager}
             name="basic"
             labelCol={{
                 span: 8,
@@ -25,42 +30,36 @@ export function EditManagerDetailsForm({manager, setManager}) {
             }}
             autoComplete="off"
         >
-            <LastName value={manager?.lastName}
-                      onChange={(e) => {
-                          setManager(pre => {
-                              return {...pre, lastName: e.target.value}
-                          })
-                      }}/>
-            <FirstName value={manager?.firstName}
-                       onChange={(e) => {
-                           setManager(pre => {
-                               return {...pre, firstName: e.target.value}
-                           })
-                       }}/>
-            <Patronymic value={manager?.patronymic}
-                        onChange={(e) => {
-                            setManager(pre => {
-                                return {...pre, patronymic: e.target.value}
-                            })
-                        }}/>
-            <Login value={manager?.login}
-                   onChange={(e) => {
-                       setManager(pre => {
-                           return {...pre, login: e.target.value}
-                       })
-                   }}/>
-            <WorkExperience value={manager?.experience}
-                            onChange={(e) => {
-                                setManager(pre => {
-                                    return {...pre, experience: e.target.value}
-                                })
-                            }}/>
-            <Phone value={manager?.phoneNumber}
-                   onChange={(e) => {
-                       setManager(pre => {
-                           return {...pre, phoneNumber: e.target.value}
-                       })
-                   }}/>
+            <LastName onChange={(e) => {
+                setManager(pre => {
+                    return {...pre, lastName: e.target.value}
+                })
+            }}/>
+            <FirstName onChange={(e) => {
+                setManager(pre => {
+                    return {...pre, firstName: e.target.value}
+                })
+            }}/>
+            <Patronymic onChange={(e) => {
+                setManager(pre => {
+                    return {...pre, patronymic: e.target.value}
+                })
+            }}/>
+            <Login onChange={(e) => {
+                setManager(pre => {
+                    return {...pre, login: e.target.value}
+                })
+            }}/>
+            <WorkExperience onChange={(e) => {
+                setManager(pre => {
+                    return {...pre, experience: e.target.value}
+                })
+            }}/>
+            <Phone onChange={(e) => {
+                setManager(pre => {
+                    return {...pre, phoneNumber: e.target.value}
+                })
+            }}/>
         </Form>
     );
 }

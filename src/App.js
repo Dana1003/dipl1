@@ -18,6 +18,7 @@ import './base.scss';
 import {Cities} from "./pages/CitiesPage/Cities";
 import {UserBookingPage} from "./pages/UserBookingPage/UserBookingPage";
 import {UserOrdersPage} from "./pages/UserOrdersPage/UserOrdersPage";
+import {UserTheMostPopularToursPage} from "./pages/UserTheMostPopularToursPage/UserTheMostPopularToursPage";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
               <Route path="/userReviews" element={<UserReviewPage />} exact></Route>
               <Route path="/userBooking" element={<UserBookingPage />} exact></Route>
               <Route path="/userOrders" element={<UserOrdersPage />} exact></Route>
+              <Route path="/theMostPopularTours" element={<UserTheMostPopularToursPage />} exact></Route>
           </Routes>
       </>
   );

@@ -36,34 +36,38 @@ export function UserHeader() {
             icon: <CaretDownOutlined/>,
             children: [
                 {
+                    key: 'theMostPopularTours',
+                    label: <Link to="/theMostPopularTours">Самые популярные туры</Link>
+                },
+                {
                     key: 'kinds',
-                    label: <Link to="/kindsOfTourism" className="dropdown-content-items">Виды туризма</Link>,
+                    label: <Link to="/kindsOfTourism">Виды туризма</Link>,
                     icon: <FontAwesomeIcon icon={faUmbrellaBeach}/>
 
                 },
                 {
                     key: 'countries',
-                    label: <Link to="/" className="dropdown-content-items">Страны</Link>,
+                    label: <Link to="" >Страны</Link>,
                     icon: <FontAwesomeIcon icon={faEarthAmericas}/>
                 },
                 {
                     key: 'hotels',
-                    label: <Link to="/" className="dropdown-content-items">Каталог отелей</Link>,
+                    label: <Link to="" >Каталог отелей</Link>,
                     icon: <FontAwesomeIcon icon={faHotel}/>
                 },
                 {
                     key: 'tours',
-                    label: <Link to="/" className="dropdown-content-items">Каталог туров</Link>,
+                    label: <Link to="" >Каталог туров</Link>,
                     icon: <FontAwesomeIcon icon={faToriiGate}/>
                 },
                 {
                     key: 'insurance',
-                    label: <Link to="/" className="dropdown-content-items">Страхование</Link>,
+                    label: <Link to="" >Страхование</Link>,
                     icon: <FontAwesomeIcon icon={faFileMedical}/>
                 },
                 {
                     key: 'memo',
-                    label: <Link to="/" className="dropdown-content-items">Памятка туриста</Link>,
+                    label: <Link to="" >Памятка туриста</Link>,
                     icon: <FontAwesomeIcon icon={faFilePen}/>
                 }
             ],
@@ -71,6 +75,7 @@ export function UserHeader() {
         {
             key: 'booking',
             label: 'Бронирование',
+            icon: <CaretDownOutlined/>,
             children: [
                 {
                     key: 'ticketOrder',

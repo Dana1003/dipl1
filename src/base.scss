@@ -19,12 +19,22 @@ html {
   scroll-behavior: smooth;
   font-size: 20px;
 }
+
+h2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px !important;
+  font-weight: normal !important;
+  text-decoration: underline;
+}
+
 .user-icon {
   width: 20px;
   height: 20px;
   margin-right: -25px;
   padding-top: 0;
 }
+
 a {
   text-decoration: $text-decor;
   color: black;
@@ -71,8 +81,16 @@ a {
   }
 }
 
-.ant-input-affix-wrapper, .ant-input {
+.ant-input-affix-wrapper, .ant-input, .ant-picker {
   border-radius: 20px !important;
+}
+
+.ant-card-body {
+  height: 408px;
+}
+
+.ant-picker {
+  width: 100% !important;
 }
 
 .add-button.ant-btn-primary {
