@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import moment from "moment";
-import { CountOfAdult } from "../../../../Forms/FormsItems/CountOfAdult";
-import { CountOfChildren } from "../../../../Forms/FormsItems/CountOfChildren";
-import { DaysAmount } from "../../../../Forms/FormsItems/DaysAmount";
+import {CountOfAdult} from "../../../../Forms/FormsItems/CountOfAdult";
+import {CountOfChildren} from "../../../../Forms/FormsItems/CountOfChildren";
+import {DaysAmount} from "../../../../Forms/FormsItems/DaysAmount";
 
-import { Button, Form, notification, Rate, Table } from "antd";
-import { CheckCircleOutlined } from "@ant-design/icons";
+import {Button, Form, notification, Rate, Table} from "antd";
+import {CheckCircleOutlined} from "@ant-design/icons";
 import {TravelStartDate} from "../../../../Forms/FormsItems/TravelStartDate";
 
 export function UserBooking() {
@@ -237,23 +237,17 @@ export function UserBooking() {
                         }}
                         autoComplete="off"
                     >
-                        <CountOfAdult
-                            value={countOfAdult}
-                            onChange={(input) => {
-                                setCountOfAdult(input.target.value)
-                            }}/>
-                        <CountOfChildren
-                            value={countOfChildren}
-                            onChange={(input) => {
-                                setCountOfChildren(input.target.value)
-                            }}/>
+                        <CountOfAdult onChange={(e) => {setCountOfAdult(e)}}/>
+                        <CountOfChildren onChange={(e) => {setCountOfChildren(e)}}/>
                         <DaysAmount
                             value={countOfDays}
                             onChange={(input) => {
                                 setCountOfDays(input.target.value)
                             }}/>
                         <TravelStartDate value={date}
-                                         onChange={(input) => {setDate(input)}}
+                                         onChange={(input) => {
+                                             setDate(input)
+                                         }}
                                          disabledDate={disabledDate}
                         />
                     </Form>

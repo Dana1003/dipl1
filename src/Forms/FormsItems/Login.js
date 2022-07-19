@@ -3,7 +3,7 @@ import React from 'react';
 import { Form, Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
-export function Login({onChange, value}) {
+export function Login({onChange}) {
     return (
         <Form.Item
             label="Логин"
@@ -15,7 +15,7 @@ export function Login({onChange, value}) {
                     message: 'Вы не ввели логин!',
                 },
                 {
-                    pattern: new RegExp("([a-zA-Z]{3,30}\\s*)+"),
+                    pattern: new RegExp("^[0-9a-zA-Z]{6,}$"),
                     message: "Неверный формат данных"
                 },
                 {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Form, Select } from "antd";
 
-export function ArrivalCity({onChange, value}) {
+export function ArrivalCity({onChange}) {
     return (
         <Form.Item
             label="Город отправления"
@@ -13,13 +13,11 @@ export function ArrivalCity({onChange, value}) {
                 },
             ]}
         >
-            <Select
-                value={value}
-                showSearch
-                placeholder="Выберите город отправления"
-                optionFilterProp="children"
-                onChange={onChange}
-                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+            <Select showSearch
+                    placeholder="Выберите город отправления"
+                    optionFilterProp="children"
+                    onChange={onChange}
+                    filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
                 <Select.Option key={'Минск'} value={'Минск'}>
                     Минск
