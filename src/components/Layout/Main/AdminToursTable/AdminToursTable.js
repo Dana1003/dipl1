@@ -71,7 +71,6 @@ export function AdminToursTable() {
         {
             title: 'Цена тура',
             dataIndex: 'tourCost',
-            filterSearch: true,
             filters: filterData('tourCost'),
             onFilter: (value, record) => record.tourCost === value,
             sorter: (a, b) => a.tourCost - b.tourCost,
