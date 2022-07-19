@@ -62,7 +62,7 @@ export function UserBooking() {
                     "departureDate": date.utcOffset('GMT').format(),
                     "arrivalDate": date.add('Days', countOfDays).utcOffset('GMT').format(),
                     "status": true,
-                    "countOfPeople": countOfChildren + countOfAdult
+                    "countOfPeople": Number(countOfChildren) + Number(countOfAdult)
                 }))
                     .then(res => {
                         setIsTicketVisible(false)
