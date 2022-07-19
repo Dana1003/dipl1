@@ -71,6 +71,7 @@ export function UserHeader() {
         {
             key: 'booking',
             label: 'Бронирование',
+            icon: <CaretDownOutlined/>,
             children: [
                 {
                     key: 'ticketOrder',
