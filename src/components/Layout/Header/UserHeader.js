@@ -16,7 +16,9 @@ import {
     faPassport,
     faList,
     faGear,
-    faToriiGate
+    faToriiGate,
+    faTicket,
+    faListCheck
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./MainHeader.scss";
@@ -67,8 +69,20 @@ export function UserHeader() {
             ],
         },
         {
-            key: 'reviews',
-            label: <Link to="/booking">Бронь</Link>
+            key: 'booking',
+            label: 'Бронирование',
+            children: [
+                {
+                    key: 'ticketOrder',
+                    label: <Link to="/userBooking">Заказать билет</Link>,
+                    icon: <FontAwesomeIcon icon={faTicket} />
+                },
+                {
+                    key: 'myOrders',
+                    label: <Link to="/userOrders">Мои заказы</Link>,
+                    icon: <FontAwesomeIcon icon={faListCheck} />
+                }
+            ]
         },
         {
             key: 'profile',
