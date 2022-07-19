@@ -5,9 +5,11 @@ import {CountOfAdult} from "../../../../Forms/FormsItems/CountOfAdult";
 import {CountOfChildren} from "../../../../Forms/FormsItems/CountOfChildren";
 import {DaysAmount} from "../../../../Forms/FormsItems/DaysAmount";
 import moment from "moment";
-import {CheckCircleOutlined} from "@ant-design/icons";
+import {CheckCircleOutlined, SmileOutlined} from "@ant-design/icons";
 
 export function UserBooking() {
+    //сюда надо будет записать то, что вернет запрос на получение данных клиента
+    const [client, setClient] = useState(null);
     const [tours, setTours] = useState([]);
     const [hotels, setHotels] = useState([]);
     const [isHotelsVisible, setIsHotelsVisible] = useState(false);
@@ -25,12 +27,23 @@ export function UserBooking() {
             .then(res => {
                 setTours(res.data);
             });
+        axios.get(`https://localhost:7274/api/clients/${1}`)
+            .then(res => {
+                setClient(res.data);
+            });
     }, []);
 
     function successNotification() {
         notification.open({
             message: 'Бронь прошла успешно!',
-            icon: <CheckCircleOutlined style={{color: "green"}} />
+            icon: <CheckCircleOutlined style={{color: "green"}}/>
+        });
+    }
+
+    function birthdayNotification() {
+        notification.open({
+            message: 'Сумма рассчитанная к оплате будет предоставлена со скидкой в 10%!',
+            icon: <SmileOutlined style={{color: "green"}}/>
         });
     }
 
@@ -47,8 +60,18 @@ export function UserBooking() {
         return current && current < moment().endOf('day');
     };
 
-    const onBookingHandle = () => {
+    const onCalculateCost = () => {
+        if ((new Date(client.bithDate).getMonth() + 1) === (new Date().getMonth() + 1)
+            && new Date(client.bithDate).getDate() === new Date().getDate()) {
+            birthdayNotification()
+            return (selectedTour.tourCost +
+                (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays) * 0.9;
+        } else
+            return selectedTour.tourCost +
+                (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays;
+    }
 
+    const onBookingHandle = () => {
         axios.post('https://localhost:7274/api/tourHotel', ({
             "tourId": selectedTour.key,
             "hotelId": selectedHotel.key
@@ -57,8 +80,7 @@ export function UserBooking() {
                 axios.post('https://localhost:7274/api/tickets', ({
                     "clientId": 1,
                     "tourHotelId": res.data.tourHotelId,
-                    "cost": selectedTour.tourCost +
-                        (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays,
+                    "cost": onCalculateCost(),
                     "departureDate": date.utcOffset('GMT').format(),
                     "arrivalDate": date.add('Days', countOfDays).utcOffset('GMT').format(),
                     "status": true,
@@ -76,7 +98,6 @@ export function UserBooking() {
                         successNotification();
                     });
             });
-
     }
 
     const onHotelChange = (key, value) => {
