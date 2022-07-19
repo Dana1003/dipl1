@@ -5,8 +5,9 @@ import { CountOfAdult } from "../../../../Forms/FormsItems/CountOfAdult";
 import { CountOfChildren } from "../../../../Forms/FormsItems/CountOfChildren";
 import { DaysAmount } from "../../../../Forms/FormsItems/DaysAmount";
 
-import { Button, DatePicker, Form, notification, Rate, Table } from "antd";
+import { Button, Form, notification, Rate, Table } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons";
+import {TravelStartDate} from "../../../../Forms/FormsItems/TravelStartDate";
 
 export function UserBooking() {
     const [tours, setTours] = useState([]);
@@ -181,6 +182,7 @@ export function UserBooking() {
 
     return (
         <div className="main-block">
+            <h2>Введите данные для бронирования билета</h2>
             <div className="manager-table">
                 <Table
                     rowSelection={{
@@ -250,17 +252,9 @@ export function UserBooking() {
                             onChange={(input) => {
                                 setCountOfDays(input.target.value)
                             }}/>
-                        <DatePicker
-                            value={date}
-                            allowClear={false}
-                            disabledDate={disabledDate}
-                            showTime={{
-                                defaultValue: moment('00:00', 'HH:mm'),
-                                format: ('HH:mm')
-                            }}
-                            onChange={(input) => {
-                                setDate(input)
-                            }}
+                        <TravelStartDate value={date}
+                                         onChange={(input) => {setDate(input)}}
+                                         disabledDate={disabledDate}
                         />
                     </Form>
                     <div className="add-button">

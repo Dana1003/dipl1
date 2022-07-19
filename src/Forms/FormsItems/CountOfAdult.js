@@ -8,6 +8,9 @@ export function CountOfAdult({ onChange, value }) {
             label="Количество взрослых"
             rules={[
                 {
+                    type: 'integer',
+                    min: 1,
+                    max: 20,
                     required: true,
                     message: 'Вы не ввели значение!',
                 },
