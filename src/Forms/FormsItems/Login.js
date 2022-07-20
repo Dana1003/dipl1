@@ -16,17 +16,13 @@ export function Login({onChange}) {
                 },
                 {
                     pattern: new RegExp("^[0-9a-zA-Z]{6,}$"),
-                    message: "Неверный формат данных"
-                },
-                {
-                    whitespace: true,
+                    message: "Неверный формат данных!"
                 }
             ]}
         >
-            <Input
-                prefix={<UserOutlined className="site-form-item-icon"/>}
-                placeholder="Введите логин"
-                onChange={onChange}
+            <Input prefix={<UserOutlined className="site-form-item-icon"/>}
+                   placeholder="Введите логин"
+                   onChange={onChange}
             />
         </Form.Item>
     );

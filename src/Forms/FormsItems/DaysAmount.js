@@ -6,7 +6,7 @@ export function DaysAmount({onChange}) {
     return (
         <Form.Item
             label="Количество дней"
-            name="daysAmount"
+            name="amountOfDays"
             hasFeedback
             rules={[
                 {

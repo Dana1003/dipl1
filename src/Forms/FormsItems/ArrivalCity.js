@@ -6,6 +6,8 @@ export function ArrivalCity({onChange}) {
     return (
         <Form.Item
             label="Город отправления"
+            name="arrivalCity"
+            hasFeedback
             rules={[
                 {
                     required: true,

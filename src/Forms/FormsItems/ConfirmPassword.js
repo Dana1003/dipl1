@@ -15,14 +15,13 @@ export function ConfirmPassword({onChange}) {
                 },
                 {
                     pattern: new RegExp("(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}"),
-                    message: "Неверный формат данных"
+                    message: "Неверный формат данных! Должна быть хотя бы одна заглавная буква!"
                 }
             ]}
         >
-            <Input.Password
-                prefix={<LockOutlined className="site-form-item-icon"/>}
-                placeholder="Введите пароль ещё раз"
-                onChange={onChange}
+            <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>}
+                            placeholder="Введите пароль ещё раз"
+                            onChange={onChange}
             />
         </Form.Item>
     );

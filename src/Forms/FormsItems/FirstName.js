@@ -14,7 +14,7 @@ export function FirstName({onChange}) {
                     message: 'Вы не ввели имя!',
                 },
                 {
-                    pattern: new RegExp("^[А-Я][а-я]{1,}$"),
+                    pattern: new RegExp("^[А-Я][а-я]+$"),
                     message: 'Вы ввели невалидное значение!'
                 }
             ]}
