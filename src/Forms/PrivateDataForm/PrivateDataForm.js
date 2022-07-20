@@ -26,7 +26,7 @@ export function PrivateDataForm() {
 
     return (
         <div className="form">
-            <h1>Мой личные данные</h1>
+            <h1>Мои личные данные</h1>
             <Form
                 name="basic"
                 labelCol={{
