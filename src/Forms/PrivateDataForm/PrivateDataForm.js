@@ -11,6 +11,7 @@ import { Phone } from "../FormsItems/Phone";
 import { PassportNumber } from "../FormsItems/PassportNumber";
 import { Email } from "../FormsItems/Email";
 import { SavePrivateDataButton } from "../FormsItems/SavePrivateDataButton";
+import { BirthdayDatePicker } from "../FormsItems/BirthdayDatePicker";
 
 import './PrivateDataForm.scss';
 
@@ -23,6 +24,7 @@ export function PrivateDataForm() {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [passportNumber, setPassportNumber] = useState('');
+    const [birthDate, setBirthDate] = useState(null);
 
     return (
         <div className="form">
@@ -46,6 +48,7 @@ export function PrivateDataForm() {
                 <FirstName onChange={(firstName) => {setFirstName(firstName)}}/>
                 <Patronymic onChange={(patronymic) => {setPatronymic(patronymic)}}/>
                 <Phone onChange={(phone) => {setPhone(phone)}}/>
+                <BirthdayDatePicker onChange={(birthDate) => {setBirthDate(birthDate)}}/>
                 <Email onChange={(email) => {setEmail(email)}}/>
                 <PassportNumber onChange={(passportNumber) => {setPassportNumber(passportNumber)}}/>
                 <SavePrivateDataButton />
