@@ -9,9 +9,16 @@ import { TourCost } from "../FormsItems/TourCost";
 import { Form } from "antd";
 
 export function EditTourDetailsForm({tour, setTour}) {
+    let dividedTour = [];
+    for (let field in tour)
+        dividedTour.push({
+            name: [`${field}`],
+            value: tour[field]
+        })
     return (
         <Form
             name="basic"
+            fields={dividedTour}
             labelCol={{
                 span: 8,
             }}

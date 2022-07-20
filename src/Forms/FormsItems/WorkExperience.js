@@ -6,7 +6,7 @@ export function WorkExperience({onChange}) {
     return (
         <Form.Item
             label="Опыт работы"
-            name="workExperience"
+            name="experience"
             hasFeedback
             rules={[
                 {

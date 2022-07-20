@@ -31,7 +31,7 @@ export function AddManagerForm({onChangeLogin, onChangePassword, onChangeLastNam
             <Phone onChange={(e) => {onChangePhoneNumber(e.target.value)}}/>
             <Login onChange={(e) => {onChangeLogin(e.target.value)}}/>
             <Password onChange={(e) => {onChangePassword(e.target.value)}}/>
-            <WorkExperience onChange={(e) => {onChangeWorkExperience(e.target.value)}}/>
+            <WorkExperience onChange={(e) => {onChangeWorkExperience(e)}}/>
         </Form>
     );
 }

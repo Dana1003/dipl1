@@ -8,9 +8,16 @@ import {Form} from "antd";
 import {RoomCost} from "../FormsItems/RoomCost";
 
 export function EditHotelDetailsForm({hotel, setHotel}) {
+    let dividedHotel = [];
+    for (let field in hotel)
+        dividedHotel.push({
+            name: [`${field}`],
+            value: hotel[field]
+        })
     return (
         <Form
             name="basic"
+            fields={dividedHotel}
             labelCol={{
                 span: 8,
             }}

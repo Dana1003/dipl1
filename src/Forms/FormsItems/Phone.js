@@ -6,7 +6,7 @@ export function Phone({onChange}) {
     return (
         <Form.Item
             label="Номер телефона"
-            name="phone"
+            name="phoneNumber"
             hasFeedback
             rules={[
                 {
