@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-
-import { Form } from "antd";
-
 import { Password } from "../FormsItems/Password";
 import { Login } from "../FormsItems/Login";
 import { LastName } from "../FormsItems/LastName";
@@ -12,6 +9,8 @@ import { PassportNumber } from "../FormsItems/PassportNumber";
 import { Email } from "../FormsItems/Email";
 import { SavePrivateDataButton } from "../FormsItems/SavePrivateDataButton";
 import { BirthdayDatePicker } from "../FormsItems/BirthdayDatePicker";
+
+import { Form } from "antd";
 
 import './PrivateDataForm.scss';
 
