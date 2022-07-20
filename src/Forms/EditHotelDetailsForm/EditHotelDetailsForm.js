@@ -56,7 +56,7 @@ export function EditHotelDetailsForm({hotel, setHotel}) {
             <RoomCost value={hotel.roomCost}
                       onChange={(e) => {
                           setHotel(pre => {
-                              return {...pre, roomCost: e.target.value}
+                              return {...pre, roomCost: e}
                           })
                       }}/>
         </Form>

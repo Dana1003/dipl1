@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Input } from "antd";
+import {Form, InputNumber} from "antd";
 
 export function TourCost({onChange}) {
     return (
@@ -20,7 +20,7 @@ export function TourCost({onChange}) {
                 }
             ]}
         >
-            <Input placeholder="Введите цену тура" onChange={onChange}/>
+            <InputNumber placeholder="Введите цену тура" onChange={onChange}/>
         </Form.Item>
     );
 }

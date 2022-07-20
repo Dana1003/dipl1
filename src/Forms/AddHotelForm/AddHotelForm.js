@@ -27,7 +27,7 @@ export function AddHotelForm({onChangeNameOfHotel, onChangeCountOfStars, onChang
             <CountOfStars onChange={(e) => {onChangeCountOfStars(e)}}/>
             <Address onChange={(e) => {onChangeAddress(e.target.value)}}/>
             <City onChange={(e) => {onChangeCity(e)}}/>
-            <RoomCost onChange={(e) => {onChangeRoomCost(e.target.value)}} />
+            <RoomCost onChange={(e) => {onChangeRoomCost(e)}} />
         </Form>
     );
 }
