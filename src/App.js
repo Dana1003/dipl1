@@ -18,12 +18,13 @@ import { UserBookingPage } from "./pages/UserBookingPage/UserBookingPage";
 import { UserOrdersPage } from "./pages/UserOrdersPage/UserOrdersPage";
 import { UserTheMostPopularToursPage } from "./pages/UserTheMostPopularToursPage/UserTheMostPopularToursPage";
 import { AboutUs } from "./pages/AboutUs/AboutUs";
+import { UserKindsOfTourismPage } from "./pages/UserKindsOfTourismPage/UserKindsOfTourismPage";
+import { UserCitiesPage } from "./pages/UserCitiesPage/UserCitiesPage";
+import { AdminManagerWorkTime } from "./pages/AdminManagerWorkTime/AdminManagerWorkTime";
 
 import './base.scss';
-import {UserKindsOfTourismPage} from "./pages/UserKindsOfTourismPage/UserKindsOfTourismPage";
-import {UserCitiesPage} from "./pages/UserCitiesPage/UserCitiesPage";
 
-function App() {
+export function App() {
   return (
       <>
           <Routes>
@@ -42,6 +43,7 @@ function App() {
               <Route path="/adminViewScheduleDetails" element={<AdminViewScheduleDetails />} exact></Route>
               <Route path="/adminViewHotelDetails" element={<AdminViewHotelDetails />} exact></Route>
               <Route path="/adminViewTourDetails" element={<AdminViewTourDetails />} exact></Route>
+              <Route path="/managerWorkTime" element={<AdminManagerWorkTime />} exact></Route>
 
               <Route path="/userMainPage" element={<UserMainPage/>} exact></Route>
               <Route path="/userPrivateData" element={<UserPrivateDataPage/>} exact></Route>
