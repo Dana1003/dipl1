@@ -68,7 +68,7 @@ export function MainHeader() {
         },
         {
             key: 'about',
-            label: <Link to="/">О нас</Link>
+            label: <Link to="/aboutUs">О нас</Link>
         },
         {
             key: 'auth',

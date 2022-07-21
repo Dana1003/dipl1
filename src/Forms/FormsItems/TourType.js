@@ -3,10 +3,12 @@ import React from 'react';
 import { Form, Select } from "antd";
 const { Option } = Select;
 
-export function TourType({onChange, value}) {
+export function TourType({onChange}) {
     return (
         <Form.Item
             label="Тип тура"
+            name="tourType"
+            hasFeedback
             rules={[
                 {
                     required: true,
@@ -14,13 +16,11 @@ export function TourType({onChange, value}) {
                 },
             ]}
         >
-            <Select
-                value={value}
-                showSearch
-                placeholder="Введите тип тура"
-                optionFilterProp="children"
-                onChange={onChange}
-                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+            <Select showSearch
+                    placeholder="Введите тип тура"
+                    optionFilterProp="children"
+                    onChange={onChange}
+                    filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
                 <Option value="Экскурсионный тур">Экскурсионный тур</Option>
                 <Option value="Горящий тур">Горящий тур</Option>

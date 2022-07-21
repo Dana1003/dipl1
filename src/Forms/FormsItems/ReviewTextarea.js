@@ -7,6 +7,7 @@ export function ReviewTextarea({onChange}) {
     return (
         <Form.Item
             label="Текст отзыва"
+            name="reviewText"
             rules={[
                 {
                     required: true,
@@ -14,14 +15,13 @@ export function ReviewTextarea({onChange}) {
                 },
             ]}
         >
-            <TextArea
-                showCount
-                maxLength={500}
-                style={{
-                    height: 300,
-                }}
-                placeholder="Введите свой отзыв"
-                onChange={ onChange }
+            <TextArea showCount
+                      maxLength={500}
+                      style={{
+                          height: 300,
+                      }}
+                      placeholder="Введите свой отзыв"
+                      onChange={onChange}
             />
         </Form.Item>
     );

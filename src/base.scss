@@ -20,10 +20,14 @@ html {
   font-size: 20px;
 }
 
+body {
+  height: 100%;
+}
+
 h2 {
   display: flex;
   justify-content: center;
-  margin-top: 25px !important;
+  padding-top: 25px !important;
   font-weight: normal !important;
   text-decoration: underline;
 }
@@ -81,9 +85,13 @@ a {
   }
 }
 
-.ant-input-affix-wrapper, .ant-input, .ant-picker {
+.ant-input-affix-wrapper, .ant-input, .ant-picker, .ant-input-number-affix-wrapper {
   border-radius: 20px !important;
 }
+
+/*.ant-input-affix-wrapper>input.ant-input {
+  padding: 5px !important;
+}*/
 
 .ant-card-body {
   height: 408px;
@@ -95,6 +103,14 @@ a {
 
 .add-button.ant-btn-primary {
   margin-left: 0;
+}
+
+.ant-input-number-affix-wrapper {
+  width: 100% !important;
+}
+
+.ant-row {
+  background-color: $bg-color;
 }
 
 @media only screen and (max-width: 768px) {

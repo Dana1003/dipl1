@@ -114,7 +114,7 @@ export function AdminManagersTable() {
             message: 'Данные успешно добавлены!',
             icon: <CheckCircleOutlined style={{color: "green"}} />
         });
-    };
+    }
 
     function errorNotification() {
         notification.open({
@@ -126,15 +126,15 @@ export function AdminManagersTable() {
     const handleOk = (managerUser) => {
         setIsModalVisible(false);
         axios.post('https://localhost:7274/api/managers/managerUser', managerUser)
-            .then(temp => {
-                setManagers([...managers, temp.data]);
-                successNotification()
-            })
-            .catch(err => {
-                if (err.response.status === 500) {
-                    errorNotification()
-                }
-            })
+             .then(temp => {
+                 setManagers([...managers, temp.data]);
+                 successNotification()
+             })
+             .catch(err => {
+                 if (err.response.status === 500) {
+                     errorNotification()
+                 }
+             })
     };
 
     return (

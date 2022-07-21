@@ -2,10 +2,12 @@ import React from 'react';
 
 import { Form, Select } from "antd";
 
-export function DepartureCity({onChange, value}) {
+export function DepartureCity({onChange}) {
     return (
         <Form.Item
             label="Город прибытия"
+            name="departureCity"
+            hasFeedback
             rules={[
                 {
                     required: true,
@@ -13,13 +15,11 @@ export function DepartureCity({onChange, value}) {
                 },
             ]}
         >
-            <Select
-                value={value}
-                showSearch
-                placeholder="Выберите город прибытия"
-                optionFilterProp="children"
-                onChange={onChange}
-                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+            <Select showSearch
+                    placeholder="Выберите город прибытия"
+                    optionFilterProp="children"
+                    onChange={onChange}
+                    filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
                 <Select.Option key={'Минск'} value={'Минск'}>
                     Минск

@@ -7,9 +7,16 @@ import {Form, Rate} from "antd";
 import {RoomCost} from "../FormsItems/RoomCost";
 
 export function EditHotelDetailsForm({hotel, setHotel}) {
+    let dividedHotel = [];
+    for (let field in hotel)
+        dividedHotel.push({
+            name: [`${field}`],
+            value: hotel[field]
+        })
     return (
         <Form
             name="basic"
+            fields={dividedHotel}
             labelCol={{
                 span: 8,
             }}
@@ -51,7 +58,7 @@ export function EditHotelDetailsForm({hotel, setHotel}) {
             <RoomCost value={hotel.roomCost}
                       onChange={(e) => {
                           setHotel(pre => {
-                              return {...pre, roomCost: e.target.value}
+                              return {...pre, roomCost: e}
                           })
                       }}/>
         </Form>

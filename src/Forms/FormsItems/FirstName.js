@@ -2,22 +2,24 @@ import React from 'react';
 
 import { Form, Input } from "antd";
 
-export function FirstName({ onChange, value }) {
+export function FirstName({onChange}) {
     return (
         <Form.Item
             label="Имя"
+            name="firstName"
+            hasFeedback
             rules={[
                 {
                     required: true,
                     message: 'Вы не ввели имя!',
                 },
+                {
+                    pattern: new RegExp("^[А-Я][а-я]+$"),
+                    message: 'Вы ввели невалидное значение!'
+                }
             ]}
         >
-            <Input
-                value={value}
-                placeholder="Введите имя"
-                onChange={onChange}
-            />
+            <Input placeholder="Введите имя" onChange={onChange}/>
         </Form.Item>
     );
 }

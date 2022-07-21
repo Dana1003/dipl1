@@ -52,7 +52,7 @@ export function EditManagerDetailsForm({manager, setManager}) {
             }}/>
             <WorkExperience onChange={(e) => {
                 setManager(pre => {
-                    return {...pre, experience: e.target.value}
+                    return {...pre, experience: e}
                 })
             }}/>
             <Phone onChange={(e) => {

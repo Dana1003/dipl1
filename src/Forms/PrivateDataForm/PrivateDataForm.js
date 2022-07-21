@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-
-import { Form } from "antd";
-
 import { Password } from "../FormsItems/Password";
 import { Login } from "../FormsItems/Login";
 import { LastName } from "../FormsItems/LastName";
@@ -11,6 +8,9 @@ import { Phone } from "../FormsItems/Phone";
 import { PassportNumber } from "../FormsItems/PassportNumber";
 import { Email } from "../FormsItems/Email";
 import { SavePrivateDataButton } from "../FormsItems/SavePrivateDataButton";
+import { BirthdayDatePicker } from "../FormsItems/BirthdayDatePicker";
+
+import { Form } from "antd";
 
 import './PrivateDataForm.scss';
 
@@ -23,10 +23,11 @@ export function PrivateDataForm() {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [passportNumber, setPassportNumber] = useState('');
+    const [birthDate, setBirthDate] = useState(null);
 
     return (
         <div className="form">
-            <h1>Мой личные данные</h1>
+            <h1>Мои личные данные</h1>
             <Form
                 name="basic"
                 labelCol={{
@@ -46,6 +47,7 @@ export function PrivateDataForm() {
                 <FirstName onChange={(firstName) => {setFirstName(firstName)}}/>
                 <Patronymic onChange={(patronymic) => {setPatronymic(patronymic)}}/>
                 <Phone onChange={(phone) => {setPhone(phone)}}/>
+                <BirthdayDatePicker onChange={(birthDate) => {setBirthDate(birthDate)}}/>
                 <Email onChange={(email) => {setEmail(email)}}/>
                 <PassportNumber onChange={(passportNumber) => {setPassportNumber(passportNumber)}}/>
                 <SavePrivateDataButton />

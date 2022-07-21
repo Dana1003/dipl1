@@ -7,6 +7,7 @@ export function Address({onChange}) {
         <Form.Item
             label="Адрес"
             name="address"
+            hasFeedback
             rules={[
                 {
                     required: true,

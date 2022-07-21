@@ -27,8 +27,8 @@ export function AddTourForm({onChangeArrivalCity, onChangeDepartureCity, onChang
             <DepartureCity onChange={(e) => {onChangeDepartureCity(e)}}/>
             <TourType onChange={(e) => {onChangeTourType(e)}}/>
             <TourName onChange={(e) => {onChangeNameOfTour(e.target.value)}}/>
-            <DaysAmount onChange={(e) => {onChangeAmountOfDays(e.target.value)}}/>
-            <TourCost onChange={(e) => {onChangeTourCost(e.target.value)}}/>
+            <DaysAmount onChange={(e) => {onChangeAmountOfDays(e)}}/>
+            <TourCost onChange={(e) => {onChangeTourCost(e)}}/>
         </Form>
     );
 }
