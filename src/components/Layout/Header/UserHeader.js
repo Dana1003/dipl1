@@ -18,7 +18,8 @@ import {
     faGear,
     faToriiGate,
     faTicket,
-    faListCheck
+    faListCheck,
+    faChartPie
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./MainHeader.scss";
@@ -37,7 +38,8 @@ export function UserHeader() {
             children: [
                 {
                     key: 'theMostPopularTours',
-                    label: <Link to="/theMostPopularTours">Самые популярные туры</Link>
+                    label: <Link to="/theMostPopularTours">Самые популярные туры</Link>,
+                    icon: <FontAwesomeIcon icon={faChartPie}/>
                 },
                 {
                     key: 'kinds',
