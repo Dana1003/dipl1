@@ -4,13 +4,12 @@
   width: 100%;
   background-image: base.$main-bg-image;
   background-size: 100% 100%;
-  //background-color: base.$bg-color;
   height: 700px;
   position: absolute;
-  left: 0px;
+  left: 0;
   margin-top: -1px;
   font-family: Monotype Corsiva, serif;
-  //margin-top: 420px;
+  box-shadow: inset 0 10px 16px 1px #464e59 !important;
 }
 
 .tagline {
