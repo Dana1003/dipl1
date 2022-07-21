@@ -239,17 +239,8 @@ export function UserBooking() {
                     >
                         <CountOfAdult onChange={(e) => {setCountOfAdult(e)}}/>
                         <CountOfChildren onChange={(e) => {setCountOfChildren(e)}}/>
-                        <DaysAmount
-                            value={countOfDays}
-                            onChange={(input) => {
-                                setCountOfDays(input.target.value)
-                            }}/>
-                        <TravelStartDate value={date}
-                                         onChange={(input) => {
-                                             setDate(input)
-                                         }}
-                                         disabledDate={disabledDate}
-                        />
+                        <DaysAmount onChange={(e) => {setCountOfDays(e)}}/>
+                        <TravelStartDate onChange={(e) => {setDate(e)}} disabledDate={disabledDate}/>
                     </Form>
                     <div className="add-button">
                         <Button type="primary" className="add-button" onClick={onBookingHandle}
