@@ -6,7 +6,6 @@ import { Menu } from "antd";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faEarthAmericas,
     faFileMedical,
     faFilePen,
     faHotel,
@@ -19,7 +18,8 @@ import {
     faToriiGate,
     faTicket,
     faListCheck,
-    faChartPie
+    faChartPie,
+    faCity
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./MainHeader.scss";
@@ -38,19 +38,19 @@ export function UserHeader() {
             children: [
                 {
                     key: 'theMostPopularTours',
-                    label: <Link to="/theMostPopularTours">Самые популярные туры</Link>,
+                    label: <Link to="/userTheMostPopularTours">Самые популярные туры</Link>,
                     icon: <FontAwesomeIcon icon={faChartPie}/>
                 },
                 {
                     key: 'kinds',
-                    label: <Link to="/kindsOfTourism">Виды туризма</Link>,
+                    label: <Link to="/userKindsOfTourism">Виды туризма</Link>,
                     icon: <FontAwesomeIcon icon={faUmbrellaBeach}/>
 
                 },
                 {
                     key: 'countries',
-                    label: <Link to="" >Страны</Link>,
-                    icon: <FontAwesomeIcon icon={faEarthAmericas}/>
+                    label: <Link to="/userCities" >Города</Link>,
+                    icon: <FontAwesomeIcon icon={faCity}/>
                 },
                 {
                     key: 'hotels',

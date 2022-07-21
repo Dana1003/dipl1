@@ -21,7 +21,7 @@ export function MainKindsOfTourism() {
         setLoading(false);
     }
 
-    setTimeout(toggle, 5000);
+    setTimeout(toggle, 500000);
 
     return (
         <div className="main-tourism-block">
