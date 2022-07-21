@@ -6,7 +6,7 @@ import { Button, DatePicker, Modal, Select, TimePicker, notification } from 'ant
 import { CheckCircleOutlined} from '@ant-design/icons';
 const { RangePicker } = DatePicker;
 
-export function AddScheduleModal({isEditingVisible, setIsEditingVisible, managersSchedule, setManagersSchedule}) {
+export function AddScheduleModal({isAddingVisible, setIsAddingVisible, managersSchedule, setManagersSchedule}) {
     const [selectedValue, setSelectedValue] = useState(null);
     const [isManyDatesVisible, setIsManyDatesVisible] = useState(false);
     const [isDateVisible, setIsDateVisible] = useState(false);
@@ -35,18 +35,12 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
 
     const onOpenManyDates = () => isManyDatesVisible || isDateVisible ? setIsManyDatesVisible(false) : setIsManyDatesVisible(true);
     const onOpenDate = () => isDateVisible || isManyDatesVisible ? setIsDateVisible(false) : setIsDateVisible(true);
-
     const disabledDate = (current) => {
         return current && current < moment().endOf('day');
     };
-
-    const onChangeTime = (t) => {
-        setTime(t)
-    }
-
+    const onChangeTime = (t) => {setTime(t)};
     const onChangeDateTime = (value) => setDateTime(value);
-
-    const onChangeDate = (value) =>  setDate(value.map(x => x.toDate()))
+    const onChangeDate = (value) =>  setDate(value.map(x => x.toDate()));
 
     const addDatesAndTime = () => {
         if (date != null && time != null) {
@@ -67,7 +61,7 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
                     successNotification();
                 });
         }
-    }
+    };
 
     const addDateTime = () => {
         if (dateTime != null) {
@@ -91,11 +85,11 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
                         )
                 });
         }
-    }
+    };
 
     return (
         <Modal title="Добавить менеджера"
-               visible={isEditingVisible}
+               visible={isAddingVisible}
                okText="Сохранить"
                cancelText="Закрыть"
                onOk={() => {
@@ -103,10 +97,10 @@ export function AddScheduleModal({isEditingVisible, setIsEditingVisible, manager
                        addDatesAndTime();
                    else if (isDateVisible)
                        addDateTime();
-                   setIsEditingVisible(false);
+                   setIsAddingVisible(false);
                }}
                onCancel={() => {
-                   setIsEditingVisible(false);
+                   setIsAddingVisible(false);
                }}
         >
             <Select style={{width: 250}} value={selectedValue} onChange={setSelectedValue}>

@@ -67,6 +67,10 @@ export function AdminHeader({managerId}) {
             ],
         },
         {
+            key: 'managerWorkTime',
+            label: <Link to="/managerWorkTime">Время работы менеджера</Link>
+        },
+        {
             key: 'auth',
             label: <Link to="/authorize">Выход</Link>,
             icon: <FontAwesomeIcon icon={faDoorOpen}/>,

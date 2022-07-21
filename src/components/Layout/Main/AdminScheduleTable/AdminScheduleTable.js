@@ -12,6 +12,7 @@ import '../AdminTables.scss';
 export function AdminScheduleTable() {
     const [managersSchedule, setManagersSchedule] = useState([]);
     const [isEditingVisible, setIsEditingVisible] = useState(false);
+    const [isAddingVisible, setIsAddingVisible] = useState(false);
     const [selectedManager, setSelectedManager] = useState(null)
     const [managers, setManagers] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
@@ -107,7 +108,7 @@ export function AdminScheduleTable() {
     const updateHandler = () => {
         if (selectedTime != null && selectedManager != null) {
             axios.put(`https://localhost:7274/api/schedules/${selectedRow.scheduleId}`, ({
-                "date": selectedTime.utcOffset('GMT').format()
+                "date": moment(selectedTime).utcOffset('GMT').format()
             })).then(temp => {
                 axios.put(`https://localhost:7274/api/managerSchedule/${selectedRow.key}`, ({
                     "managerId": selectedManager,
@@ -115,18 +116,21 @@ export function AdminScheduleTable() {
                 }))
                     .then(r => {
                         getAllManagerSchedule();
-                        successNotification()
+                        successNotification();
                     });
             }).catch(err => {
                 if (err.response.status === 500) {
-                    errorNotification()
+                    errorNotification();
+                }
+                if (err.response.status === 400) {
+                    errorNotification();
                 }
             })
         }
         resetEditing()
     }
 
-    const showModal = () => setIsEditingVisible(true);
+    const showModal = () => setIsAddingVisible(true);
 
     const deleteHandler = (key) => {
         axios.delete(`https://localhost:7274/api/managerSchedule/${key}`)
@@ -201,9 +205,10 @@ export function AdminScheduleTable() {
                                       setSelectedTime={setSelectedTime}
             />
             <AddScheduleModal setManagersSchedule={setManagersSchedule}
-                isEditingVisible={isEditingVisible}
-                setIsEditingVisible={setIsEditingVisible}
-                managersSchedule={managersSchedule}/>
+                              isAddingVisible={isAddingVisible}
+                              setIsAddingVisible={setIsAddingVisible}
+                              managersSchedule={managersSchedule}
+            />
         </div>
     );
 }

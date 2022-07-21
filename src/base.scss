@@ -109,9 +109,40 @@ a {
   width: 100% !important;
 }
 
-.ant-row {
-  background-color: $bg-color;
+.ant-spin {
+  position: fixed !important;
+  margin-top: 200px !important;
 }
+
+.ant-menu-horizontal {
+  box-shadow: inset 0 -10px 16px 1px #545f6d !important;
+  background-color: $bg-header-color !important;
+  color: rgba(61, 60, 60, 0.85) !important;
+  justify-content: center;
+  border-bottom: 0 !important;
+}
+
+.ant-menu-title-content > a {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/*.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-active,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-open,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-selected,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item:hover,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu-active,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu-open,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu-selected,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu:hover {
+  color: yellowgreen !important;
+}*/
+
+
+/*.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu-active,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu-open,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu:hover {
+  color: purple !important;
+}*/
 
 @media only screen and (max-width: 768px) {
   body {
