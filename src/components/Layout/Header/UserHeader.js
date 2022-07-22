@@ -19,7 +19,8 @@ import {
     faTicket,
     faListCheck,
     faChartPie,
-    faCity
+    faCity,
+    faHeartCircleCheck
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./MainHeader.scss";
@@ -79,6 +80,11 @@ export function UserHeader() {
             label: 'Бронирование',
             icon: <CaretDownOutlined/>,
             children: [
+                {
+                    key:'tourHotel',
+                    label: <Link to="/userSelectedToutHotel">Добавить в избранное</Link>,
+                    icon: <FontAwesomeIcon icon={faHeartCircleCheck}></FontAwesomeIcon>
+                },
                 {
                     key: 'ticketOrder',
                     label: <Link to="/userBooking">Заказать билет</Link>,

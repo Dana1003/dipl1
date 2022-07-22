@@ -23,6 +23,7 @@ import { UserCitiesPage } from "./pages/UserCitiesPage/UserCitiesPage";
 import { AdminManagerWorkTime } from "./pages/AdminManagerWorkTime/AdminManagerWorkTime";
 
 import './base.scss';
+import {UserSelectedTourHotelPage} from "./pages/UserSelectedTourHotelPage/UserSelectedTourHotelPage";
 
 export function App() {
   return (
@@ -53,6 +54,7 @@ export function App() {
               <Route path="/userTheMostPopularTours" element={<UserTheMostPopularToursPage />} exact></Route>
               <Route path="/userKindsOfTourism" element={<UserKindsOfTourismPage />} exact></Route>
               <Route path="/userCities" element={<UserCitiesPage />} exact></Route>
+              <Route path="/userSelectedToutHotel" element={<UserSelectedTourHotelPage />} exact></Route>
           </Routes>
       </>
   );
