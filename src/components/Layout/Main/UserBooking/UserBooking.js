@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import moment from "moment";
-import {CountOfAdult} from "../../../../Forms/FormsItems/CountOfAdult";
-import {CountOfChildren} from "../../../../Forms/FormsItems/CountOfChildren";
-import {DaysAmount} from "../../../../Forms/FormsItems/DaysAmount";
+import { CountOfAdult } from "../../../../Forms/FormsItems/CountOfAdult";
+import { CountOfChildren } from "../../../../Forms/FormsItems/CountOfChildren";
+import { DaysAmount } from "../../../../Forms/FormsItems/DaysAmount";
+import { TravelStartDate } from "../../../../Forms/FormsItems/TravelStartDate";
+import { ConfirmBooking } from "../../../../Modals/ConfirmBooking/ConfirmBooking";
 
 import {Button, Form, notification, Rate, Table} from "antd";
 import {CheckCircleOutlined} from "@ant-design/icons";
-import {TravelStartDate} from "../../../../Forms/FormsItems/TravelStartDate";
 
 export function UserBooking() {
     const [tours, setTours] = useState([]);
@@ -20,6 +21,8 @@ export function UserBooking() {
     const [countOfAdult, setCountOfAdult] = useState(0);
     const [countOfDays, setCountOfDays] = useState(0);
     const [date, setDate] = useState(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+/*    const [summa, setSumma] = useState(0);*/
 
     useEffect(() => {
         axios.get('https://localhost:7274/api/tours')
@@ -42,14 +45,18 @@ export function UserBooking() {
                 setHotels(res.data);
                 setIsHotelsVisible(true)
             });
-    }
+/*        setSumma(value[0].tourCost);*/
+    };
 
     const disabledDate = (current) => {
         return current && current < moment().endOf('day');
     };
 
-    const onBookingHandle = () => {
+    const calculateTheCost = () => {
+        return selectedTour.tourCost + (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays;
+    };
 
+    const onConfirmBookingHandle = () => {
         axios.post('https://localhost:7274/api/tourHotel', ({
             "tourId": selectedTour.key,
             "hotelId": selectedHotel.key
@@ -58,8 +65,7 @@ export function UserBooking() {
                 axios.post('https://localhost:7274/api/tickets', ({
                     "clientId": 5,
                     "tourHotelId": res.data.tourHotelId,
-                    "cost": selectedTour.tourCost +
-                        (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays,
+                    "cost": calculateTheCost(),
                     "departureDate": date.utcOffset('GMT').format(),
                     "arrivalDate": date.add('Days', countOfDays).utcOffset('GMT').format(),
                     "status": true,
@@ -77,12 +83,16 @@ export function UserBooking() {
                         successNotification();
                     });
             });
+    }
 
+    const onBookingHandle = () => {
+        setIsModalVisible(true);
     }
 
     const onHotelChange = (key, value) => {
         setSelectedHotel(value[0])
         setIsTicketVisible(true)
+/*        setSumma(summa + value[0].roomCost)*/
     }
 
     const filteredData = (field) => [...new Set(tours.map(x => x[field]))].map(item => ({
@@ -250,6 +260,8 @@ export function UserBooking() {
                     </div>
                 </>
             )}
+
+{/*            <div>Сумма: {summa}</div>*/}
         </div>
     );
 }
