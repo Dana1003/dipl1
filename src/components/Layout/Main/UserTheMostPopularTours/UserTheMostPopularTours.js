@@ -45,9 +45,8 @@ export function UserTheMostPopularTours() {
     }
 
     return (
-        <div>
-            <CanvasJSChart options={options}
-            />
+        <div className="main-block">
+            <CanvasJSChart options={options}/>
         </div>
     );
 }

@@ -70,7 +70,7 @@ export function UserOrders() {
     function successNotification() {
         notification.open({
             message: 'Билет успешно отменен!',
-            icon: <CheckCircleOutlined style={{color: "green"}} />
+            icon: <CheckCircleOutlined style={{color: "green"}}/>
         });
     }
 
@@ -96,18 +96,20 @@ export function UserOrders() {
     };
 
     return (
-        <div className="manager-table">
-            <Table columns={columns}
-                   title={() => 'Данные о заказанных билетах'}
-                   pagination={{pageSize: 5}}
-                   dataSource={tickets.map(currentValue => ({
-                       key: currentValue.ticketId,
-                       nameOfTour: currentValue.nameOfTour,
-                       nameOfHotel: currentValue.nameOfHotel,
-                       tourPeriod: `с  ${moment(currentValue.departureDate).format('DD-MM-YYYY HH:mm')}  по  ${moment(currentValue.arrivalDate).format('DD-MM-YYYY HH:mm')}`,
-                       countOfPeople: currentValue.countOfPeople,
-                       cost: currentValue.cost
-                   }))}/>
+        <div className="main-block">
+            <div className="manager-table">
+                <Table columns={columns}
+                       title={() => 'Данные о заказанных билетах'}
+                       pagination={{pageSize: 5}}
+                       dataSource={tickets.map(currentValue => ({
+                           key: currentValue.ticketId,
+                           nameOfTour: currentValue.nameOfTour,
+                           nameOfHotel: currentValue.nameOfHotel,
+                           tourPeriod: `с  ${moment(currentValue.departureDate).format('DD-MM-YYYY HH:mm')}  по  ${moment(currentValue.arrivalDate).format('DD-MM-YYYY HH:mm')}`,
+                           countOfPeople: currentValue.countOfPeople,
+                           cost: currentValue.cost
+                       }))}/>
+            </div>
         </div>
     );
 }
