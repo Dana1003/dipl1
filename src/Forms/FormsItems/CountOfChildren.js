@@ -15,9 +15,9 @@ export function CountOfChildren({onChange}) {
                 },
                 {
                     type: 'number',
-                    min: 1,
+                    min: 0,
                     max: 20,
-                    message: 'Введите валидное число (от 1 до 20)'
+                    message: 'Введите валидное число (от 0 до 20)'
                 }
             ]}
         >
