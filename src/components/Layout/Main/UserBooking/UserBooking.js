@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
-import {Button, DatePicker, Form, notification, Rate, Table} from "antd";
+import {Button, Form, notification, Rate, Table} from "antd";
 import {CountOfAdult} from "../../../../Forms/FormsItems/CountOfAdult";
 import {CountOfChildren} from "../../../../Forms/FormsItems/CountOfChildren";
 import {DaysAmount} from "../../../../Forms/FormsItems/DaysAmount";
 import moment from "moment";
 import {CheckCircleOutlined, SmileOutlined} from "@ant-design/icons";
+import {TravelStartDate} from "../../../../Forms/FormsItems/TravelStartDate";
 
 export function UserBooking() {
     //сюда надо будет записать то, что вернет запрос на получение данных клиента
@@ -257,33 +258,10 @@ export function UserBooking() {
                             }}
                             autoComplete="off"
                         >
-                            <CountOfAdult
-                                value={countOfAdult}
-                                onChange={(input) => {
-                                    setCountOfAdult(input.target.value)
-                                }}/>
-                            <CountOfChildren
-                                value={countOfChildren}
-                                onChange={(input) => {
-                                    setCountOfChildren(input.target.value)
-                                }}/>
-                            <DaysAmount
-                                value={countOfDays}
-                                onChange={(input) => {
-                                    setCountOfDays(input.target.value)
-                                }}/>
-                            <DatePicker
-                                value={date}
-                                allowClear={false}
-                                disabledDate={disabledDate}
-                                showTime={{
-                                    defaultValue: moment('00:00', 'HH:mm'),
-                                    format: ('HH:mm')
-                                }}
-                                onChange={(input) => {
-                                    setDate(input)
-                                }}
-                            />
+                            <CountOfAdult onChange={(e) => {setCountOfAdult(e)}}/>
+                            <CountOfChildren onChange={(e) => {setCountOfChildren(e)}}/>
+                            <DaysAmount onChange={(e) => {setCountOfDays(e)}}/>
+                            <TravelStartDate onChange={(e) => {setDate(e)}} disabledDate={disabledDate}/>
                         </Form>
                         <div className="add-button">
                             <Button type="primary" className="add-button" onClick={onBookingHandle}
