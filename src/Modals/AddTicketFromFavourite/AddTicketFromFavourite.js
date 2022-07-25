@@ -3,19 +3,19 @@ import React from 'react';
 import { Modal } from "antd";
 import {AddTicketFromFavouriteForm} from "../../Forms/AddTicketFromFavouriteForm/AddTicketFromFavouriteForm";
 
-export function AddTicketFromFavourite({isModalVisible, handleOk, setHotel, setIsModalVisible}) {
+export function AddTicketFromFavourite({isModalVisible, handleOk, setTicket, setIsModalVisible, ticket}) {
     const handleCancel = () => {
         setIsModalVisible(false);
-        setHotel(null);
+        setTicket(null);
     };
 
     return (
-        <Modal title="Добавить отель"
+        <Modal title="Заказать билет"
                visible={isModalVisible}
                footer={null}
                onCancel={handleCancel}
         >
-            <AddTicketFromFavouriteForm handleOk={handleOk}/>
+            <AddTicketFromFavouriteForm handleOk={handleOk} ticket={ticket}/>
         </Modal>
     );
 }

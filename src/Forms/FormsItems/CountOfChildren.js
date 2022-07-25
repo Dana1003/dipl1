@@ -1,23 +1,27 @@
 import React from 'react';
 
-import { Form, Input } from "antd";
+import { Form, InputNumber } from "antd";
 
-export function CountOfChildren({ onChange, value }) {
+export function CountOfChildren({onChange}) {
     return (
         <Form.Item
-            label="Кол-во детей"
+            label="Количество детей"
+            name="countOfChildren"
+            hasFeedback
             rules={[
                 {
                     required: true,
                     message: 'Вы не ввели значение!',
                 },
+                {
+                    type: 'number',
+                    min: 0,
+                    max: 20,
+                    message: 'Введите валидное число (от 0 до 20)'
+                }
             ]}
         >
-            <Input
-                value={value}
-                placeholder="Введите кол-во детей"
-                onChange={onChange}
-            />
+            <InputNumber placeholder="Введите количество детей" onChange={onChange}/>
         </Form.Item>
     );
 }

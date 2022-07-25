@@ -113,14 +113,14 @@ export function UserBooking() {
 
     const columnsTours = [
         {
-            title: 'Город отправления',
+            title: 'Город прибытия',
             dataIndex: 'arrivalCity',
             filters: filteredData('arrivalCity'),
             onFilter: (value, record) => record.arrivalCity === value,
             sorter: (a, b) => a.arrivalCity.localeCompare(b.arrivalCity)
         },
         {
-            title: 'Город прибытия',
+            title: 'Город отправления',
             dataIndex: 'departureCity',
             filters: filteredData('departureCity'),
             onFilter: (value, record) => record.departureCity === value,

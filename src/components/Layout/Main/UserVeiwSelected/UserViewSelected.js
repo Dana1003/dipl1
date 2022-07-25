@@ -1,7 +1,8 @@
 import React, {useState,useEffect} from 'react';
-import {DeleteOutlined, PlusCircleOutlined} from "@ant-design/icons";
+import {CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, PlusCircleOutlined} from "@ant-design/icons";
 import axios from "axios";
-import {Modal, Rate, Table} from "antd";
+import {Modal, notification, Rate, Table} from "antd";
+import {AddTicketFromFavourite} from "../../../../Modals/AddTicketFromFavourite/AddTicketFromFavourite";
 
 export function UserViewSelected() {
     const [tickets, setTickets] = useState([]);
@@ -15,14 +16,14 @@ export function UserViewSelected() {
 
     const columns = [
         {
-            title: 'Город отправления',
+            title: 'Город прибытия',
             dataIndex: 'arrivalCity',
             filters: filter('arrivalCity'),
             onFilter: (value, record) => record.arrivalCity === value,
             sorter: (a, b) => a.arrivalCity.localeCompare(b.arrivalCity)
         },
         {
-            title: 'Город прибытия',
+            title: 'Город отправления',
             dataIndex: 'departureCity',
             filters: filter('departureCity'),
             onFilter: (value, record) => record.departureCity === value,
@@ -86,6 +87,7 @@ export function UserViewSelected() {
     ];
 
     const showModal = (record) =>{
+        setTicket(record);
         setIsModalVisible(true);
     }
 
@@ -119,6 +121,38 @@ export function UserViewSelected() {
     useEffect(() => {
     }, [tickets]);
 
+    function errorNotification() {
+        notification.open({
+            message: 'Что-то пошло не так!',
+            icon: <CloseCircleOutlined style={{color: "red"}} />
+        });
+    }
+
+    function successNotification() {
+        notification.open({
+            message: 'Билет успешно забронирован!',
+            icon: <CheckCircleOutlined style={{color: "green"}} />
+        });
+    }
+
+
+    const handleOk = (ticketToAdd) => {
+        setIsModalVisible(false);
+        axios.put(`https://localhost:7274/api/tickets/${ticket.key}`, ticketToAdd)
+            .then(temp => {
+                successNotification()
+                axios.get(`https://localhost:7274/api/favouriteTickets?clientId=${1}`)
+                    .then(res => {
+                        setTickets(res.data);
+                    });
+            })
+            .catch(err => {
+                if (err.response.status === 500) {
+                    errorNotification();
+                }
+            })
+    };
+
     return (
         <>
             <div className="manager-table">
@@ -127,6 +161,8 @@ export function UserViewSelected() {
                        pagination={{pageSize: 5}}
                        dataSource={tickets.map(currentValue => ({
                            key: currentValue.ticketId,
+                           clientId:currentValue.clientId,
+                           tourHotelId:currentValue.tourHotelId,
                            arrivalCity: currentValue.arrivalCity,
                            departureCity: currentValue.departureCity,
                            nameOfTour: currentValue.nameOfTour,
@@ -136,6 +172,12 @@ export function UserViewSelected() {
                            roomCost: currentValue.roomCost
                        }))}/>
             </div>
+            <AddTicketFromFavourite handleOk={handleOk}
+                                    setTicket={setTicket}
+                                    setIsModalVisible={setIsModalVisible}
+                                    isModalVisible={isModalVisible}
+                                    ticket={ticket}
+            />
         </>
     );
 }

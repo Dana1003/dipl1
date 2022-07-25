@@ -22,12 +22,13 @@ export function UserReviewPage() {
         axios.get(`https://localhost:7274/api/reviews/pagingReviews?PageNumber=${currentPage}&PageSize=${reviewsPerPage}`)
             .then(res => {
                 const {countOfElements, reviewPaginations} = res.data;
-
                 setReviewsText(reviewPaginations);
                 setReviewsCount(countOfElements);
             })
+    }, []);
 
-    }, [currentPage]);
+    useEffect(()=>{
+    }, [reviewsCount])
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -53,6 +54,12 @@ export function UserReviewPage() {
         axios.post('https://localhost:7274/api/reviews', userReview)
             .then(temp => {
                 successNotification()
+                axios.get(`https://localhost:7274/api/reviews/pagingReviews?PageNumber=${currentPage}&PageSize=${reviewsPerPage}`)
+                    .then(res => {
+                        const {countOfElements, reviewPaginations} = res.data;
+                        setReviewsText(reviewPaginations);
+                        setReviewsCount(countOfElements);
+                    })
             })
             .catch(err => {
                 if (err.response.status === 500) {
