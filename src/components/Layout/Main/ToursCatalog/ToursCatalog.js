@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { Table } from "antd";
 
-export function UserToursCatalog() {
+export function ToursCatalog() {
     const [tours,setTours] = useState([]);
 
     useEffect(() => {

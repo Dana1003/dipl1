@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { Rate, Table } from "antd";
 
-export function UserHotelsCatalog() {
+export function HotelsCatalog() {
     const [hotels, setHotels] = useState([]);
 
     const filter = (field) => [...new Set(hotels.map(x => x[field]))].map(value => ({
