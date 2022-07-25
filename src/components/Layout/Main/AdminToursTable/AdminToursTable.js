@@ -159,7 +159,7 @@ export function AdminToursTable() {
                 </Button>
             </div>
 
-            <div className="manager-table">
+            <div className="table">
                 <Table columns={columns}
                        title={() => 'Данные о турах'}
                        pagination={{pageSize: 5}}

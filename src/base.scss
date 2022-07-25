@@ -41,7 +41,7 @@ h2 {
 
 a {
   text-decoration: $text-decor;
-  color: black;
+  color: pink;
 }
 
 .transition {
@@ -122,9 +122,9 @@ a {
   border-bottom: 0 !important;
 }
 
-.ant-menu-title-content > a {
-  color: rgba(0, 0, 0, 0.85) !important;
-}
+/*.ant-menu-title-content > a {
+  color: rgba(255, 42, 42, 0.85) !important;
+}*/
 
 /*.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-active,
 .ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-open,

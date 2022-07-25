@@ -1,11 +1,11 @@
 import React from 'react';
-import { UserHeader } from "../../components/Layout/Header/UserHeader";
+import { MainHeader } from "../../components/Layout/Header/MainHeader";
 import { HotelsCatalog } from "../../components/Layout/Main/HotelsCatalog/HotelsCatalog";
 
-export function UserHotelsCatalogPage() {
+export function HotelsCatalogPage() {
     return (
         <>
-            <UserHeader />
+            <MainHeader />
             <HotelsCatalog />
         </>
     );
