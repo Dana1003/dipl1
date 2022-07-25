@@ -17,7 +17,7 @@ export function AuthorizeForm() {
 
     let entryHandler = () => {
         if (login === 'Admin1' && password === 'Admin1') {
-            return navigate(`/adminMainPage`);
+            return navigate(`/adminMainPage`, { state: { managerId:1 } });
         }
         if(login === 'User123' && password === 'User123') {
             return navigate('/userMainPage');

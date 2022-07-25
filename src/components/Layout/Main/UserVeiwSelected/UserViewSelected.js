@@ -6,6 +6,7 @@ import {Modal, Rate, Table} from "antd";
 export function UserViewSelected() {
     const [tickets, setTickets] = useState([]);
     const [ticket, setTicket] = useState(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const filter = (field) => [...new Set(tickets.map(x => x[field]))].map(value => ({
         text: value,
@@ -71,7 +72,7 @@ export function UserViewSelected() {
                 return (
                     <>
                         <PlusCircleOutlined style={{color: "green"}} onClick={() => {
-                            //onEditHotel(record)
+                            showModal(record);
                         }}
                         />
                         <DeleteOutlined style={{color: "red", marginLeft: 12}} onClick={() => {
@@ -83,6 +84,10 @@ export function UserViewSelected() {
             }
         },
     ];
+
+    const showModal = (record) =>{
+        setIsModalVisible(true);
+    }
 
     const onDeleteFavouriteTicket = (record) =>{
         if (tickets.length >= 1)
