@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
 
 import { Rate, Table } from "antd";
@@ -55,18 +55,20 @@ export function HotelsCatalog() {
     }, []);
 
     return (
-        <div className="manager-table">
-            <Table columns={columns}
-                   title={() => 'Список отелей'}
-                   pagination={{pageSize: 5}}
-                   dataSource={hotels.map(currentValue => ({
-                       key: currentValue.hotelId,
-                       nameOfHotel: currentValue.nameOfHotel,
-                       countOfStars: <Rate disabled allowClear={false} value={currentValue.countOfStars}/>,
-                       city: currentValue.city,
-                       address: currentValue.address,
-                       roomCost: currentValue.roomCost
-                   }))}/>
+        <div className="main-block">
+            <div className="table">
+                <Table columns={columns}
+                       title={() => 'Список отелей'}
+                       pagination={{pageSize: 5}}
+                       dataSource={hotels.map(currentValue => ({
+                           key: currentValue.hotelId,
+                           nameOfHotel: currentValue.nameOfHotel,
+                           countOfStars: <Rate disabled allowClear={false} value={currentValue.countOfStars}/>,
+                           city: currentValue.city,
+                           address: currentValue.address,
+                           roomCost: currentValue.roomCost
+                       }))}/>
+            </div>
         </div>
     );
 }

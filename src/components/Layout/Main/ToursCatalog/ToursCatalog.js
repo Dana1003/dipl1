@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
 
 import { Table } from "antd";
 
 export function ToursCatalog() {
-    const [tours,setTours] = useState([]);
+    const [tours, setTours] = useState([]);
 
     useEffect(() => {
         axios.get('https://localhost:7274/api/tours')
@@ -66,19 +66,21 @@ export function ToursCatalog() {
     ];
 
     return (
-        <div className="manager-table">
-            <Table columns={columns}
-                   title={() => 'Список туров'}
-                   pagination={{pageSize: 5}}
-                   dataSource={tours.map(currentValue => ({
-                       key: currentValue.tourId,
-                       arrivalCity: currentValue.arrivalCity,
-                       departureCity: currentValue.departureCity,
-                       tourType: currentValue.tourType,
-                       amountOfDays: currentValue.amountOfDays,
-                       nameOfTour: currentValue.nameOfTour,
-                       tourCost: currentValue.tourCost
-                   }))}/>
+        <div className="main-block">
+            <div className="table">
+                <Table columns={columns}
+                       title={() => 'Список туров'}
+                       pagination={{pageSize: 5}}
+                       dataSource={tours.map(currentValue => ({
+                           key: currentValue.tourId,
+                           arrivalCity: currentValue.arrivalCity,
+                           departureCity: currentValue.departureCity,
+                           tourType: currentValue.tourType,
+                           amountOfDays: currentValue.amountOfDays,
+                           nameOfTour: currentValue.nameOfTour,
+                           tourCost: currentValue.tourCost
+                       }))}/>
+            </div>
         </div>
     );
 }

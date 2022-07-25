@@ -3,7 +3,7 @@ import axios from "axios";
 import { EditHotelDetailsModal } from "../../../../Modals/EditHotelDetailsModal/EditHotelDetailsModal";
 import { AddHotelModal } from "../../../../Modals/AddHotelModal/AddHotelModal";
 
-import {Button, Modal, notification, Rate, Table} from "antd";
+import { Button, Modal, notification, Rate, Table } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 export function AdminHotelsTable() {
@@ -146,7 +146,7 @@ export function AdminHotelsTable() {
                 </Button>
             </div>
 
-            <div className="manager-table">
+            <div className="table">
                 <Table columns={columns}
                        title={() => 'Данные об отелях'}
                        pagination={{pageSize: 5}}

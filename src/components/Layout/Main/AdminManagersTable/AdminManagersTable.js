@@ -144,7 +144,7 @@ export function AdminManagersTable() {
                 </Button>
             </div>
 
-            <div className="manager-table">
+            <div className="table">
                 <Table columns={columns}
                        title={() => 'Данные о менеджерах'}
                        pagination={{pageSize: 5}}

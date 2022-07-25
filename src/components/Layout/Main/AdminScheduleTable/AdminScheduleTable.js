@@ -171,7 +171,7 @@ export function AdminScheduleTable() {
                 </Button>
             </div>
 
-            <div className="manager-table">
+            <div className="table">
                 <Table columns={columns}
                        title={() => 'График работы'}
                        pagination={{pageSize: 5}}
