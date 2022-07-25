@@ -10,10 +10,10 @@ import {
     faCity,
     faUmbrellaBeach,
     faHotel,
-    faFileMedical,
     faFilePen,
     faUser,
-    faSun
+    faSun,
+    faToriiGate
 } from "@fortawesome/free-solid-svg-icons";
 
 import './MainHeader.scss';
@@ -31,29 +31,29 @@ export function MainHeader() {
             icon: <CaretDownOutlined/>,
             children: [
                 {
-                    label: <Link to="/kindsOfTourism" className="dropdown-content-items">Виды туризма</Link>,
                     key: 'kinds',
+                    label: <Link to="/kindsOfTourism">Виды туризма</Link>,
                     icon: <FontAwesomeIcon icon={faUmbrellaBeach}/>
 
                 },
                 {
-                    label: <Link to="/cities" className="dropdown-content-items">Города</Link>,
                     key: 'cities',
+                    label: <Link to="/cities">Города</Link>,
                     icon: <FontAwesomeIcon icon={faCity}/>
                 },
                 {
-                    label: <Link to="/" className="dropdown-content-items">Каталог отелей</Link>,
-                    key: 'catalog',
+                    key: 'tours',
+                    label: <Link to="/toursCatalog" >Каталог туров</Link>,
+                    icon: <FontAwesomeIcon icon={faToriiGate}/>
+                },
+                {
+                    key: 'hotels',
+                    label: <Link to="/hotelsCatalog">Каталог отелей</Link>,
                     icon: <FontAwesomeIcon icon={faHotel}/>
                 },
                 {
-                    label: <Link to="/" className="dropdown-content-items">Страхование</Link>,
-                    key: 'insurance',
-                    icon: <FontAwesomeIcon icon={faFileMedical}/>
-                },
-                {
-                    label: <Link to="/" className="dropdown-content-items">Памятка туриста</Link>,
                     key: 'memo',
+                    label: <Link to="/">Памятка туриста</Link>,
                     icon: <FontAwesomeIcon icon={faFilePen}/>
                 }
             ],

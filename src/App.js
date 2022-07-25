@@ -21,12 +21,14 @@ import { AboutUs } from "./pages/AboutUs/AboutUs";
 import { UserKindsOfTourismPage } from "./pages/UserKindsOfTourismPage/UserKindsOfTourismPage";
 import { UserCitiesPage } from "./pages/UserCitiesPage/UserCitiesPage";
 import { AdminManagerWorkTime } from "./pages/AdminManagerWorkTime/AdminManagerWorkTime";
+import { UserSelectedTourHotelPage } from "./pages/UserSelectedTourHotelPage/UserSelectedTourHotelPage";
+import { UserViewSelectedTourHotelPage } from "./pages/UserViewSelectedTourHotelPage/UserViewSelectedTourHotelPage";
+import { UserHotelsCatalogPage } from "./pages/UserHotelsCatalogPage/UserHotelsCatalogPage";
+import { UserToursCatalogPage } from "./pages/UserToursCatalogPage/UserToursCatalogPage";
+import { ToursCatalogPage } from "./pages/ToursCatalogPage/ToursCatalogPage";
+import { HotelsCatalogPage } from "./pages/HotelsCatalogPage/HotelsCatalogPage";
 
 import './base.scss';
-import {UserSelectedTourHotelPage} from "./pages/UserSelectedTourHotelPage/UserSelectedTourHotelPage";
-import {UserViewSelectedTourHotelPage} from "./pages/UserViewSelectedTourHotelPage/UserViewSelectedTourHotelPage";
-import {UserHotelsCatalogPage} from "./pages/UserHotelsCatalogPage/UserHotelsCatalogPage";
-import {UserToursCatalogPage} from "./pages/UserToursCatalogPage/UserToursCatalogPage";
 
 export function App() {
   return (
@@ -41,6 +43,8 @@ export function App() {
               <Route path="/kindsOfTourism" element={<KindsOfTourism />} exact></Route>
               <Route path="/review" element={<ReviewPage/>} exact></Route>
               <Route path="/aboutUs" element={<AboutUs />} exact></Route>
+              <Route path="/toursCatalog" element={<ToursCatalogPage />} exact></Route>
+              <Route path="/hotelsCatalog" element={<HotelsCatalogPage />} exact></Route>
 
               <Route path="/adminMainPage" element={<AdminMainPage/>} exact></Route>
               <Route path="/adminViewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
