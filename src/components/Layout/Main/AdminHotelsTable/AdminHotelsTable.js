@@ -3,8 +3,8 @@ import axios from "axios";
 import { EditHotelDetailsModal } from "../../../../Modals/EditHotelDetailsModal/EditHotelDetailsModal";
 import { AddHotelModal } from "../../../../Modals/AddHotelModal/AddHotelModal";
 
-import {Button, Modal, notification, Table} from "antd";
-import {CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import { Button, Modal, notification, Table } from "antd";
+import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 export function AdminHotelsTable() {
     const [hotels, setHotels] = useState([]);
@@ -105,7 +105,7 @@ export function AdminHotelsTable() {
 
     const handleDelete = (key) => {
         axios.delete(`https://localhost:7274/api/hotels/${key}`)
-            .then(response => {
+            .then(temp => {
                 setHotels(hotels.filter((item) => item.hotelId !== key));
             })
     };
@@ -159,12 +159,17 @@ export function AdminHotelsTable() {
                            roomCost: currentValue.roomCost
                        }))}/>
             </div>
-            <EditHotelDetailsModal setIsEditingVisible={setIsEditingVisible} setHotels={setHotels}
-                                   isEditingVisible={isEditingVisible} setHotel={setHotel} hotel={hotel}/>
+            <EditHotelDetailsModal setIsEditingVisible={setIsEditingVisible}
+                                   setHotels={setHotels}
+                                   isEditingVisible={isEditingVisible}
+                                   setHotel={setHotel}
+                                   hotel={hotel}
+            />
             <AddHotelModal isModalVisible={isModalVisible}
                            setIsModalVisible={setIsModalVisible}
                            handleOk={handleOk}
-                           setHotel={setHotel}/>
+                           setHotel={setHotel}
+            />
         </div>
     );
 }

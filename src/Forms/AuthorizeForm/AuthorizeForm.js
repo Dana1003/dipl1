@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-
-import { Form } from 'antd';
-
+import { useNavigate } from "react-router";
 import { Login } from "../FormsItems/Login";
 import { Password } from "../FormsItems/Password";
 import { EntryButton } from "../FormsItems/EntryButton";
 import { RegistrationLink } from "../FormsItems/RegistrationLink";
 
+import { Form } from 'antd';
+
 import './AuthorizeForm.scss';
-import {useNavigate} from "react-router";
 
 export function AuthorizeForm() {
     const navigate = useNavigate();
