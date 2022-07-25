@@ -20,6 +20,7 @@ import {
     faListCheck,
     faChartPie,
     faCity,
+    faHeartCirclePlus,
     faHeartCircleCheck
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -83,11 +84,12 @@ export function UserHeader() {
                 {
                     key:'addTourHotel',
                     label: <Link to="/userSelectedToutHotel">Добавить в избранное</Link>,
-                    icon: <FontAwesomeIcon icon={faHeartCircleCheck}></FontAwesomeIcon>
+                    icon: <FontAwesomeIcon icon={faHeartCirclePlus}></FontAwesomeIcon>
                 },
                 {
                     key:'viewTourHotel',
-                    label: <Link to="/userViewSelectedToutHotel">Просмотреть избранное</Link>
+                    label: <Link to="/userViewSelectedToutHotel">Просмотреть избранное</Link>,
+                    icon: <FontAwesomeIcon icon={faHeartCircleCheck}></FontAwesomeIcon>
                 },
                 {
                     key: 'ticketOrder',
