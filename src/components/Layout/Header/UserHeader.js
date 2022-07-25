@@ -65,7 +65,7 @@ export function UserHeader() {
                 },
                 {
                     key: 'memo',
-                    label: <Link to="" >Памятка туриста</Link>,
+                    label: <Link to="/userTouristMemo" >Памятка туриста</Link>,
                     icon: <FontAwesomeIcon icon={faFilePen}/>
                 }
             ],

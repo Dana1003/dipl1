@@ -29,6 +29,8 @@ import { ToursCatalogPage } from "./pages/ToursCatalogPage/ToursCatalogPage";
 import { HotelsCatalogPage } from "./pages/HotelsCatalogPage/HotelsCatalogPage";
 
 import './base.scss';
+import {TouristMemoPage} from "./pages/TouristMemoPage/TouristMemoPage";
+import {UserTouristMemoPage} from "./pages/UserTouristMemoPage/UserTouristMemoPage";
 
 export function App() {
   return (
@@ -45,6 +47,7 @@ export function App() {
               <Route path="/aboutUs" element={<AboutUs />} exact></Route>
               <Route path="/toursCatalog" element={<ToursCatalogPage />} exact></Route>
               <Route path="/hotelsCatalog" element={<HotelsCatalogPage />} exact></Route>
+              <Route path="/touristMemo" element={<TouristMemoPage />} exact></Route>
 
               <Route path="/adminMainPage" element={<AdminMainPage/>} exact></Route>
               <Route path="/adminViewManagerDetails" element={<AdminViewManagerDetails />} exact></Route>
@@ -65,6 +68,7 @@ export function App() {
               <Route path="/userViewSelectedToutHotel" element={<UserViewSelectedTourHotelPage />} exact></Route>
               <Route path="/userHotelsCatalog" element={<UserHotelsCatalogPage />} exact></Route>
               <Route path="/userToursCatalog" element={<UserToursCatalogPage />} exact></Route>
+              <Route path="/userTouristMemo" element={<UserTouristMemoPage />} exact></Route>
           </Routes>
       </>
   );
