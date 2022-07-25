@@ -19,7 +19,7 @@ export function AddUserReviewModal({isModalVisible, setIsModalVisible, handleOk}
                cancelText="Закрыть"
                onOk={() => handleOk({
                    "reviewText": userReviewText,
-                   "clientId": 1
+                   "clientId": 5
                })}
                onCancel={() => {
                    handleCancel()
