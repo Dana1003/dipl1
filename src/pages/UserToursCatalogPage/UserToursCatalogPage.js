@@ -1,12 +1,12 @@
 import React from 'react';
 import { UserHeader } from "../../components/Layout/Header/UserHeader";
-import { UserToursCatalog } from "../../components/Layout/Main/UserToursCatalog/UserToursCatalog";
+import { ToursCatalog } from "../../components/Layout/Main/ToursCatalog/ToursCatalog";
 
 export function UserToursCatalogPage() {
     return (
         <>
             <UserHeader />
-            <UserToursCatalog />
+            <ToursCatalog />
         </>
     );
 }
