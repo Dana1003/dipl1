@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Password } from "../FormsItems/Password";
 import { Login } from "../FormsItems/Login";
 import { LastName } from "../FormsItems/LastName";
@@ -10,11 +10,14 @@ import { Email } from "../FormsItems/Email";
 import { SaveButton } from "../FormsItems/SaveButton";
 import { BirthdayDatePicker } from "../FormsItems/BirthdayDatePicker";
 
-import { Form } from "antd";
+import {DatePicker, Form} from "antd";
 
 import './PrivateDataForm.scss';
+import axios from "axios";
+import moment from "moment";
 
 export function PrivateDataForm() {
+    const [client, setClient] = useState(null);
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [lastName, setLastName] = useState('');
@@ -25,10 +28,43 @@ export function PrivateDataForm() {
     const [passportNumber, setPassportNumber] = useState('');
     const [birthDate, setBirthDate] = useState(null);
 
+    useEffect(() => {
+        axios.get(`https://localhost:7274/api/clients/${1}`)
+            .then(res => {
+                setClient(res.data)
+
+                setLogin(res.data.login);
+                setPassword(res.data.password)
+                setLastName(res.data.lastName)
+                setFirstName(res.data.firstName)
+                setPatronymic(res.data.patronymic)
+                setPhone(res.data.phone)
+                setEmail(res.data.email)
+                setPassportNumber(res.data.passportNumber)
+                setBirthDate(moment(res.data.bithDate))
+            });
+    }, []);
+
+    const onUpdateClientData = () =>{
+
+    }
+
+    let clientData = [];
+    for (let field in client) {
+        clientData.push({
+            name: [`${field}`],
+            value: client[field]
+        })
+    }
+
+    console.log(clientData)
+
     return (
         <div className="form">
             <h1>Мои личные данные</h1>
             <Form
+                onFinish={onUpdateClientData}
+                fields={clientData}
                 name="basic"
                 labelCol={{
                     span: 9,
@@ -47,7 +83,18 @@ export function PrivateDataForm() {
                 <FirstName onChange={(firstName) => {setFirstName(firstName)}}/>
                 <Patronymic onChange={(patronymic) => {setPatronymic(patronymic)}}/>
                 <Phone onChange={(phone) => {setPhone(phone)}}/>
-                <BirthdayDatePicker onChange={(birthDate) => {setBirthDate(birthDate)}}/>
+                <DatePicker
+                    required={true}
+                    allowClear={false}
+                    value={moment(birthDate)}
+                    showTime={{
+                        value: moment(birthDate),
+                        format: ('HH:mm')
+                    }}
+                    onChange={(value)=>{
+                        setBirthDate(value)
+                    }}
+                />
                 <Email onChange={(email) => {setEmail(email)}}/>
                 <PassportNumber onChange={(passportNumber) => {setPassportNumber(passportNumber)}}/>
                 <SaveButton />
