@@ -4,8 +4,7 @@ import { EditManagerDetailsModal } from "../../../../Modals/EditManagerDetailsMo
 import { AddManagerModal } from "../../../../Modals/AddManagerModal/AddManagerModal";
 
 import { Button, Modal, Table, notification } from 'antd';
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 import '../AdminTables.scss';
 
@@ -104,7 +103,7 @@ export function AdminManagersTable() {
 
     const handleDelete = (key) => {
         axios.delete(`https://localhost:7274/api/managers/${key}`)
-            .then(response => {
+            .then(temp => {
                 setManagers(managers.filter((item) => item.managerId !== key));
             })
     };

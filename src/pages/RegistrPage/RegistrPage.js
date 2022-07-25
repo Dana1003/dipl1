@@ -1,6 +1,6 @@
 import React from 'react';
-import {MainHeader} from "../../components/Layout/Header/MainHeader";
-import {RegistrationForm} from "../../Forms/RegistrationForm/RegistrationForm";
+import { MainHeader } from "../../components/Layout/Header/MainHeader";
+import { RegistrationForm } from "../../Forms/RegistrationForm/RegistrationForm";
 
 export function RegistrPage() {
     return (
@@ -9,4 +9,4 @@ export function RegistrPage() {
             <RegistrationForm />
         </>
     );
-};
+}

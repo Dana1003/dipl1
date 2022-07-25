@@ -6,7 +6,7 @@ export function EntryButton() {
     return (
         <Form.Item wrapperCol={{offset: 11, span: 4,}}>
             <br />
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            <Button type="primary" htmlType="submit">
                 Войти
             </Button>
         </Form.Item>

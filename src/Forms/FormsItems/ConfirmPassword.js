@@ -8,6 +8,7 @@ export function ConfirmPassword({onChange}) {
         <Form.Item
             label="Подтвердите пароль"
             name="confirmPassword"
+            hasFeedback
             rules={[
                 {
                     required: true,

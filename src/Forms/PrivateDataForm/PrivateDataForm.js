@@ -7,7 +7,7 @@ import { Patronymic } from "../FormsItems/Patronymic";
 import { Phone } from "../FormsItems/Phone";
 import { PassportNumber } from "../FormsItems/PassportNumber";
 import { Email } from "../FormsItems/Email";
-import { SavePrivateDataButton } from "../FormsItems/SavePrivateDataButton";
+import { SaveButton } from "../FormsItems/SaveButton";
 import { BirthdayDatePicker } from "../FormsItems/BirthdayDatePicker";
 
 import { Form } from "antd";
@@ -50,7 +50,7 @@ export function PrivateDataForm() {
                 <BirthdayDatePicker onChange={(birthDate) => {setBirthDate(birthDate)}}/>
                 <Email onChange={(email) => {setEmail(email)}}/>
                 <PassportNumber onChange={(passportNumber) => {setPassportNumber(passportNumber)}}/>
-                <SavePrivateDataButton />
+                <SaveButton />
             </Form>
         </div>
     );

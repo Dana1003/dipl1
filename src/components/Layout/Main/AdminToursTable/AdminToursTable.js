@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { AddTourModal } from "../../../../Modals/AddTourModal/AddTourModal";
+import { EditTourDetailsModal } from "../../../../Modals/EditTourDetailsModal/EditTourDetailsModal";
 
 import { Button, Modal, Table, notification } from "antd";
 import { DeleteOutlined, EditOutlined, CloseCircleOutlined, CheckCircleOutlined } from "@ant-design/icons";
-
-import { AddTourModal } from "../../../../Modals/AddTourModal/AddTourModal";
-import { EditTourDetailsModal } from "../../../../Modals/EditTourDetailsModal/EditTourDetailsModal";
 
 import '../AdminTables.scss';
 
@@ -102,7 +101,7 @@ export function AdminToursTable() {
 
     const handleDelete = (key) => {
         axios.delete(`https://localhost:7274/api/tours/${key}`)
-            .then(response => {
+            .then(temp => {
                 setTours(tours.filter((item) => item.tourId !== key));
             })
     };
