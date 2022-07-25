@@ -6,7 +6,6 @@ import { Menu } from "antd";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faFileMedical,
     faFilePen,
     faHotel,
     faSun,
@@ -63,11 +62,6 @@ export function UserHeader() {
                     key: 'tours',
                     label: <Link to="/userToursCatalog" >Каталог туров</Link>,
                     icon: <FontAwesomeIcon icon={faToriiGate}/>
-                },
-                {
-                    key: 'insurance',
-                    label: <Link to="" >Страхование</Link>,
-                    icon: <FontAwesomeIcon icon={faFileMedical}/>
                 },
                 {
                     key: 'memo',
