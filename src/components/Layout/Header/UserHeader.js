@@ -56,12 +56,12 @@ export function UserHeader() {
                 },
                 {
                     key: 'hotels',
-                    label: <Link to="" >Каталог отелей</Link>,
+                    label: <Link to="/userHotelsCatalog" >Каталог отелей</Link>,
                     icon: <FontAwesomeIcon icon={faHotel}/>
                 },
                 {
                     key: 'tours',
-                    label: <Link to="" >Каталог туров</Link>,
+                    label: <Link to="/userToursCatalog" >Каталог туров</Link>,
                     icon: <FontAwesomeIcon icon={faToriiGate}/>
                 },
                 {
