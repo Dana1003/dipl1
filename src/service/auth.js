@@ -5,8 +5,13 @@ const AuthService = {
     register(obj){
         return $api.post(ROUTS_API.getUsers, {obj}).then(res => res.data);
     },
-    getManagersData() {
-        return console.log($api.get(ROUTS_API.getManagers))
+    getManagersData(managers) {
+        console.log(managers)
+        $api.get(ROUTS_API.getManagers).then(res => {
+            managers = res.data;
+        })
+        console.log(managers)
+/*        return console.log($api.get(ROUTS_API.getManagers))*/
     }
 };
 
