@@ -7,7 +7,6 @@ import { Button, Modal, Table, notification } from 'antd';
 import { DeleteOutlined, EditOutlined, CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 import '../Tables.scss';
-import AuthService from "../../../../service/auth";
 
 export function AdminManagersTable() {
     const [managers, setManagers] = useState([]);
@@ -70,11 +69,10 @@ export function AdminManagersTable() {
     ];
 
     useEffect(() => {
-        AuthService.getManagersData(managers)
-/*        axios.get('https://localhost:7274/api/managers')
+        axios.get('https://localhost:7274/api/managers')
             .then(res => {
                 setManagers(res.data);
-            });*/
+            });
     }, []);
 
     useEffect(() => {
