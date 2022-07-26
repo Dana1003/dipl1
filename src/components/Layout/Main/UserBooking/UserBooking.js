@@ -5,29 +5,33 @@ import { CountOfAdult } from "../../../../Forms/FormsItems/CountOfAdult";
 import { CountOfChildren } from "../../../../Forms/FormsItems/CountOfChildren";
 import { DaysAmount } from "../../../../Forms/FormsItems/DaysAmount";
 import { TravelStartDate } from "../../../../Forms/FormsItems/TravelStartDate";
-import { ConfirmBooking } from "../../../../Modals/ConfirmBooking/ConfirmBooking";
 
-import {Button, Form, notification, Rate, Table} from "antd";
-import {CheckCircleOutlined} from "@ant-design/icons";
+import { Button, Form, notification, Rate, Table } from "antd";
+import { CheckCircleOutlined, SmileOutlined } from "@ant-design/icons";
 
 export function UserBooking() {
+    //сюда надо будет записать то, что вернет запрос на получение данных клиента
+    const [client, setClient] = useState(null);
     const [tours, setTours] = useState([]);
     const [hotels, setHotels] = useState([]);
     const [isHotelsVisible, setIsHotelsVisible] = useState(false);
     const [selectedTour, setSelectedTour] = useState(null);
     const [selectedHotel, setSelectedHotel] = useState(null);
     const [isTicketVisible, setIsTicketVisible] = useState(false);
+
     const [countOfChildren, setCountOfChildren] = useState(0);
     const [countOfAdult, setCountOfAdult] = useState(0);
     const [countOfDays, setCountOfDays] = useState(0);
     const [date, setDate] = useState(null);
-    const [isModalVisible, setIsModalVisible] = useState(false);
-/*    const [summa, setSumma] = useState(0);*/
 
     useEffect(() => {
         axios.get('https://localhost:7274/api/tours')
             .then(res => {
                 setTours(res.data);
+            });
+        axios.get(`https://localhost:7274/api/clients/${5}`)
+            .then(res => {
+                setClient(res.data);
             });
     }, []);
 
@@ -38,6 +42,13 @@ export function UserBooking() {
         });
     }
 
+    function birthdayNotification() {
+        notification.open({
+            message: 'Сумма рассчитанная к оплате будет предоставлена со скидкой в 10%!',
+            icon: <SmileOutlined style={{color: "green"}}/>
+        });
+    }
+
     const onTourChange = (key, value) => {
         setSelectedTour(value[0])
         axios.get(`https://localhost:7274/api/hotels/findHotels?city=${value[0].departureCity}`)
@@ -45,18 +56,24 @@ export function UserBooking() {
                 setHotels(res.data);
                 setIsHotelsVisible(true)
             });
-/*        setSumma(value[0].tourCost);*/
-    };
+    }
 
     const disabledDate = (current) => {
         return current && current < moment().endOf('day');
     };
 
-    const calculateTheCost = () => {
-        return selectedTour.tourCost + (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays;
-    };
+    const onCalculateCost = () => {
+        if ((new Date(client.bithDate).getMonth() + 1) === (new Date().getMonth() + 1)
+            && new Date(client.bithDate).getDate() === new Date().getDate()) {
+            birthdayNotification()
+            return (selectedTour.tourCost +
+                (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays) * 0.9;
+        } else
+            return selectedTour.tourCost +
+                (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays;
+    }
 
-    const onConfirmBookingHandle = () => {
+    const onBookingHandle = () => {
         axios.post('https://localhost:7274/api/tourHotel', ({
             "tourId": selectedTour.key,
             "hotelId": selectedHotel.key
@@ -65,7 +82,7 @@ export function UserBooking() {
                 axios.post('https://localhost:7274/api/tickets', ({
                     "clientId": 5,
                     "tourHotelId": res.data.tourHotelId,
-                    "cost": calculateTheCost(),
+                    "cost": onCalculateCost(),
                     "departureDate": date.utcOffset('GMT').format(),
                     "arrivalDate": date.add('Days', countOfDays).utcOffset('GMT').format(),
                     "status": true,
@@ -85,14 +102,9 @@ export function UserBooking() {
             });
     }
 
-    const onBookingHandle = () => {
-        setIsModalVisible(true);
-    }
-
     const onHotelChange = (key, value) => {
         setSelectedHotel(value[0])
         setIsTicketVisible(true)
-/*        setSumma(summa + value[0].roomCost)*/
     }
 
     const filteredData = (field) => [...new Set(tours.map(x => x[field]))].map(item => ({
@@ -192,8 +204,7 @@ export function UserBooking() {
 
     return (
         <div className="main-block">
-            <h2>Введите данные для бронирования билета</h2>
-            <div className="manager-table">
+            <div className="table">
                 <Table
                     rowSelection={{
                         type: "radio",
@@ -213,7 +224,7 @@ export function UserBooking() {
                     }))}/>
             </div>
             {isHotelsVisible && (
-                <div className="manager-table">
+                <div className="table">
                     <Table
                         rowSelection={{
                             type: "radio",
@@ -225,7 +236,7 @@ export function UserBooking() {
                         dataSource={hotels.map(currentValue => ({
                             key: currentValue.hotelId,
                             nameOfHotel: currentValue.nameOfHotel,
-                            countOfStars: <Rate allowClear={false} value={currentValue.countOfStars}/>,
+                            countOfStars: <Rate disabled allowClear={false} value={currentValue.countOfStars}/>,
                             city: currentValue.city,
                             address: currentValue.address,
                             roomCost: currentValue.roomCost
@@ -247,21 +258,27 @@ export function UserBooking() {
                         }}
                         autoComplete="off"
                     >
-                        <CountOfAdult onChange={(e) => {setCountOfAdult(e)}}/>
-                        <CountOfChildren onChange={(e) => {setCountOfChildren(e)}}/>
-                        <DaysAmount onChange={(e) => {setCountOfDays(e)}}/>
-                        <TravelStartDate onChange={(e) => {setDate(e)}} disabledDate={disabledDate}/>
+                        <CountOfAdult onChange={(e) => {
+                            setCountOfAdult(e)
+                        }}/>
+                        <CountOfChildren onChange={(e) => {
+                            setCountOfChildren(e)
+                        }}/>
+                        <DaysAmount onChange={(e) => {
+                            setCountOfDays(e)
+                        }}/>
+                        <TravelStartDate onChange={(e) => {
+                            setDate(e)
+                        }} disabledDate={disabledDate}/>
                     </Form>
                     <div className="add-button">
                         <Button type="primary" className="add-button" onClick={onBookingHandle}
-                                style={{marginTop: 50}}>
+                                style={{marginTop: 50, display: 'flex', alignItems: 'center'}}>
                             Забронировать
                         </Button>
                     </div>
                 </>
             )}
-
-{/*            <div>Сумма: {summa}</div>*/}
         </div>
     );
 }
