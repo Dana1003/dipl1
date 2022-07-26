@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Modal } from "antd";
 
-export function ConfirmBooking({onConfirmBookingHandle, isModalVisible, setIsModalVisible, calculateTheCost}) {
+export function ConfirmBooking({onConfirmBookingHandle, isModalVisible, setIsModalVisible, onCalculateCost}) {
     const resetConfirm = () => {
         setIsModalVisible(false)
     }
@@ -15,7 +15,7 @@ export function ConfirmBooking({onConfirmBookingHandle, isModalVisible, setIsMod
             onCancel={resetConfirm}
             onOk={onConfirmBookingHandle}
         >
-            Общая сумма равна: {calculateTheCost()} рублей
+            Общая сумма равна: {onCalculateCost()} рублей
         </Modal>
     );
 }

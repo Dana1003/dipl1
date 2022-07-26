@@ -6,7 +6,7 @@ import { AddManagerModal } from "../../../../Modals/AddManagerModal/AddManagerMo
 import { Button, Modal, Table, notification } from 'antd';
 import { DeleteOutlined, EditOutlined, CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-import '../AdminTables.scss';
+import '../Tables.scss';
 
 export function AdminManagersTable() {
     const [managers, setManagers] = useState([]);

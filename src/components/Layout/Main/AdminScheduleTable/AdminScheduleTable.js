@@ -7,7 +7,7 @@ import { AddScheduleModal } from "../../../../Modals/AddScheduleModal/AddSchedul
 import { Button, DatePicker, Modal, Table, notification} from 'antd';
 import { DeleteOutlined, EditOutlined, CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-import '../AdminTables.scss';
+import '../Tables.scss';
 
 export function AdminScheduleTable() {
     const [managersSchedule, setManagersSchedule] = useState([]);

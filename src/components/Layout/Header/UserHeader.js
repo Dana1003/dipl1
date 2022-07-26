@@ -77,12 +77,12 @@ export function UserHeader() {
             children: [
                 {
                     key:'addTourHotel',
-                    label: <Link to="/userSelectedToutHotel">Добавить в избранное</Link>,
+                    label: <Link to="/userSelectedTourHotel">Добавить в избранное</Link>,
                     icon: <FontAwesomeIcon icon={faHeartCirclePlus}></FontAwesomeIcon>
                 },
                 {
                     key:'viewTourHotel',
-                    label: <Link to="/userViewSelectedToutHotel">Просмотреть избранное</Link>,
+                    label: <Link to="/userViewSelectedTourHotel">Просмотреть избранное</Link>,
                     icon: <FontAwesomeIcon icon={faHeartCircleCheck}></FontAwesomeIcon>
                 },
                 {
