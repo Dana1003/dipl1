@@ -53,7 +53,7 @@ export function MainHeader() {
                 },
                 {
                     key: 'memo',
-                    label: <Link to="/">Памятка туриста</Link>,
+                    label: <Link to="/touristMemo">Памятка туриста</Link>,
                     icon: <FontAwesomeIcon icon={faFilePen}/>
                 }
             ],

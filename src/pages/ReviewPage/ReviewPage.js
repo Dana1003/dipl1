@@ -3,7 +3,7 @@ import axios from "axios";
 import { MainHeader } from "../../components/Layout/Header/MainHeader";
 import { Reviews } from "../../components/Layout/Main/MainReviews/Reviews";
 import { Pagination } from "../../components/Layout/Main/MainReviews/Pagination";
-
+import { Footer } from "../../components/Layout/Footer/Footer";
 
 export function ReviewPage() {
     const [reviewsCount, setReviewsCount] = useState(0);
@@ -30,6 +30,7 @@ export function ReviewPage() {
             <MainHeader/>
             <Reviews reviews={reviewsText} /*loading={loading}*//>
             <Pagination reviewsPerPage={reviewsPerPage} totalReviews={reviewsCount} paginate={paginate} link='/review'/>
+            <Footer />
         </>
     );
 }

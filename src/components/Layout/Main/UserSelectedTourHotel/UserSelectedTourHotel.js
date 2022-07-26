@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import {Button, notification, Rate, Table} from "antd";
-import {CheckCircleOutlined} from "@ant-design/icons";
+
+import { Button, notification, Rate, Table } from "antd";
+import { CheckCircleOutlined } from "@ant-design/icons";
 
 export function UserSelectedTourHotel() {
     const [tours, setTours] = useState([]);
@@ -17,6 +18,7 @@ export function UserSelectedTourHotel() {
                 setTours(res.data);
             });
     }, []);
+
     useEffect(()=>{
     },[tours])
 
@@ -142,7 +144,7 @@ export function UserSelectedTourHotel() {
         }))
             .then(res => {
                 axios.post('https://localhost:7274/api/ticketsFavourite', ({
-                    "clientId": 1,
+                    "clientId": 5,
                     "tourHotelId": res.data.tourHotelId,
                     "status": false
                 }))
@@ -163,7 +165,7 @@ export function UserSelectedTourHotel() {
     return (
         <div className="main-block">
             <h2>Выберите тур и отель для добавления в избранное</h2>
-            <div className="manager-table">
+            <div className="table">
                 <Table
                     rowSelection={{
                         type: "radio",
@@ -184,7 +186,7 @@ export function UserSelectedTourHotel() {
             </div>
             {isHotelsVisible && (
                 <>
-                    <div className="manager-table">
+                    <div className="table">
                         <Table
                             rowSelection={{
                                 type: "radio",

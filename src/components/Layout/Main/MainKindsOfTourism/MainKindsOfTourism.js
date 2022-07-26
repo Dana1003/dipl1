@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { MyBackTop } from "../../../BackTop/MyBackTop";
 import tourism1 from '../../../../images/tourism1.jpg';
 import tourism2 from '../../../../images/tourism2.jpg';
 import tourism3 from '../../../../images/tourism3.jpg';
@@ -12,7 +12,6 @@ import tourism8 from '../../../../images/tourism8.jpg';
 import { Spin } from "antd";
 
 import './MainKindsOfTourism.scss';
-import {MyBackTop} from "../../../BackTop/MyBackTop";
 
 export function MainKindsOfTourism() {
     const [loading, setLoading] = useState(true);

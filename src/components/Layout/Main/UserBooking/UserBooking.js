@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import {Button, Form, notification, Rate, Table} from "antd";
-import {CountOfAdult} from "../../../../Forms/FormsItems/CountOfAdult";
-import {CountOfChildren} from "../../../../Forms/FormsItems/CountOfChildren";
-import {DaysAmount} from "../../../../Forms/FormsItems/DaysAmount";
 import moment from "moment";
-import {CheckCircleOutlined, SmileOutlined} from "@ant-design/icons";
-import {TravelStartDate} from "../../../../Forms/FormsItems/TravelStartDate";
+import { CountOfAdult } from "../../../../Forms/FormsItems/CountOfAdult";
+import { CountOfChildren } from "../../../../Forms/FormsItems/CountOfChildren";
+import { DaysAmount } from "../../../../Forms/FormsItems/DaysAmount";
+import { TravelStartDate } from "../../../../Forms/FormsItems/TravelStartDate";
+
+import { Button, Form, notification, Rate, Table } from "antd";
+import { CheckCircleOutlined, SmileOutlined } from "@ant-design/icons";
 
 export function UserBooking() {
     //сюда надо будет записать то, что вернет запрос на получение данных клиента
@@ -55,7 +56,8 @@ export function UserBooking() {
                 setHotels(res.data);
                 setIsHotelsVisible(true)
             });
-    }
+/*        setSumma(value[0].tourCost);*/
+    };
 
     const disabledDate = (current) => {
         return current && current < moment().endOf('day');
@@ -202,76 +204,82 @@ export function UserBooking() {
 
 
     return (
-        <>
-            <div className="main-block">
-                <div className="manager-table">
+        <div className="main-block">
+            <div className="table">
+                <Table
+                    rowSelection={{
+                        type: "radio",
+                        onChange: onTourChange
+                    }}
+                    columns={columnsTours}
+                    title={() => 'Данные о турах'}
+                    pagination={{pageSize: 5}}
+                    dataSource={tours.map(currentValue => ({
+                        key: currentValue.tourId,
+                        arrivalCity: currentValue.arrivalCity,
+                        departureCity: currentValue.departureCity,
+                        tourType: currentValue.tourType,
+                        amountOfDays: currentValue.amountOfDays,
+                        nameOfTour: currentValue.nameOfTour,
+                        tourCost: currentValue.tourCost
+                    }))}/>
+            </div>
+            {isHotelsVisible && (
+                <div className="table">
                     <Table
                         rowSelection={{
                             type: "radio",
-                            onChange: onTourChange
+                            onChange: onHotelChange
                         }}
-                        columns={columnsTours}
-                        title={() => 'Данные о турах'}
+                        columns={columnsHotels}
+                        title={() => 'Данные об отелях'}
                         pagination={{pageSize: 5}}
-                        dataSource={tours.map(currentValue => ({
-                            key: currentValue.tourId,
-                            arrivalCity: currentValue.arrivalCity,
-                            departureCity: currentValue.departureCity,
-                            tourType: currentValue.tourType,
-                            amountOfDays: currentValue.amountOfDays,
-                            nameOfTour: currentValue.nameOfTour,
-                            tourCost: currentValue.tourCost
+                        dataSource={hotels.map(currentValue => ({
+                            key: currentValue.hotelId,
+                            nameOfHotel: currentValue.nameOfHotel,
+                            countOfStars: <Rate disabled allowClear={false} value={currentValue.countOfStars}/>,
+                            city: currentValue.city,
+                            address: currentValue.address,
+                            roomCost: currentValue.roomCost
                         }))}/>
                 </div>
-                {isHotelsVisible && (
-                    <div className="manager-table">
-                        <Table
-                            rowSelection={{
-                                type: "radio",
-                                onChange: onHotelChange
-                            }}
-                            columns={columnsHotels}
-                            title={() => 'Данные об отелях'}
-                            pagination={{pageSize: 5}}
-                            dataSource={hotels.map(currentValue => ({
-                                key: currentValue.hotelId,
-                                nameOfHotel: currentValue.nameOfHotel,
-                                countOfStars: <Rate allowClear={false} value={currentValue.countOfStars}/>,
-                                city: currentValue.city,
-                                address: currentValue.address,
-                                roomCost: currentValue.roomCost
-                            }))}/>
+            )}
+            {isTicketVisible && (
+                <>
+                    <Form
+                        name="basic"
+                        labelCol={{
+                            span: 9,
+                        }}
+                        wrapperCol={{
+                            span: 6,
+                        }}
+                        initialValues={{
+                            remember: true,
+                        }}
+                        autoComplete="off"
+                    >
+                        <CountOfAdult onChange={(e) => {
+                            setCountOfAdult(e)
+                        }}/>
+                        <CountOfChildren onChange={(e) => {
+                            setCountOfChildren(e)
+                        }}/>
+                        <DaysAmount onChange={(e) => {
+                            setCountOfDays(e)
+                        }}/>
+                        <TravelStartDate onChange={(e) => {
+                            setDate(e)
+                        }} disabledDate={disabledDate}/>
+                    </Form>
+                    <div className="add-button">
+                        <Button type="primary" className="add-button" onClick={onBookingHandle}
+                                style={{marginTop: 50, display: 'flex', alignItems: 'center'}}>
+                            Забронировать
+                        </Button>
                     </div>
-                )}
-                {isTicketVisible && (
-                    <>
-                        <Form
-                            name="basic"
-                            labelCol={{
-                                span: 9,
-                            }}
-                            wrapperCol={{
-                                span: 6,
-                            }}
-                            initialValues={{
-                                remember: true,
-                            }}
-                            autoComplete="off"
-                        >
-                            <CountOfAdult onChange={(e) => {setCountOfAdult(e)}}/>
-                            <CountOfChildren onChange={(e) => {setCountOfChildren(e)}}/>
-                            <DaysAmount onChange={(e) => {setCountOfDays(e)}}/>
-                            <TravelStartDate onChange={(e) => {setDate(e)}} disabledDate={disabledDate}/>
-                        </Form>
-                        <div className="add-button">
-                            <Button type="primary" className="add-button" onClick={onBookingHandle}
-                                    style={{marginTop: 50}}>
-                                Забронировать
-                            </Button>
-                        </div>
-                    </>
-                )}
-            </div>
-        </>
+                </>
+            )}
+        </div>
     );
 }

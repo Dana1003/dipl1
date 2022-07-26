@@ -24,6 +24,12 @@ body {
   height: 100%;
 }
 
+h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
 h2 {
   display: flex;
   justify-content: center;
@@ -93,9 +99,34 @@ a {
   padding: 5px !important;
 }*/
 
-.ant-card-body {
-  height: 408px;
+.ant-card .ant-card-bordered {
+  //height: 635px !important;
 }
+
+.ant-card-body {
+  width: 75% !important;
+  margin: 0 auto !important;
+}
+
+.ant-card-head {
+  padding: 0 !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  border-bottom: 0 !important;
+}
+
+.ant-card-head-title {
+  border-radius: 10px;
+}
+
+.ant-card-type-inner .ant-card-head-title {
+  background-color: lavender !important;
+}
+/*
+.ant-card > .ant-card-bordered > .ant-card-type-inner {
+  border-radius: 20px !important;
+  margin-bottom: 10px !important;
+}*/
 
 .ant-picker {
   width: 100% !important;

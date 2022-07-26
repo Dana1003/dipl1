@@ -1,7 +1,7 @@
 import React from 'react';
+import { AddTicketFromFavouriteForm } from "../../Forms/AddTicketFromFavouriteForm/AddTicketFromFavouriteForm";
 
 import { Modal } from "antd";
-import {AddTicketFromFavouriteForm} from "../../Forms/AddTicketFromFavouriteForm/AddTicketFromFavouriteForm";
 
 export function AddTicketFromFavourite({isModalVisible, handleOk, setTicket, setIsModalVisible, ticket}) {
     const handleCancel = () => {

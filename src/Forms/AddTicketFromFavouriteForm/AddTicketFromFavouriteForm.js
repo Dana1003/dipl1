@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { SaveButton } from "../FormsItems/SaveButton";
-
-import {Form, notification} from "antd";
-import {CountOfAdult} from "../FormsItems/CountOfAdult";
-import {CountOfChildren} from "../FormsItems/CountOfChildren";
-import {DaysAmount} from "../FormsItems/DaysAmount";
-import {TravelStartDate} from "../FormsItems/TravelStartDate";
 import moment from "moment";
 import axios from "axios";
-import {SmileOutlined} from "@ant-design/icons";
+import { SaveButton } from "../FormsItems/SaveButton";
+import { CountOfAdult } from "../FormsItems/CountOfAdult";
+import { CountOfChildren } from "../FormsItems/CountOfChildren";
+import { DaysAmount } from "../FormsItems/DaysAmount";
+import { TravelStartDate } from "../FormsItems/TravelStartDate";
+
+import { Form, notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 export function AddTicketFromFavouriteForm({handleOk, ticket}) {
     const [countOfChildren, setCountOfChildren] = useState(0);

@@ -68,7 +68,7 @@ export function AdminHeader({managerId}) {
         },
         {
             key: 'managerWorkTime',
-            label: <Link to="/managerWorkTime">Время работы менеджера</Link>
+            label: <Link to="/adminManagerWorkTime">Время работы менеджера</Link>
         },
         {
             key: 'auth',

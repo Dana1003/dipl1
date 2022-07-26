@@ -8,7 +8,7 @@ export function UserOrders() {
     const [tickets, setTickets] = useState([])
 
     useEffect(() => {
-        axios.get(`https://localhost:7274/api/tickets/findTickets?clientId=${1}`)
+        axios.get(`https://localhost:7274/api/tickets/findTickets?clientId=${5}`)
             .then(res => {
                 setTickets(res.data);
             });
@@ -22,14 +22,27 @@ export function UserOrders() {
         value: item
     }));
 
+    const filter = (field) => [...new Set(tickets.map(x => x[field]))].map(value => ({
+        text: value,
+        value: value
+    }));
+
     const columns = [
         {
             title: 'Название тура',
             dataIndex: 'nameOfTour',
+            sorter: (a, b) => a.nameOfTour.localeCompare(b.nameOfTour),
+            filters: filter('nameOfTour'),
+            filterSearch: true,
+            onFilter: (value, record) => record.nameOfTour.includes(value),
         },
         {
             title: 'Название отеля',
             dataIndex: 'nameOfHotel',
+            sorter: (a, b) => a.nameOfHotel.localeCompare(b.nameOfHotel),
+            filters: filter('nameOfHotel'),
+            filterSearch: true,
+            onFilter: (value, record) => record.nameOfHotel.includes(value),
         },
         {
             title: 'Период поездки',
@@ -44,7 +57,7 @@ export function UserOrders() {
             sorter: (a, b) => a.countOfPeople - b.countOfPeople,
         },
         {
-            title: 'Цена',
+            title: 'Цена (руб.)',
             dataIndex: 'cost',
             filterSearch: true,
             filters: filterData('cost'),
@@ -97,7 +110,7 @@ export function UserOrders() {
 
     return (
         <div className="main-block">
-            <div className="manager-table">
+            <div className="table">
                 <Table columns={columns}
                        title={() => 'Данные о заказанных билетах'}
                        pagination={{pageSize: 5}}

@@ -6,7 +6,7 @@ import { EditTourDetailsModal } from "../../../../Modals/EditTourDetailsModal/Ed
 import { Button, Modal, Table, notification } from "antd";
 import { DeleteOutlined, EditOutlined, CloseCircleOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
-import '../AdminTables.scss';
+import '../Tables.scss';
 
 export function AdminToursTable() {
     const [tours, setTours] = useState([]);
