@@ -12,42 +12,42 @@ export function Maps() {
     const dataToMap = [
         {
             modules: ["geoObject.addon.balloon"],
-            geometry: [53.944, 27.60],
+            geometry: [53.943472, 27.598078],
             properties: {
-                balloonContentHeader: "Офис 1",
-                balloonContent: "Филиал SunTour 1"
+                balloonContentHeader: "SunTour Офис 1",
+                balloonContent: "ул. Леонида Беды, 45"
             }
         },
         {
             modules: ["geoObject.addon.balloon"],
-            geometry: [53.930, 27.588],
+            geometry: [53.928115, 27.583889],
             properties: {
-                balloonContentHeader: "Офис 2",
-                balloonContent: "Филиал SunTour 2"
+                balloonContentHeader: "SunTour Офис 2",
+                balloonContent: "ул. Сурганова, 57Б"
             }
         },
         {
             modules: ["geoObject.addon.balloon"],
-            geometry: [53.908, 27.572],
+            geometry: [53.906798, 27.573734],
             properties: {
-                balloonContentHeader: "Офис 3",
-                balloonContent: "Филиал SunTour 3"
+                balloonContentHeader: "SunTour Офис 3",
+                balloonContent: "ул. Фрунзе, 1"
             }
         },
         {
             modules: ["geoObject.addon.balloon"],
-            geometry: [53.916, 27.565],
+            geometry: [53.916149, 27.565667],
             properties: {
-                balloonContentHeader: "Офис 4",
-                balloonContent: "Филиал SunTour 4"
+                balloonContentHeader: "SunTour Офис 5",
+                balloonContent: "пр. Машерова, 17/2"
             }
         },
         {
             modules: ["geoObject.addon.balloon"],
-            geometry: [53.858, 27.476],
+            geometry: [53.858484, 27.476770],
             properties: {
-                balloonContentHeader: "Офис 4",
-                balloonContent: "Филиал SunTour 4"
+                balloonContentHeader: "SunTour Офис 4",
+                balloonContent: "пр. Джержинского, 106"
             }
         }
     ]
