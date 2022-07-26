@@ -29,6 +29,11 @@ import { ToursCatalogPage } from "./pages/ToursCatalogPage/ToursCatalogPage";
 import { HotelsCatalogPage } from "./pages/HotelsCatalogPage/HotelsCatalogPage";
 import { TouristMemoPage } from "./pages/TouristMemoPage/TouristMemoPage";
 import { UserTouristMemoPage } from "./pages/UserTouristMemoPage/UserTouristMemoPage";
+import { ManagerMainPage } from "./pages/ManagerMainPage/ManagerMainPage";
+import { ManagerKindsOfTourismPage } from "./pages/ManagerKindsOfTourismPage/ManagerKindsOfTourismPage";
+import { ManagerCitiesPage } from "./pages/ManagerCitiesPage/ManagerCitiesPage";
+import { ManagerHotelsCatalogPage } from "./pages/ManagerHotelsCatalogPage/ManagerHotelsCatalogPage";
+import { ManagerToursCatalogPage } from "./pages/ManagerToursCatalogPage/ManagerToursCatalogPage";
 
 import './base.scss';
 
@@ -54,7 +59,7 @@ export function App() {
               <Route path="/adminViewScheduleDetails" element={<AdminViewScheduleDetails />} exact></Route>
               <Route path="/adminViewHotelDetails" element={<AdminViewHotelDetails />} exact></Route>
               <Route path="/adminViewTourDetails" element={<AdminViewTourDetails />} exact></Route>
-              <Route path="/managerWorkTime" element={<AdminManagerWorkTime />} exact></Route>
+              <Route path="/adminManagerWorkTime" element={<AdminManagerWorkTime />} exact></Route>
 
               <Route path="/userMainPage" element={<UserMainPage/>} exact></Route>
               <Route path="/userPrivateData" element={<UserPrivateDataPage/>} exact></Route>
@@ -69,6 +74,12 @@ export function App() {
               <Route path="/userHotelsCatalog" element={<UserHotelsCatalogPage />} exact></Route>
               <Route path="/userToursCatalog" element={<UserToursCatalogPage />} exact></Route>
               <Route path="/userTouristMemo" element={<UserTouristMemoPage />} exact></Route>
+
+              <Route path="/managerMainPage" element={<ManagerMainPage />} exact></Route>
+              <Route path="/managerKindsOfTourism" element={<ManagerKindsOfTourismPage />} exact></Route>
+              <Route path="/managerCities" element={<ManagerCitiesPage />} exact></Route>
+              <Route path="/managerHotelsCatalog" element={<ManagerHotelsCatalogPage />} exact></Route>
+              <Route path="/managerToursCatalog" element={<ManagerToursCatalogPage />} exact></Route>
           </Routes>
       </>
   );
