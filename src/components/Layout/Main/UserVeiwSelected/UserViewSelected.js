@@ -1,19 +1,26 @@
 import React, { useState,useEffect } from 'react';
-import axios from "axios";
 import { AddTicketFromFavourite } from "../../../../Modals/AddTicketFromFavourite/AddTicketFromFavourite";
 
-import { Modal, notification, Rate, Table } from "antd";
-import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import TicketService from "../../../../service/ticket";
+
+import { Modal, Rate, Table } from "antd";
+import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 export function UserViewSelected() {
-    const [tickets, setTickets] = useState([]);
-    const [ticket, setTicket] = useState(null);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [tickets, setTickets] = useState([])
+    const [ticket, setTicket] = useState(null)
+    const [isModalVisible, setIsModalVisible] = useState(false)
+
+    useEffect(() => {
+        TicketService.getFavouriteByClientId(setTickets)
+    }, [])
+    useEffect(() => {
+    }, [tickets])
 
     const filter = (field) => [...new Set(tickets.map(x => x[field]))].map(value => ({
         text: value,
         value: value
-    }));
+    }))
 
     const columns = [
         {
@@ -85,13 +92,12 @@ export function UserViewSelected() {
                 )
             }
         },
-    ];
+    ]
 
     const showModal = (record) =>{
         setTicket(record);
         setIsModalVisible(true);
     }
-
     const onDeleteFavouriteTicket = (record) =>{
         if (tickets.length >= 1)
             Modal.confirm({
@@ -104,55 +110,13 @@ export function UserViewSelected() {
                 }
             })
     }
-
     const handleDelete = (key) => {
-        axios.delete(`https://localhost:7274/api/tickets/${key}`)
-            .then(response => {
-                setTickets(tickets.filter((item) => item.ticketId !== key));
-            })
-    };
-
-    useEffect(() => {
-        axios.get(`https://localhost:7274/api/favouriteTickets?clientId=${5}`)
-            .then(res => {
-                setTickets(res.data);
-            });
-    }, []);
-
-    useEffect(() => {
-    }, [tickets]);
-
-    function errorNotification() {
-        notification.open({
-            message: 'Что-то пошло не так!',
-            icon: <CloseCircleOutlined style={{color: "red"}} />
-        });
+        TicketService.deleteTicket(key, setTickets, tickets)
     }
-
-    function successNotification() {
-        notification.open({
-            message: 'Билет успешно забронирован!',
-            icon: <CheckCircleOutlined style={{color: "green"}} />
-        });
-    }
-
-
     const handleOk = (ticketToAdd) => {
-        setIsModalVisible(false);
-        axios.put(`https://localhost:7274/api/tickets/${ticket.key}`, ticketToAdd)
-            .then(temp => {
-                successNotification()
-                axios.get(`https://localhost:7274/api/favouriteTickets?clientId=${1}`)
-                    .then(res => {
-                        setTickets(res.data);
-                    });
-            })
-            .catch(err => {
-                if (err.response.status === 500) {
-                    errorNotification();
-                }
-            })
-    };
+        setIsModalVisible(false)
+       TicketService.putTicket(ticketToAdd, ticket, setTickets)
+    }
 
     return (
         <div className="main-block">
