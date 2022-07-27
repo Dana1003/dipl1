@@ -16,7 +16,7 @@ export function AdminToursTable() {
     const [tour, setTour] = useState(null)
 
     useEffect(() => {
-        TourService.getTour(setTours)
+        TourService.getTours(setTours)
     }, [])
     useEffect(() => {
     }, [tours])
