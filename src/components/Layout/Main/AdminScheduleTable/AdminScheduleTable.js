@@ -5,8 +5,8 @@ import { AddScheduleModal } from "../../../../Modals/AddScheduleModal/AddSchedul
 
 import ManagerScheduleService from "../../../../service/managerSchedule";
 
-import { Button, DatePicker, Modal, Table, notification} from 'antd';
-import { DeleteOutlined, EditOutlined, CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import { Button, DatePicker, Modal, Table } from 'antd';
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import '../Tables.scss';
 
