@@ -31,6 +31,9 @@ const HotelService = {
             .then(response => {
                 setHotels(response.data)
             })
+            .catch(error => {
+                console.log(error.message)
+            })
     },
     deleteHotel(key, hotels, setHotels) {
         return $api.delete(ROUTS_API.hotels + `/${key}`)
@@ -66,6 +69,7 @@ const HotelService = {
         }))
             .then(response => {
                 this.getHotels(setHotels)
+                successAddNotification()
             })
             .catch(error => {
                 if (error.response.status === 500 || error.response.status === 400) {
