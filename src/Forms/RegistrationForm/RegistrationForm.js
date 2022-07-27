@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import axios from "axios";
 import { useNavigate } from "react-router";
 import { Login } from "../FormsItems/Login";
 import { Password } from "../FormsItems/Password";
 import { ConfirmPassword } from "../FormsItems/ConfirmPassword";
 import { RegistrationButton } from "../FormsItems/RegistrationButton";
+
+import AuthService from "../../service/auth";
 
 import { Form, notification } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
@@ -28,20 +29,7 @@ export function RegistrationForm() {
 
     async function onRegistrationHandler() {
         if (password === confirmPassword) {
-            axios.post('https://localhost:7274/api/users', {
-                "login": login,
-                "password": password,
-                "role": "User"
-            })
-                .then(temp => {
-                    return navigate('/userMainPage');
-                })
-                .catch(err => {
-                    console.log(err)
-                    if (err.response.status === 500) {
-                        console.log('Пользователь с таким логином уже существует!')
-                    }
-                });
+            AuthService.postUser(login, password, navigate)
         } else {
             errorNotification()
         }
