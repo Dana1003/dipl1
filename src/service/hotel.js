@@ -35,6 +35,16 @@ const HotelService = {
                 console.log(error.message)
             })
     },
+    getHotelByCity(value, setHotels, setIsHotelsVisible) {
+        $api.get(ROUTS_API.hotels + `/findHotels?city=${value[0].departureCity}`)
+            .then(res => {
+                setHotels(res.data);
+                setIsHotelsVisible(true)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    },
     deleteHotel(key, hotels, setHotels) {
         return $api.delete(ROUTS_API.hotels + `/${key}`)
             .then(response => {
