@@ -14,5 +14,6 @@ export const ROUTS_API = {
     tourHotel: `${API_URL}/tourHotel`,
     tickets: `${API_URL}/tickets`,
     favourite: `${API_URL}/ticketsFavourite`,
-    clientFavouriteTourHotel: `${API_URL}/favouriteTickets?clientId=`
+    clientFavouriteTourHotel: `${API_URL}/favouriteTickets?clientId=`,
+    clientUser: `${API_URL}/clients/clientUser`
 }
