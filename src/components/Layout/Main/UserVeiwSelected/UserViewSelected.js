@@ -133,7 +133,7 @@ export function UserViewSelected() {
                            nameOfTour: currentValue.nameOfTour,
                            tourCost: currentValue.tourCost,
                            nameOfHotel: currentValue.nameOfHotel,
-                           countOfStars: <Rate allowClear={false} value={currentValue.countOfStars}/>,
+                           countOfStars: <Rate disabled allowClear={false} value={currentValue.countOfStars}/>,
                            roomCost: currentValue.roomCost
                        }))}/>
             </div>

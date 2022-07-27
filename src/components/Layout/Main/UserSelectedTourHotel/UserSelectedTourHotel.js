@@ -161,7 +161,7 @@ export function UserSelectedTourHotel() {
                             dataSource={hotels.map(currentValue => ({
                                 key: currentValue.hotelId,
                                 nameOfHotel: currentValue.nameOfHotel,
-                                countOfStars: <Rate allowClear={false} value={currentValue.countOfStars}/>,
+                                countOfStars: <Rate disabled allowClear={false} value={currentValue.countOfStars}/>,
                                 city: currentValue.city,
                                 address: currentValue.address,
                                 roomCost: currentValue.roomCost
