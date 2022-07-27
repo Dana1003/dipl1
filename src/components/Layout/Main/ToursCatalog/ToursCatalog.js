@@ -1,22 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
+
+import TourService from "../../../../service/tour";
 
 import { Table } from "antd";
 
 export function ToursCatalog() {
-    const [tours, setTours] = useState([]);
+    const [tours, setTours] = useState([])
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/tours')
-            .then(res => {
-                setTours(res.data);
-            });
-    }, []);
+        TourService.getTour(setTours)
+    }, [])
 
     const filterData = (field) => [...new Set(tours.map(x => x[field]))].map(item => ({
         text: item,
         value: item
-    }));
+    }))
 
     const columns = [
         {
@@ -63,7 +61,7 @@ export function ToursCatalog() {
             onFilter: (value, record) => record.tourCost === value,
             sorter: (a, b) => a.tourCost - b.tourCost,
         }
-    ];
+    ]
 
     return (
         <div className="main-block">
