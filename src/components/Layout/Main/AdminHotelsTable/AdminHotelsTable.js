@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import { EditHotelDetailsModal } from "../../../../Modals/EditHotelDetailsModal/EditHotelDetailsModal";
 import { AddHotelModal } from "../../../../Modals/AddHotelModal/AddHotelModal";
 
-import { Button, Modal, notification, Rate, Table } from "antd";
-import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import HotelService from "../../../../service/hotel";
+
+import { Button, Modal, Rate, Table } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 export function AdminHotelsTable() {
-    const [hotels, setHotels] = useState([]);
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const [isEditingVisible, setIsEditingVisible] = useState(false);
-    const [hotel, setHotel] = useState(null);
+    const [hotels, setHotels] = useState([])
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [isEditingVisible, setIsEditingVisible] = useState(false)
+    const [hotel, setHotel] = useState(null)
 
     const filter = (field) => [...new Set(hotels.map(x => x[field]))].map(value => ({
         text: value,
         value: value
-    }));
+    }))
 
     const columns = [
         {
@@ -69,23 +70,18 @@ export function AdminHotelsTable() {
                 )
             }
         },
-    ];
+    ]
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/hotels')
-            .then(res => {
-                setHotels(res.data);
-            });
-    }, []);
-
+        HotelService.getHotels(setHotels)
+    }, [])
     useEffect(() => {
-    }, [hotels]);
+    }, [hotels])
 
     const onEditHotel = (record) => {
         setIsEditingVisible(true)
         setHotel({...record})
-    };
-
+    }
     const onDeleteHotel = (record) => {
         if (hotels.length >= 1)
             Modal.confirm({
@@ -97,46 +93,17 @@ export function AdminHotelsTable() {
                     handleDelete(record.key)
                 }
             })
-    };
-
+    }
     const showModal = () => {
         setIsModalVisible(true);
-    };
-
+    }
     const handleDelete = (key) => {
-        axios.delete(`https://localhost:7274/api/hotels/${key}`)
-            .then(temp => {
-                setHotels(hotels.filter((item) => item.hotelId !== key));
-            })
-    };
-
-    function errorNotification() {
-        notification.open({
-            message: 'Что-то пошло не так!',
-            icon: <CloseCircleOutlined style={{color: "red"}} />
-        });
+        HotelService.deleteHotel(key, hotels, setHotels)
     }
-
-    function successNotification() {
-        notification.open({
-            message: 'Данные успешно добавлены!',
-            icon: <CheckCircleOutlined style={{color: "green"}} />
-        });
-    }
-
     const handleOk = (hotelToAdd) => {
         setIsModalVisible(false);
-        axios.post('https://localhost:7274/api/hotels', hotelToAdd)
-            .then(temp => {
-                setHotels([...hotels, temp.data]);
-                successNotification();
-            })
-            .catch(err => {
-                if (err.response.status === 500) {
-                    errorNotification();
-                }
-            })
-    };
+        HotelService.postHotel(hotelToAdd, hotels, setHotels)
+    }
 
     return (
         <div className="main-block">
@@ -159,6 +126,7 @@ export function AdminHotelsTable() {
                            roomCost: currentValue.roomCost
                        }))}/>
             </div>
+
             <EditHotelDetailsModal setIsEditingVisible={setIsEditingVisible}
                                    setHotels={setHotels}
                                    isEditingVisible={isEditingVisible}
