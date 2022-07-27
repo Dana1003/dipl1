@@ -1,91 +1,46 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from "moment";
-import axios from "axios";
 
-import { Button, DatePicker, Modal, Select, TimePicker, notification } from 'antd';
-import { CheckCircleOutlined} from '@ant-design/icons';
+import { Button, DatePicker, Modal, Select, TimePicker } from 'antd';
+import ManagerService from "../../service/manager";
+import ManagerScheduleService from "../../service/managerSchedule";
+
 const { RangePicker } = DatePicker;
 
 export function AddScheduleModal({isAddingVisible, setIsAddingVisible, managersSchedule, setManagersSchedule}) {
-    const [selectedValue, setSelectedValue] = useState(null);
-    const [isManyDatesVisible, setIsManyDatesVisible] = useState(false);
-    const [isDateVisible, setIsDateVisible] = useState(false);
-    const [time, setTime] = useState(null);
-    const [date, setDate] = useState(null);
-    const [dateTime, setDateTime] = useState(null);
-    const [managers, setManagers] = useState([]);
+    const [selectedValue, setSelectedValue] = useState(null)
+    const [isManyDatesVisible, setIsManyDatesVisible] = useState(false)
+    const [isDateVisible, setIsDateVisible] = useState(false)
+    const [time, setTime] = useState(null)
+    const [date, setDate] = useState(null)
+    const [dateTime, setDateTime] = useState(null)
+    const [managers, setManagers] = useState([])
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/managers')
-            .then(res => {
-                setManagers(res.data);
-            });
-    }, []);
+        ManagerService.getManagers(setManagers)
+    }, [])
     React.useEffect(() => {
-    }, [managersSchedule]);
+    }, [managersSchedule])
 
-    function successNotification() {
-        notification.open({
-            message: 'Данные успешно добавлены!',
-            icon: <CheckCircleOutlined style={{color: "green"}} />
-        });
-    }
-
-    const clear = () => setSelectedValue(null);
-
-    const onOpenManyDates = () => isManyDatesVisible || isDateVisible ? setIsManyDatesVisible(false) : setIsManyDatesVisible(true);
-    const onOpenDate = () => isDateVisible || isManyDatesVisible ? setIsDateVisible(false) : setIsDateVisible(true);
+    const clear = () => setSelectedValue(null)
+    const onOpenManyDates = () => isManyDatesVisible || isDateVisible ? setIsManyDatesVisible(false) : setIsManyDatesVisible(true)
+    const onOpenDate = () => isDateVisible || isManyDatesVisible ? setIsDateVisible(false) : setIsDateVisible(true)
     const disabledDate = (current) => {
-        return current && current < moment().endOf('day');
-    };
-    const onChangeTime = (t) => {setTime(t)};
-    const onChangeDateTime = (value) => setDateTime(value);
-    const onChangeDate = (value) =>  setDate(value.map(x => x.toDate()));
-
+        return current && current < moment().endOf('day')
+    }
+    const onChangeTime = (t) => {setTime(t)}
+    const onChangeDateTime = (value) => setDateTime(value)
+    const onChangeDate = (value) => setDate(value.map(x => x.toDate()))
     const addDatesAndTime = () => {
         if (date != null && time != null) {
-            axios.post('https://localhost:7274/api/managerSchedule/managerSchedules', ({
-                "managerId": selectedValue,
-                "startDate": date[0],
-                "endDate": date[1],
-                "time": time.utcOffset('GMT').format()
-
-            }))
-                .then(res => {
-                    axios.get('https://localhost:7274/api/managerSchedule')
-                        .then(res => {
-                            setManagersSchedule(res.data);
-                        });
-                    clear();
-                    setIsManyDatesVisible(false);
-                    successNotification();
-                });
+            ManagerScheduleService.postManagerScheduleDates(setManagersSchedule, setIsManyDatesVisible, selectedValue, date, time)
         }
-    };
-
+    }
     const addDateTime = () => {
         if (dateTime != null) {
-            axios.post('https://localhost:7274/api/schedules', {
-                "date": dateTime.utcOffset('GMT').format()
-            })
-                .then(res => {
-                    axios.post('https://localhost:7274/api/managerSchedule', {
-                        "managerId": selectedValue,
-                        "scheduleId": res.data.scheduleId
-                    })
-                        .then(response => {
-                                axios.get('https://localhost:7274/api/managerSchedule')
-                                .then(res => {
-                                    setManagersSchedule(res.data);
-                                });
-                                clear();
-                                setIsDateVisible(false);
-                                successNotification();
-                            }
-                        )
-                });
+            ManagerScheduleService.postManagerScheduleDate(dateTime, selectedValue, setManagersSchedule, setIsDateVisible)
         }
-    };
+    }
 
     return (
         <Modal title="Добавить менеджера"
