@@ -3,7 +3,6 @@ import { ROUTS_API } from "../routs";
 
 import { notification } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined } from "@ant-design/icons";
-import axios from "axios";
 
 function successDeleteNotification() {
     notification.open({
@@ -46,6 +45,12 @@ const TicketService = {
                 console.log(error.message)
                 errorNotification()
             })
+    },
+    getAllTickets(setTickets) {
+        return $api.get(ROUTS_API.tickets)
+            .then(response => {
+                setTickets(response.data.map(x => x.nameOfTour));
+            });
     }
 }
 
