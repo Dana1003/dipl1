@@ -1,29 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 import { MainHeader } from "../../components/Layout/Header/MainHeader";
 import { Reviews } from "../../components/Layout/Main/MainReviews/Reviews";
 import { Pagination } from "../../components/Layout/Main/MainReviews/Pagination";
 import { Footer } from "../../components/Layout/Footer/Footer";
 
+import ReviewService from "../../service/review";
+
 export function ReviewPage() {
-    const [reviewsCount, setReviewsCount] = useState(0);
-    // const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [reviewsPerPage] = useState(5);
-    const [reviewsText, setReviewsText] = useState([]);
+    const [reviewsCount, setReviewsCount] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [reviewsPerPage] = useState(5)
+    const [reviewsText, setReviewsText] = useState([])
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     useEffect(() => {
-        axios.get(`https://localhost:7274/api/reviews/pagingReviews?PageNumber=${currentPage}&PageSize=${reviewsPerPage}`)
-            .then(res => {
-                const {countOfElements, reviewPaginations} = res.data;
-
-                setReviewsText(reviewPaginations);
-                setReviewsCount(countOfElements);
-            })
-
-    }, [currentPage]);
-
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+        ReviewService.getReviews(currentPage, reviewsPerPage, setReviewsText, setReviewsCount)
+    },[currentPage])
 
     return (
         <>
