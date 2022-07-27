@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
 import CanvasJSReact from '../../../../lib/canvasjs.react';
+
+import TicketService from "../../../../service/ticket";
+
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export function UserTheMostPopularTours() {
@@ -8,10 +10,7 @@ export function UserTheMostPopularTours() {
     let dataToChart = [];
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/tickets')
-            .then(res => {
-                setTickets(res.data.map(x => x.nameOfTour));
-            });
+        TicketService.getAllTickets(setTickets)
     }, []);
 
     let obj = [];
