@@ -1,46 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import moment from "moment";
 import { CountOfAdult } from "../../../../Forms/FormsItems/CountOfAdult";
 import { CountOfChildren } from "../../../../Forms/FormsItems/CountOfChildren";
 import { DaysAmount } from "../../../../Forms/FormsItems/DaysAmount";
 import { TravelStartDate } from "../../../../Forms/FormsItems/TravelStartDate";
 
+import TourService from "../../../../service/tour";
+import ClientService from "../../../../service/client";
+import HotelService from "../../../../service/hotel";
+import TourHotelService from "../../../../service/tourHotel";
+
 import { Button, Form, notification, Rate, Table } from "antd";
-import { CheckCircleOutlined, SmileOutlined } from "@ant-design/icons";
+import { SmileOutlined } from "@ant-design/icons";
 
 export function UserBooking() {
-    //сюда надо будет записать то, что вернет запрос на получение данных клиента
-    const [client, setClient] = useState(null);
-    const [tours, setTours] = useState([]);
-    const [hotels, setHotels] = useState([]);
-    const [isHotelsVisible, setIsHotelsVisible] = useState(false);
-    const [selectedTour, setSelectedTour] = useState(null);
-    const [selectedHotel, setSelectedHotel] = useState(null);
-    const [isTicketVisible, setIsTicketVisible] = useState(false);
-
-    const [countOfChildren, setCountOfChildren] = useState(0);
-    const [countOfAdult, setCountOfAdult] = useState(0);
-    const [countOfDays, setCountOfDays] = useState(0);
-    const [date, setDate] = useState(null);
+    const [client, setClient] = useState(null)
+    const [tours, setTours] = useState([])
+    const [hotels, setHotels] = useState([])
+    const [isHotelsVisible, setIsHotelsVisible] = useState(false)
+    const [selectedTour, setSelectedTour] = useState(null)
+    const [selectedHotel, setSelectedHotel] = useState(null)
+    const [isTicketVisible, setIsTicketVisible] = useState(false)
+    const [countOfChildren, setCountOfChildren] = useState(0)
+    const [countOfAdult, setCountOfAdult] = useState(0)
+    const [countOfDays, setCountOfDays] = useState(0)
+    const [date, setDate] = useState(null)
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/tours')
-            .then(res => {
-                setTours(res.data);
-            });
-        axios.get(`https://localhost:7274/api/clients/${5}`)
-            .then(res => {
-                setClient(res.data);
-            });
-    }, []);
-
-    function successNotification() {
-        notification.open({
-            message: 'Бронь прошла успешно!',
-            icon: <CheckCircleOutlined style={{color: "green"}}/>
-        });
-    }
+        TourService.getTours(setTours)
+        ClientService.getClient(setClient)
+    }, [])
 
     function birthdayNotification() {
         notification.open({
@@ -48,20 +37,13 @@ export function UserBooking() {
             icon: <SmileOutlined style={{color: "green"}}/>
         });
     }
-
     const onTourChange = (key, value) => {
         setSelectedTour(value[0])
-        axios.get(`https://localhost:7274/api/hotels/findHotels?city=${value[0].departureCity}`)
-            .then(res => {
-                setHotels(res.data);
-                setIsHotelsVisible(true)
-            });
+        HotelService.getHotelByCity(value, setHotels, setIsHotelsVisible)
     }
-
     const disabledDate = (current) => {
         return current && current < moment().endOf('day');
-    };
-
+    }
     const onCalculateCost = () => {
         if ((new Date(client.bithDate).getMonth() + 1) === (new Date().getMonth() + 1)
             && new Date(client.bithDate).getDate() === new Date().getDate()) {
@@ -72,36 +54,16 @@ export function UserBooking() {
             return selectedTour.tourCost +
                 (selectedHotel.roomCost * countOfAdult + selectedHotel.roomCost / 2 * countOfChildren) * countOfDays;
     }
-
     const onBookingHandle = () => {
-        axios.post('https://localhost:7274/api/tourHotel', ({
-            "tourId": selectedTour.key,
-            "hotelId": selectedHotel.key
-        }))
-            .then(res => {
-                axios.post('https://localhost:7274/api/tickets', ({
-                    "clientId": 5,
-                    "tourHotelId": res.data.tourHotelId,
-                    "cost": onCalculateCost(),
-                    "departureDate": date.utcOffset('GMT').format(),
-                    "arrivalDate": date.add('Days', countOfDays).utcOffset('GMT').format(),
-                    "status": true,
-                    "countOfPeople": Number(countOfChildren) + Number(countOfAdult)
-                }))
-                    .then(res => {
-                        setIsTicketVisible(false)
-                        setIsHotelsVisible(false)
-                        setSelectedHotel(null)
-                        setSelectedTour(null)
-                        setDate(null)
-                        setCountOfDays(0)
-                        setCountOfAdult(0)
-                        setCountOfChildren(0)
-                        successNotification();
-                    });
-            });
+       TourHotelService.postTourHotel(selectedTour, selectedHotel,
+           onCalculateCost, date,
+           countOfDays, countOfChildren,
+           countOfAdult, setIsTicketVisible,
+           setIsHotelsVisible, setSelectedHotel,
+           setSelectedTour, setDate,
+           setCountOfDays, setCountOfAdult,
+           setCountOfChildren)
     }
-
     const onHotelChange = (key, value) => {
         setSelectedHotel(value[0])
         setIsTicketVisible(true)
@@ -110,7 +72,11 @@ export function UserBooking() {
     const filteredData = (field) => [...new Set(tours.map(x => x[field]))].map(item => ({
         text: item,
         value: item
-    }));
+    }))
+    const filter = (field) => [...new Set(hotels.map(x => x[field]))].map(value => ({
+        text: value,
+        value: value
+    }))
 
     const columnsTours = [
         {
@@ -158,13 +124,7 @@ export function UserBooking() {
             onFilter: (value, record) => record.tourCost === value,
             sorter: (a, b) => a.tourCost - b.tourCost,
         },
-    ];
-
-    const filter = (field) => [...new Set(hotels.map(x => x[field]))].map(value => ({
-        text: value,
-        value: value
-    }));
-
+    ]
     const columnsHotels = [
         {
             title: 'Название отеля',
@@ -199,8 +159,7 @@ export function UserBooking() {
             onFilter: (value, record) => record.roomCost === value,
             sorter: (a, b) => a.roomCost - b.roomCost
         },
-    ];
-
+    ]
 
     return (
         <div className="main-block">
