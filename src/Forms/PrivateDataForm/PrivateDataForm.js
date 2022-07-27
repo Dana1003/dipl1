@@ -30,6 +30,10 @@ export function PrivateDataForm() {
     useEffect(() => {
     }, [client])
 
+    const disabledDate = (current) => {
+        return current && current > moment().endOf('day');
+    }
+
     function errorNotification() {
         notification.open({
             message: 'Ошибка изменения личных данных!',
@@ -131,7 +135,7 @@ export function PrivateDataForm() {
                   setClient(pre => {
                       return {...pre, bithDate: e}
                   })
-                }}/>
+                }} disabledDate={disabledDate}/>
                 <Email onChange={(e) => {
                     setClient(pre => {
                         return {...pre, email: e.target.value}
