@@ -1,15 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+
+import HotelService from "../../../../service/hotel";
 
 import { Rate, Table } from "antd";
 
 export function HotelsCatalog() {
-    const [hotels, setHotels] = useState([]);
+    const [hotels, setHotels] = useState([])
+
+    useEffect(() => {
+        HotelService.getHotels(setHotels)
+    }, [])
 
     const filter = (field) => [...new Set(hotels.map(x => x[field]))].map(value => ({
         text: value,
         value: value
-    }));
+    }))
 
     const columns = [
         {
@@ -45,14 +50,7 @@ export function HotelsCatalog() {
             onFilter: (value, record) => record.roomCost === value,
             sorter: (a, b) => a.roomCost - b.roomCost
         }
-    ];
-
-    useEffect(() => {
-        axios.get('https://localhost:7274/api/hotels')
-            .then(res => {
-                setHotels(res.data);
-            });
-    }, []);
+    ]
 
     return (
         <div className="main-block">
