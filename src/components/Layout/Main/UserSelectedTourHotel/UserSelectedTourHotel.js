@@ -1,36 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 
-import { Button, notification, Rate, Table } from "antd";
-import { CheckCircleOutlined } from "@ant-design/icons";
+import { Button, Rate, Table } from "antd";
+import TourService from "../../../../service/tour";
+import HotelService from "../../../../service/hotel";
+import TourHotelService from "../../../../service/tourHotel";
 
 export function UserSelectedTourHotel() {
-    const [tours, setTours] = useState([]);
-    const [hotels, setHotels] = useState([]);
-    const [isHotelsVisible, setIsHotelsVisible] = useState(false);
-    const [isButtonVisible, setIsButtonVisible] = useState(false);
-    const [selectedTour, setSelectedTour] = useState(null);
-    const [selectedHotel, setSelectedHotel] = useState(null);
+    const [tours, setTours] = useState([])
+    const [hotels, setHotels] = useState([])
+    const [isHotelsVisible, setIsHotelsVisible] = useState(false)
+    const [isButtonVisible, setIsButtonVisible] = useState(false)
+    const [selectedTour, setSelectedTour] = useState(null)
+    const [selectedHotel, setSelectedHotel] = useState(null)
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/tours')
-            .then(res => {
-                setTours(res.data);
-            });
-    }, []);
-
-    useEffect(()=>{
+        TourService.getTours(setTours)
+    }, [])
+    useEffect(() => {
     },[tours])
 
     const onTourChange = (key, value) => {
         setSelectedTour(value[0])
-        axios.get(`https://localhost:7274/api/hotels/findHotels?city=${value[0].departureCity}`)
-            .then(res => {
-                setHotels(res.data);
-                setIsHotelsVisible(true)
-            });
+        HotelService.getHotelByCity(value, setHotels, setIsHotelsVisible)
     }
-
     const onHotelChange = (key, value) => {
         setSelectedHotel(value[0])
         setIsButtonVisible(true)
@@ -39,7 +31,11 @@ export function UserSelectedTourHotel() {
     const filteredData = (field) => [...new Set(tours.map(x => x[field]))].map(item => ({
         text: item,
         value: item
-    }));
+    }))
+    const filter = (field) => [...new Set(hotels.map(x => x[field]))].map(value => ({
+        text: value,
+        value: value
+    }))
 
     const columnsTours = [
         {
@@ -87,13 +83,7 @@ export function UserSelectedTourHotel() {
             onFilter: (value, record) => record.tourCost === value,
             sorter: (a, b) => a.tourCost - b.tourCost,
         },
-    ];
-
-    const filter = (field) => [...new Set(hotels.map(x => x[field]))].map(value => ({
-        text: value,
-        value: value
-    }));
-
+    ]
     const columnsHotels = [
         {
             title: 'Название отеля',
@@ -128,39 +118,11 @@ export function UserSelectedTourHotel() {
             onFilter: (value, record) => record.roomCost === value,
             sorter: (a, b) => a.roomCost - b.roomCost
         },
-    ];
-
-    function successNotification() {
-        notification.open({
-            message: 'Запись успешно добавлена в избранное!',
-            icon: <CheckCircleOutlined style={{color: "green"}}/>
-        });
-    }
+    ]
 
     const onFavouriteHandle = () =>{
-        axios.post('https://localhost:7274/api/tourHotel', ({
-            "tourId": selectedTour.key,
-            "hotelId": selectedHotel.key
-        }))
-            .then(res => {
-                axios.post('https://localhost:7274/api/ticketsFavourite', ({
-                    "clientId": 5,
-                    "tourHotelId": res.data.tourHotelId,
-                    "status": false
-                }))
-                    .then(res => {
-                        setIsHotelsVisible(false)
-                        setSelectedHotel(null)
-                        setSelectedTour(null)
-                        axios.get('https://localhost:7274/api/tours')
-                            .then(res => {
-                                setTours(res.data);
-                            });
-                        successNotification();
-                    });
-            });
+        TourHotelService.postTourHotelToFavourite(selectedTour, selectedHotel, setIsHotelsVisible, setSelectedHotel, setSelectedTour, setTours)
     }
-
 
     return (
         <div className="main-block">
