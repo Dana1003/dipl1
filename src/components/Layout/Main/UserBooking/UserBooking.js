@@ -56,8 +56,7 @@ export function UserBooking() {
                 setHotels(res.data);
                 setIsHotelsVisible(true)
             });
-/*        setSumma(value[0].tourCost);*/
-    };
+    }
 
     const disabledDate = (current) => {
         return current && current < moment().endOf('day');
@@ -115,14 +114,14 @@ export function UserBooking() {
 
     const columnsTours = [
         {
-            title: 'Город прибытия',
+            title: 'Город отправления',
             dataIndex: 'arrivalCity',
             filters: filteredData('arrivalCity'),
             onFilter: (value, record) => record.arrivalCity === value,
             sorter: (a, b) => a.arrivalCity.localeCompare(b.arrivalCity)
         },
         {
-            title: 'Город отправления',
+            title: 'Город прибытия',
             dataIndex: 'departureCity',
             filters: filteredData('departureCity'),
             onFilter: (value, record) => record.departureCity === value,

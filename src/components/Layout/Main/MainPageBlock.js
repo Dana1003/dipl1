@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './MainPageBlock.scss';
+import $api from "../../../http";
 
 export function MainPageBlock() {
     return (
