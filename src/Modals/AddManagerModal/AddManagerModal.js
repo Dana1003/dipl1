@@ -4,11 +4,10 @@ import { AddManagerForm } from "../../Forms/AddManagerForm/AddManagerForm";
 import { Modal } from "antd";
 
 export function AddManagerModal({isModalVisible, handleOk, setManager, setIsModalVisible}) {
-
     const handleCancel = () => {
         setIsModalVisible(false);
         setManager(null);
-    };
+    }
 
     return (
         <Modal title="Добавить менеджера"
