@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import moment from "moment";
-import axios from "axios";
 import { SaveButton } from "../FormsItems/SaveButton";
 import { CountOfAdult } from "../FormsItems/CountOfAdult";
 import { CountOfChildren } from "../FormsItems/CountOfChildren";
 import { DaysAmount } from "../FormsItems/DaysAmount";
 import { TravelStartDate } from "../FormsItems/TravelStartDate";
 
+import ClientService from "../../service/client";
+
 import { Form, notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
 export function AddTicketFromFavouriteForm({handleOk, ticket}) {
-    const [countOfChildren, setCountOfChildren] = useState(0);
-    const [countOfAdult, setCountOfAdult] = useState(0);
-    const [countOfDays, setCountOfDays] = useState(0);
-    const [date, setDate] = useState(null);
-    const [client, setClient] = useState('');
+    const [countOfChildren, setCountOfChildren] = useState(0)
+    const [countOfAdult, setCountOfAdult] = useState(0)
+    const [countOfDays, setCountOfDays] = useState(0)
+    const [date, setDate] = useState(null)
+    const [client, setClient] = useState('')
 
     useEffect(() => {
-        axios.get(`https://localhost:7274/api/clients/${5}`)
-            .then(res => {
-                setClient(res.data);
-            });
-    }, []);
+        ClientService.getClient(setClient)
+    }, [])
 
     const disabledDate = (current) => {
         return current && current < moment().endOf('day');
-    };
+    }
     const onCalculateCost = () => {
         if ((new Date(client.bithDate).getMonth() + 1) === (new Date().getMonth() + 1)
             && new Date(client.bithDate).getDate() === new Date().getDate()) {
@@ -37,7 +35,6 @@ export function AddTicketFromFavouriteForm({handleOk, ticket}) {
             return ticket.tourCost +
                 (ticket.roomCost * countOfAdult + ticket.roomCost / 2 * countOfChildren) * countOfDays;
     }
-
     function birthdayNotification() {
         notification.open({
             message: 'Сумма рассчитанная к оплате будет предоставлена со скидкой в 10%!',
