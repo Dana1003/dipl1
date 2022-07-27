@@ -1,65 +1,35 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
 import { UserHeader } from "../../components/Layout/Header/UserHeader";
 import { Reviews } from "../../components/Layout/Main/MainReviews/Reviews";
 import { Pagination } from "../../components/Layout/Main/MainReviews/Pagination";
 import { Footer } from "../../components/Layout/Footer/Footer";
 import { AddUserReviewModal } from "../../Modals/AddUserReviewModal/AddUserReviewModal";
 
-import { Button, notification } from "antd";
-import { CloseCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import ReviewService from "../../service/review";
+
+import { Button } from "antd";
 
 import '../../base.scss';
 
 export function UserReviewPage() {
-    const [reviewsCount, setReviewsCount] = useState(0);
-    const [reviewsText, setReviewsText] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [reviewsPerPage] = useState(5);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [reviewsCount, setReviewsCount] = useState(0)
+    const [reviewsText, setReviewsText] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [reviewsPerPage] = useState(5)
+    const [isModalVisible, setIsModalVisible] = useState(false)
 
     useEffect(() => {
-        axios.get(`https://localhost:7274/api/reviews/pagingReviews?PageNumber=${currentPage}&PageSize=${reviewsPerPage}`)
-            .then(res => {
-                const {countOfElements, reviewPaginations} = res.data;
-
-                setReviewsText(reviewPaginations);
-                setReviewsCount(countOfElements);
-            })
-
-    }, [currentPage]);
+        ReviewService.getReviews(currentPage, reviewsPerPage, setReviewsText, setReviewsCount)
+    }, [currentPage])
 
     const showModal = () => {
         setIsModalVisible(true);
-    };
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    function errorNotification() {
-        notification.open({
-            message: 'Что-то пошло не так!',
-            icon: <CloseCircleOutlined style={{color: "red"}} />
-        });
     }
-
-    function successNotification() {
-        notification.open({
-            message: 'Данные успешно добавлены!',
-            icon: <CheckCircleOutlined style={{color: "green"}} />
-        });
-    }
-
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
     const handleOk = (userReview) => {
-        setIsModalVisible(false);
-        axios.post('https://localhost:7274/api/reviews', userReview)
-            .then(temp => {
-                successNotification()
-            })
-            .catch(err => {
-                if (err.response.status === 500) {
-                    errorNotification()
-                }
-            })
-    };
+        setIsModalVisible(false)
+        ReviewService.postReview(userReview)
+    }
 
     return (
         <>
