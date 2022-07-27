@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import moment from "moment";
+
+import WorkTimeService from "../../../../service/workTime";
 
 import { DatePicker, Table } from "antd";
 
 export function AdminManagerWorkTimeTable() {
-    const [workedTime, setWorkedTime] = useState([]);
+    const [workedTime, setWorkedTime] = useState([])
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/workedHour')
-            .then(res => {
-                setWorkedTime(res.data);
-            });
-    }, []);
-
+        WorkTimeService.getWorkTime(setWorkedTime)
+    }, [])
     useEffect(() => {
-    }, [workedTime]);
+    }, [workedTime])
 
     const columns = [
         {
@@ -35,7 +32,7 @@ export function AdminManagerWorkTimeTable() {
             title: 'Дата выхода из системы',
             dataIndex: 'endDate',
         }
-    ];
+    ]
 
     return (
         <div className="main-block">
