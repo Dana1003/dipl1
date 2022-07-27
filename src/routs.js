@@ -1,8 +1,7 @@
 export const API_URL = 'https://localhost:7274/api';
 
 export const ROUTS_API = {
-    getUsers: `${API_URL}/users`,
-
+    users: `${API_URL}/users`,
     managers: `${API_URL}/managers`,
     managerUser: `${API_URL}/managers/managerUser`,
     hotels: `${API_URL}/hotels`,
@@ -15,5 +14,6 @@ export const ROUTS_API = {
     tickets: `${API_URL}/tickets`,
     favourite: `${API_URL}/ticketsFavourite`,
     clientFavouriteTourHotel: `${API_URL}/favouriteTickets?clientId=`,
-    clientUser: `${API_URL}/clients/clientUser`
+    clientUser: `${API_URL}/clients/clientUser`,
+    reviews: `${API_URL}/reviews`
 }
