@@ -7,7 +7,7 @@ export function EditTourDetailsModal({editingModalVisibility, setEditingModalVis
     const onResetEditing = () => {
         setEditingModalVisibility(false)
         setTour(null)
-    };
+    }
 
     return (
         <Modal

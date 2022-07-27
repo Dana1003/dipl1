@@ -1,33 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import { AddTourModal } from "../../../../Modals/AddTourModal/AddTourModal";
 import { EditTourDetailsModal } from "../../../../Modals/EditTourDetailsModal/EditTourDetailsModal";
 
-import { Button, Modal, Table, notification } from "antd";
-import { DeleteOutlined, EditOutlined, CloseCircleOutlined, CheckCircleOutlined } from "@ant-design/icons";
+import TourService from "../../../../service/tour";
+
+import { Button, Modal, Table } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import '../Tables.scss';
 
 export function AdminToursTable() {
-    const [tours, setTours] = useState([]);
-    const [modalVisibility, setModalVisibility] = useState(false);
-    const [editingModalVisibility, setEditingModalVisibility] = useState(false);
-    const [tour, setTour] = useState(null);
+    const [tours, setTours] = useState([])
+    const [modalVisibility, setModalVisibility] = useState(false)
+    const [editingModalVisibility, setEditingModalVisibility] = useState(false)
+    const [tour, setTour] = useState(null)
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/tours')
-            .then(res => {
-                setTours(res.data);
-            });
-    }, []);
-
+        TourService.getTour(setTours)
+    }, [])
     useEffect(() => {
-    }, [tours]);
+    }, [tours])
 
     const filterData = (field) => [...new Set(tours.map(x => x[field]))].map(item => ({
         text: item,
         value: item
-    }));
+    }))
 
     const columns = [
         {
@@ -92,20 +89,15 @@ export function AdminToursTable() {
                 )
             }
         },
-    ];
+    ]
 
     const onEditTour = (record) => {
         setEditingModalVisibility(true)
         setTour({...record})
-    };
-
+    }
     const handleDelete = (key) => {
-        axios.delete(`https://localhost:7274/api/tours/${key}`)
-            .then(temp => {
-                setTours(tours.filter((item) => item.tourId !== key));
-            })
-    };
-
+        TourService.deleteTour(key, tours, setTours)
+    }
     const onDeleteTour = (record) => {
         if (tours.length >= 1)
             Modal.confirm({
@@ -117,39 +109,14 @@ export function AdminToursTable() {
                     handleDelete(record.key)
                 }
             })
-    };
-
-    function errorNotification() {
-        notification.open({
-            message: 'Что-то пошло не так!',
-            icon: <CloseCircleOutlined style={{color: "red"}} />
-        });
     }
-
-    function successNotification() {
-        notification.open({
-            message: 'Данные успешно добавлены!',
-            icon: <CheckCircleOutlined style={{color: "green"}} />
-        });
-    }
-
     const handleOk = (newTour) => {
         setModalVisibility(false);
-        axios.post('https://localhost:7274/api/tours', newTour)
-            .then(temp => {
-                setTours([...tours, temp.data]);
-                successNotification()
-            })
-            .catch(err => {
-                if (err.response.status === 500) {
-                    errorNotification()
-                }
-            })
-    };
-
+        TourService.postTour(newTour, setTours, tours)
+    }
     const showModal = () => {
         setModalVisibility(true);
-    };
+    }
 
     return (
         <div className="main-block">
