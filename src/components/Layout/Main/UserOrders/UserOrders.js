@@ -1,31 +1,28 @@
-import React, {useState, useEffect} from 'react';
-import axios from "axios";
-import {CheckCircleOutlined, DeleteOutlined} from "@ant-design/icons";
-import {Modal, notification, Table} from "antd";
+import React, { useState, useEffect } from 'react';
 import moment from "moment";
+
+import TicketService from "../../../../service/ticket";
+
+import { Modal, Table } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 
 export function UserOrders() {
     const [tickets, setTickets] = useState([])
 
     useEffect(() => {
-        axios.get(`https://localhost:7274/api/tickets/findTickets?clientId=${5}`)
-            .then(res => {
-                setTickets(res.data);
-            });
-    }, []);
-
+        TicketService.getTicketByClientId(setTickets)
+    }, [])
     useEffect(() => {
-    }, [tickets]);
+    }, [tickets])
 
     const filterData = (field) => [...new Set(tickets.map(x => x[field]))].map(item => ({
         text: item,
         value: item
-    }));
-
+    }))
     const filter = (field) => [...new Set(tickets.map(x => x[field]))].map(value => ({
         text: value,
         value: value
-    }));
+    }))
 
     const columns = [
         {
@@ -78,23 +75,11 @@ export function UserOrders() {
                 )
             }
         },
-    ];
-
-    function successNotification() {
-        notification.open({
-            message: 'Билет успешно отменен!',
-            icon: <CheckCircleOutlined style={{color: "green"}}/>
-        });
-    }
+    ]
 
     const handleDelete = (key) => {
-        axios.delete(`https://localhost:7274/api/tickets/${key}`)
-            .then(response => {
-                setTickets(tickets.filter((item) => item.ticketId !== key));
-                successNotification();
-            })
-    };
-
+        TicketService.deleteTicket(key, setTickets, tickets)
+    }
     const onDeleteTicket = (record) => {
         if (tickets.length >= 1)
             Modal.confirm({
@@ -106,7 +91,7 @@ export function UserOrders() {
                     handleDelete(record.key)
                 }
             })
-    };
+    }
 
     return (
         <div className="main-block">
