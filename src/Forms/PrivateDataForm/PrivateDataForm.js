@@ -1,26 +1,27 @@
-import React, {useState, useEffect} from 'react';
-import {Password} from "../FormsItems/Password";
-import {Login} from "../FormsItems/Login";
-import {LastName} from "../FormsItems/LastName";
-import {FirstName} from "../FormsItems/FirstName";
-import {Patronymic} from "../FormsItems/Patronymic";
-import {Phone} from "../FormsItems/Phone";
-import {PassportNumber} from "../FormsItems/PassportNumber";
-import {Email} from "../FormsItems/Email";
-import {SaveButton} from "../FormsItems/SaveButton";
-
-import {DatePicker, Form, notification} from "antd";
-
-import './PrivateDataForm.scss';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import moment from "moment";
-import {CloseCircleOutlined, CheckCircleOutlined} from "@ant-design/icons";
+import { Password } from "../FormsItems/Password";
+import { Login } from "../FormsItems/Login";
+import { LastName } from "../FormsItems/LastName";
+import { FirstName } from "../FormsItems/FirstName";
+import { Patronymic } from "../FormsItems/Patronymic";
+import { Phone } from "../FormsItems/Phone";
+import { PassportNumber } from "../FormsItems/PassportNumber";
+import { Email } from "../FormsItems/Email";
+import { SaveButton } from "../FormsItems/SaveButton";
+import { BirthdayDatePicker } from "../FormsItems/BirthdayDatePicker";
+
+import { Form, notification } from "antd";
+import { CloseCircleOutlined, CheckCircleOutlined } from "@ant-design/icons";
+
+import './PrivateDataForm.scss';
 
 export function PrivateDataForm() {
     const [client, setClient] = useState('');
 
     useEffect(() => {
-        axios.get(`https://localhost:7274/api/clients/${1}`)
+        axios.get(`https://localhost:7274/api/clients/${5}`)
             .then(res => {
                 setClient(res.data)
             });
@@ -45,18 +46,18 @@ export function PrivateDataForm() {
 
     const onUpdateClientData = () => {
         axios.put(`https://localhost:7274/api/clients/clientUser/${client.clientId}`, ({
-            "clientId": client.clientId,
-            "passportNumber": client.passportNumber,
-            "email": client.email,
-            "bithDate": moment(client.bithDate).utcOffset('GMT').format(),
-            "userId": client.userId,
-            "firstName": client.firstName,
-            "lastName": client.lastName,
-            "patronymic": client.patronymic,
-            "phone": client.phone,
-            "login": client.login,
-            "password": client.password,
-            "role": "User"
+            clientId: client.clientId,
+            passportNumber: client.passportNumber,
+            email: client.email,
+            bithDate: moment(client.bithDate).utcOffset('GMT').format(),
+            userId: client.userId,
+            firstName: client.firstName,
+            lastName: client.lastName,
+            patronymic: client.patronymic,
+            phone: client.phone,
+            login: client.login,
+            password: client.password,
+            role: "User"
         })).then(temp => {
             axios.get(`https://localhost:7274/api/clients/${client.clientId}`)
                 .then(res => {
@@ -126,20 +127,11 @@ export function PrivateDataForm() {
                         return {...pre, phone: e.target.value}
                     })
                 }}/>
-                <DatePicker
-                    required={true}
-                    allowClear={false}
-                    value={moment(client.bithDate)}
-                    showTime={{
-                        value: moment(client.bithDate),
-                        format: ('HH:mm')
-                    }}
-                    onChange={(e) => {
-                        setClient(pre => {
-                            return {...pre, bithDate: e}
-                        })
-                    }}
-                />
+                <BirthdayDatePicker onChange={(e) => {
+                  setClient(pre => {
+                      return {...pre, bithDate: e}
+                  })
+                }}/>
                 <Email onChange={(e) => {
                     setClient(pre => {
                         return {...pre, email: e.target.value}

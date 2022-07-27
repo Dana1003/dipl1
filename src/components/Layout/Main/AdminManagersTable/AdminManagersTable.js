@@ -46,7 +46,7 @@ export function AdminManagersTable() {
         },
         {
             title: 'Телефон',
-            dataIndex: 'phoneNumber',
+            dataIndex: 'phone',
         },
         {
             title: 'Действия',
@@ -155,7 +155,7 @@ export function AdminManagersTable() {
                            patronymic: currentValue.patronymic,
                            login: currentValue.login,
                            experience: currentValue.workExperience,
-                           phoneNumber: currentValue.phone
+                           phone: currentValue.phone
                        }))}/>
             </div>
 

@@ -34,6 +34,7 @@ import { ManagerKindsOfTourismPage } from "./pages/ManagerKindsOfTourismPage/Man
 import { ManagerCitiesPage } from "./pages/ManagerCitiesPage/ManagerCitiesPage";
 import { ManagerHotelsCatalogPage } from "./pages/ManagerHotelsCatalogPage/ManagerHotelsCatalogPage";
 import { ManagerToursCatalogPage } from "./pages/ManagerToursCatalogPage/ManagerToursCatalogPage";
+import { ManagerBookingPage } from "./pages/ManagerBookingPage/ManagerBookingPage";
 
 import './base.scss';
 
@@ -80,6 +81,7 @@ export function App() {
               <Route path="/managerCities" element={<ManagerCitiesPage />} exact></Route>
               <Route path="/managerHotelsCatalog" element={<ManagerHotelsCatalogPage />} exact></Route>
               <Route path="/managerToursCatalog" element={<ManagerToursCatalogPage />} exact></Route>
+              <Route path="/managerBooking" element={<ManagerBookingPage />} exact></Route>
           </Routes>
       </>
   );

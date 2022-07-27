@@ -35,7 +35,7 @@ export function EditManagerDetailsForm({manager, setManager, setManagers, onRese
             patronymic: manager.patronymic,
             login: manager.login,
             workExperience: manager.experience,
-            phone: manager.phoneNumber,
+            phone: manager.phone,
             role: "Manager",
             userId: manager.key,
             password: ""
@@ -95,7 +95,7 @@ export function EditManagerDetailsForm({manager, setManager, setManagers, onRese
             }}/>
             <Phone onChange={(e) => {
                 setManager(pre => {
-                    return {...pre, phoneNumber: e.target.value}
+                    return {...pre, phone: e.target.value}
                 })
             }}/>
             <SaveButton />
