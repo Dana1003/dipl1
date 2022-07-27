@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import { LastName } from "../FormsItems/LastName";
 import { FirstName } from "../FormsItems/FirstName";
 import { Patronymic } from "../FormsItems/Patronymic";
@@ -8,8 +7,9 @@ import { WorkExperience } from "../FormsItems/WorkExperience";
 import { Phone } from "../FormsItems/Phone";
 import { SaveButton } from "../FormsItems/SaveButton";
 
-import { Form, notification } from "antd";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import ManagerService from "../../service/manager";
+
+import { Form } from "antd";
 
 export function EditManagerDetailsForm({manager, setManager, setManagers, onResetEditing}) {
     let dividedManager = [];
@@ -20,35 +20,8 @@ export function EditManagerDetailsForm({manager, setManager, setManagers, onRese
         })
     }
 
-    function errorNotification() {
-        notification.open({
-            message: 'Что-то пошло не так!',
-            icon: <CloseCircleOutlined style={{color: "red"}} />
-        });
-    }
-
     const onUpdateManager = () => {
-        axios.put(`https://localhost:7274/api/managers/managerUser/${manager.key}`, ({
-            managerId: manager.key,
-            firstName: manager.firstName,
-            lastName: manager.lastName,
-            patronymic: manager.patronymic,
-            login: manager.login,
-            workExperience: manager.experience,
-            phone: manager.phone,
-            role: "Manager",
-            userId: manager.key,
-            password: ""
-        })).then(temp => {
-            axios.get('https://localhost:7274/api/managers')
-                .then(res => {
-                    setManagers(res.data);
-                });
-        }).catch(err => {
-            if (err.response.status === 500) {
-                errorNotification()
-            }
-        })
+        ManagerService.putManager(manager, setManagers)
         onResetEditing();
     }
 

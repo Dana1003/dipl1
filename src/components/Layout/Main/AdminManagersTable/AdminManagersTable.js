@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import { EditManagerDetailsModal } from "../../../../Modals/EditManagerDetailsModal/EditManagerDetailsModal";
 import { AddManagerModal } from "../../../../Modals/AddManagerModal/AddManagerModal";
 
-import { Button, Modal, Table, notification } from 'antd';
-import { DeleteOutlined, EditOutlined, CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import ManagerService from "../../../../service/manager";
+
+import { Button, Modal, Table } from 'antd';
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import '../Tables.scss';
 
 export function AdminManagersTable() {
-    const [managers, setManagers] = useState([]);
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const [isEditingVisible, setIsEditingVisible] = useState(false);
-    const [manager, setManager] = useState(null);
+    const [managers, setManagers] = useState([])
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [isEditingVisible, setIsEditingVisible] = useState(false)
+    const [manager, setManager] = useState(null)
 
     const filterData = (field) =>  [...new Set(managers.map(x => x[field]))].map( item => ({
         text: item,
         value: item
-    }));
+    }))
 
     const columns = [
         {
@@ -66,24 +67,18 @@ export function AdminManagersTable() {
                 )
             }
         },
-    ];
+    ]
 
     useEffect(() => {
-        axios.get('https://localhost:7274/api/managers')
-            .then(res => {
-                setManagers(res.data);
-            });
-    }, []);
-
+        ManagerService.getManagers(setManagers)
+    }, [])
     useEffect(() => {
-    }, [managers]);
-
+    }, [managers])
 
     const onEditManager = (record) => {
         setIsEditingVisible(true)
         setManager({...record})
-    };
-
+    }
     const onDeleteManager = (record) => {
         if (managers.length >= 1)
             Modal.confirm({
@@ -95,46 +90,17 @@ export function AdminManagersTable() {
                     handleDelete(record.key)
                 }
             })
-    };
-
+    }
     const showModal = () => {
         setIsModalVisible(true);
-    };
-
+    }
     const handleDelete = (key) => {
-        axios.delete(`https://localhost:7274/api/managers/${key}`)
-            .then(temp => {
-                setManagers(managers.filter((item) => item.managerId !== key));
-            })
-    };
-
-    function successNotification() {
-        notification.open({
-            message: 'Данные успешно добавлены!',
-            icon: <CheckCircleOutlined style={{color: "green"}} />
-        });
+        ManagerService.deleteManager(key, managers, setManagers)
     }
-
-    function errorNotification() {
-        notification.open({
-            message: 'Данные не были добавлены! Что-то пошло не так!',
-            icon: <CloseCircleOutlined style={{color: "red"}} />
-        });
-    }
-
     const handleOk = (managerUser) => {
         setIsModalVisible(false);
-        axios.post('https://localhost:7274/api/managers/managerUser', managerUser)
-             .then(temp => {
-                 setManagers([...managers, temp.data]);
-                 successNotification()
-             })
-             .catch(err => {
-                 if (err.response.status === 500) {
-                     errorNotification()
-                 }
-             })
-    };
+        ManagerService.postManager(managers, setManagers, managerUser)
+    }
 
     return (
         <div className="main-block">
