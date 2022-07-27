@@ -39,7 +39,7 @@ const TicketService = {
         return $api.delete(ROUTS_API.tickets + `/${key}`)
             .then(response => {
                 setTickets(tickets.filter((item) => item.ticketId !== key))
-                successAddNotification()
+                successDeleteNotification()
             })
             .catch(error => {
                 console.log(error.message)
@@ -61,8 +61,8 @@ const TicketService = {
     putTicket(ticketToAdd, ticket, setTickets) {
         return $api.put(ROUTS_API.tickets + `/${ticket.key}`, ticketToAdd)
             .then(response => {
-                successAddNotification()
                 this.getFavouriteByClientId(setTickets)
+                successAddNotification()
             })
             .catch(error => {
                 if (error.response.status === 500 || error.response.status === 400) {
