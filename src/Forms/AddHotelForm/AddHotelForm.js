@@ -9,11 +9,11 @@ import { SaveButton } from "../FormsItems/SaveButton";
 import { Form } from "antd";
 
 export function AddHotelForm({handleOk}) {
-    const [nameOfHotel, setNameOfHotel] = useState('');
-    const [countOfStars, setCountOfStars] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [roomCost, setRoomCost] = useState('');
+    const [nameOfHotel, setNameOfHotel] = useState('')
+    const [countOfStars, setCountOfStars] = useState('')
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [roomCost, setRoomCost] = useState('')
 
     return (
         <Form

@@ -7,7 +7,7 @@ export function EditHotelDetailsModal({setIsEditingVisible, setHotel, isEditingV
     const onResetEditing = () => {
         setIsEditingVisible(false)
         setHotel(null)
-    };
+    }
 
     return (
         <Modal

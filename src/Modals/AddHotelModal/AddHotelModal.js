@@ -7,7 +7,7 @@ export function AddHotelModal({isModalVisible, handleOk, setHotel, setIsModalVis
     const handleCancel = () => {
         setIsModalVisible(false);
         setHotel(null);
-    };
+    }
 
     return (
         <Modal title="Добавить отель"
