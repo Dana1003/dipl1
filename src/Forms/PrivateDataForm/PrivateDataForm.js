@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import moment from "moment";
 import { Password } from "../FormsItems/Password";
 import { Login } from "../FormsItems/Login";
@@ -12,68 +11,14 @@ import { Email } from "../FormsItems/Email";
 import { SaveButton } from "../FormsItems/SaveButton";
 import { BirthdayDatePicker } from "../FormsItems/BirthdayDatePicker";
 
-import { Form, notification } from "antd";
-import { CloseCircleOutlined, CheckCircleOutlined } from "@ant-design/icons";
+import ClientService from "../../service/client";
+
+import { Form } from "antd";
 
 import './PrivateDataForm.scss';
 
 export function PrivateDataForm() {
-    const [client, setClient] = useState('');
-
-    useEffect(() => {
-        axios.get(`https://localhost:7274/api/clients/${5}`)
-            .then(res => {
-                setClient(res.data)
-            });
-    }, []);
-
-    useEffect(() => {
-    }, [client])
-
-    const disabledDate = (current) => {
-        return current && current > moment().endOf('day');
-    }
-
-    function errorNotification() {
-        notification.open({
-            message: 'Ошибка изменения личных данных!',
-            icon: <CloseCircleOutlined style={{color: "red"}}/>
-        });
-    }
-
-    function successNotification() {
-        notification.open({
-            message: 'Данные успешно изменены!',
-            icon: <CheckCircleOutlined style={{color: "green"}}/>
-        });
-    }
-
-    const onUpdateClientData = () => {
-        axios.put(`https://localhost:7274/api/clients/clientUser/${client.clientId}`, ({
-            clientId: client.clientId,
-            passportNumber: client.passportNumber,
-            email: client.email,
-            bithDate: moment(client.bithDate).utcOffset('GMT').format(),
-            userId: client.userId,
-            firstName: client.firstName,
-            lastName: client.lastName,
-            patronymic: client.patronymic,
-            phone: client.phone,
-            login: client.login,
-            password: client.password,
-            role: "User"
-        })).then(temp => {
-            axios.get(`https://localhost:7274/api/clients/${client.clientId}`)
-                .then(res => {
-                    setClient(res.data);
-                    successNotification()
-                });
-        }).catch(err => {
-            if (err.response.status === 500) {
-                errorNotification()
-            }
-        })
-    }
+    const [client, setClient] = useState('')
 
     let clientData = [];
     for (let field in client) {
@@ -81,6 +26,19 @@ export function PrivateDataForm() {
             name: [`${field}`],
             value: client[field]
         })
+    }
+
+    useEffect(() => {
+        ClientService.getClient(setClient)
+    }, [])
+    useEffect(() => {
+    }, [client])
+
+    const disabledDate = (current) => {
+        return current && current > moment().endOf('day');
+    }
+    const onUpdateClientData = () => {
+       ClientService.putClient(client, setClient)
     }
 
     return (
