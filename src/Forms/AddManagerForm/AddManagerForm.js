@@ -11,13 +11,13 @@ import { SaveButton } from "../FormsItems/SaveButton";
 import { Form } from "antd";
 
 export function AddManagerForm({handleOk}) {
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [patronymic, setPatronymic] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [workExperience, setWorkExperience] = useState('');
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [patronymic, setPatronymic] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [workExperience, setWorkExperience] = useState('')
 
     return (
         <Form
