@@ -26,7 +26,7 @@ function errorNotification() {
 }
 
 const TourService = {
-    getTour(setTours) {
+    getTours(setTours) {
         return $api.get(ROUTS_API.tours)
             .then(response => {
                 setTours(response.data)

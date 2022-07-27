@@ -8,7 +8,7 @@ export function ToursCatalog() {
     const [tours, setTours] = useState([])
 
     useEffect(() => {
-        TourService.getTour(setTours)
+        TourService.getTours(setTours)
     }, [])
 
     const filterData = (field) => [...new Set(tours.map(x => x[field]))].map(item => ({
