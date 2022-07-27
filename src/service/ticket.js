@@ -51,6 +51,25 @@ const TicketService = {
             .then(response => {
                 setTickets(response.data.map(x => x.nameOfTour));
             });
+    },
+    getFavouriteByClientId(setTickets) {
+        return $api.get(ROUTS_API.clientFavouriteTourHotel + `${5}`)
+            .then(response => {
+                setTickets(response.data);
+            });
+    },
+    putTicket(ticketToAdd, ticket, setTickets) {
+        return $api.put(ROUTS_API.tickets + `/${ticket.key}`, ticketToAdd)
+            .then(response => {
+                successAddNotification()
+                this.getFavouriteByClientId(setTickets)
+            })
+            .catch(error => {
+                if (error.response.status === 500 || error.response.status === 400) {
+                    console.log(error.message)
+                    errorNotification()
+                }
+            })
     }
 }
 
