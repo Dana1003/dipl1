@@ -7,7 +7,7 @@ export function AddTourModal({modalVisibility, setModalVisibility, setTour, hand
     const handleCancel = () => {
         setModalVisibility(false);
         setTour(null);
-    };
+    }
 
     return (
         <Modal title="Добавить менеджера"

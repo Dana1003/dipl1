@@ -10,12 +10,12 @@ import { SaveButton } from "../FormsItems/SaveButton";
 import { Form } from "antd";
 
 export function AddTourForm({handleOk}) {
-    const [arrivalCity, setArrivalCity] = useState('');
-    const [departureCity, setDepartureCity] = useState('');
-    const [tourType, setTourType] = useState('');
-    const [amountOfDays, setAmountOfDays] = useState('');
-    const [nameOfTour, setNameOfTour] = useState('');
-    const [tourCost, setTourCost] = useState('');
+    const [arrivalCity, setArrivalCity] = useState('')
+    const [departureCity, setDepartureCity] = useState('')
+    const [tourType, setTourType] = useState('')
+    const [amountOfDays, setAmountOfDays] = useState('')
+    const [nameOfTour, setNameOfTour] = useState('')
+    const [tourCost, setTourCost] = useState('')
 
     return (
         <Form
