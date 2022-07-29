@@ -4,11 +4,11 @@ import { Login } from "../FormsItems/Login";
 import { Password } from "../FormsItems/Password";
 import { ConfirmPassword } from "../FormsItems/ConfirmPassword";
 import { RegistrationButton } from "../FormsItems/RegistrationButton";
+import notifications from '../../notifications/notifications';
 
 import AuthService from "../../service/auth";
 
-import { Form, notification } from "antd";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { Form } from "antd";
 
 import './RegistrationForm.scss';
 
@@ -19,19 +19,11 @@ export function RegistrationForm() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    function errorNotification() {
-        notification.open({
-            message: 'Вы ввели разные пароли!',
-            icon: <CloseCircleOutlined
-                style={{color: "red"}} />
-        });
-    }
-
     async function onRegistrationHandler() {
         if (password === confirmPassword) {
             AuthService.postUser(login, password, navigate)
         } else {
-            errorNotification()
+            notifications.errorNotification()
         }
     }
 
