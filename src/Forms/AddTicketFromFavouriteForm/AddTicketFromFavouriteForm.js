@@ -5,11 +5,11 @@ import { CountOfAdult } from "../FormsItems/CountOfAdult";
 import { CountOfChildren } from "../FormsItems/CountOfChildren";
 import { DaysAmount } from "../FormsItems/DaysAmount";
 import { TravelStartDate } from "../FormsItems/TravelStartDate";
+import notifications from '../../notifications/notifications';
 
 import ClientService from "../../service/client";
 
-import { Form, notification } from "antd";
-import { SmileOutlined } from "@ant-design/icons";
+import { Form } from "antd";
 
 export function AddTicketFromFavouriteForm({handleOk, ticket}) {
     const [countOfChildren, setCountOfChildren] = useState(0)
@@ -28,18 +28,12 @@ export function AddTicketFromFavouriteForm({handleOk, ticket}) {
     const onCalculateCost = () => {
         if ((new Date(client.bithDate).getMonth() + 1) === (new Date().getMonth() + 1)
             && new Date(client.bithDate).getDate() === new Date().getDate()) {
-            birthdayNotification()
+            notifications.birthdayNotification()
             return (ticket.tourCost +
                 (ticket.roomCost * countOfAdult + ticket.roomCost / 2 * countOfChildren) * countOfDays) * 0.9;
         } else
             return ticket.tourCost +
                 (ticket.roomCost * countOfAdult + ticket.roomCost / 2 * countOfChildren) * countOfDays;
-    }
-    function birthdayNotification() {
-        notification.open({
-            message: 'Сумма рассчитанная к оплате будет предоставлена со скидкой в 10%!',
-            icon: <SmileOutlined style={{color: "green"}}/>
-        });
     }
 
     return (
