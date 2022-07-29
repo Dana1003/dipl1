@@ -1,6 +1,5 @@
 import { notification } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined, ExclamationCircleOutlined, SmileOutlined } from "@ant-design/icons";
-import React from "@types/react";
 
 function successNotification(message){
     notification.open({

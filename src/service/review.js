@@ -17,11 +17,11 @@ const ReviewService = {
     postReview(userReview) {
         return $api.post(ROUTS_API.reviews , userReview)
             .then(response => {
-                notifications.successNotification('Данные были успешно даобалены!')
+                notifications.successNotification('Данные были успешно добавлены!')
             })
             .catch(error => {
                 console.log(error.message)
-                notifications.errorNotification('Данные не были добалены! Что-то пошло не так!')
+                notifications.errorNotification('Данные не были добавлены! Что-то пошло не так!')
             })
     }
 }
