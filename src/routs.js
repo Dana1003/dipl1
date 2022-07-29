@@ -15,5 +15,7 @@ export const ROUTS_API = {
     favourite: `${API_URL}/ticketsFavourite`,
     clientFavouriteTourHotel: `${API_URL}/favouriteTickets?clientId=`,
     clientUser: `${API_URL}/clients/clientUser`,
-    reviews: `${API_URL}/reviews`
+    reviews: `${API_URL}/reviews`,
+    authorization: `${API_URL}/auth/login`,
+    registration: `${API_URL}/auth/clientUser`
 }

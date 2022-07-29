@@ -1,36 +1,14 @@
 import $api from '../http';
 import {ROUTS_API} from "../routs";
-
-import {notification} from "antd";
-import {CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined} from "@ant-design/icons";
 import moment from "moment";
 
-function successDeleteNotification() {
-    notification.open({
-        message: 'Данные успешно удалены!',
-        icon: <DeleteOutlined style={{color: "green"}}/>
-    })
-}
-
-function successAddNotification() {
-    notification.open({
-        message: 'Данные успешно добавлены!',
-        icon: <CheckCircleOutlined style={{color: "green"}}/>
-    })
-}
-
-function errorNotification() {
-    notification.open({
-        message: 'Что-то пошло не так!',
-        icon: <CloseCircleOutlined style={{color: "red"}}/>
-    });
-}
+import notifications from '../notifications/notifications';
 
 const ClientService = {
     getClient(setClient) {
-        return $api.get(ROUTS_API.clients + `/${5}`)
+        return $api.get(ROUTS_API.clients + `/${5}`)//like
             .then(response => {
-                setClient(response.data);
+                setClient(response.data)
             })
             .catch(error => {
                 console.log(error.message)
@@ -55,13 +33,13 @@ const ClientService = {
                 $api.get(ROUTS_API.clients + `/${client.clientId}`)
                     .then(response => {
                         setClient(response.data)
-                        successAddNotification()
+                        notifications.successNotification("Данные были успешно изменены!")
                     })
             })
             .catch(error => {
                 if (error.response.status === 500 || error.response.status === 400) {
                     console.log(error.message)
-                    errorNotification()
+                    notifications.errorNotification("Данные не были изменены! что-то пошло не так!")
                 }
             })
     }

@@ -27,7 +27,8 @@ function errorNotification() {
 
 const TicketService = {
     getTicketByClientId(setTickets) {
-        return $api.get(ROUTS_API.tickets + `/findTickets?clientId=${5}`)
+
+        return $api.get(ROUTS_API.tickets + `/findTickets`)
             .then(response => {
                 setTickets(response.data);
             })
