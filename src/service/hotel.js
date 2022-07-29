@@ -1,29 +1,6 @@
 import $api from '../http';
 import { ROUTS_API } from "../routs";
-
-import { notification } from "antd";
-import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined } from "@ant-design/icons";
-
-function successDeleteNotification() {
-    notification.open({
-        message: 'Данные успешно удалены!',
-        icon: <DeleteOutlined style={{color: "green"}}/>
-    })
-}
-
-function successAddNotification() {
-    notification.open({
-        message: 'Данные успешно добавлены!',
-        icon: <CheckCircleOutlined style={{color: "green"}}/>
-    })
-}
-
-function errorNotification() {
-    notification.open({
-        message: 'Что-то пошло не так!',
-        icon: <CloseCircleOutlined style={{color: "red"}}/>
-    });
-}
+import notifications from '../notifications/notifications';
 
 const HotelService = {
     getHotels(setHotels) {
@@ -49,24 +26,23 @@ const HotelService = {
         return $api.delete(ROUTS_API.hotels + `/${key}`)
             .then(response => {
                 setHotels(hotels.filter((item) => item.hotelId !== key))
-                successDeleteNotification()
+                notifications.successNotification('Данные были успешно удалены!')
             })
             .catch(error => {
                 console.log(error.message)
-                errorNotification()
+                notifications.errorNotification('Данные не были удалены! Что-то пошло не так!')
             })
     },
     postHotel(hotelToAdd, hotels, setHotels) {
         return $api.post(ROUTS_API.hotels, hotelToAdd)
             .then(response => {
                 setHotels([...hotels, response.data])
-                successAddNotification()
+                notifications.successNotification('Данные были успешно добавлены!')
             })
             .catch(error => {
-                if (error.response.status === 500 || error.response.status === 400) {
-                    console.log(error.message)
-                    errorNotification()
-                }
+                console.log(error.message)
+                notifications.errorNotification('Данные не были добавлены! Что-то пошло не так!')
+
             })
     },
     putHotel(hotel, setHotels) {
@@ -79,13 +55,12 @@ const HotelService = {
         }))
             .then(response => {
                 this.getHotels(setHotels)
-                successAddNotification()
+                notifications.successNotification('Данные были успешно отредактированы!')
             })
             .catch(error => {
-                if (error.response.status === 500 || error.response.status === 400) {
-                    console.log(error.message)
-                    errorNotification()
-                }
+                console.log(error.message)
+                notifications.errorNotification('Данные не были отредактированы! Что-то пошло не так!')
+
             })
     }
 }

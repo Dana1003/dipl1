@@ -2,32 +2,9 @@ import $api from '../http';
 import { ROUTS_API } from "../routs";
 import moment from "moment";
 import { clear } from "@testing-library/user-event/dist/clear";
+import notifications from '../notifications/notifications';
 
 import ManagerService from "./manager";
-
-import { notification } from "antd";
-import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined } from "@ant-design/icons";
-
-function successDeleteNotification() {
-    notification.open({
-        message: 'Данные успешно удалены!',
-        icon: <DeleteOutlined style={{color: "green"}}/>
-    })
-}
-
-function successAddNotification() {
-    notification.open({
-        message: 'Данные успешно добавлены!',
-        icon: <CheckCircleOutlined style={{color: "green"}}/>
-    })
-}
-
-function errorNotification() {
-    notification.open({
-        message: 'Что-то пошло не так!',
-        icon: <CloseCircleOutlined style={{color: "red"}}/>
-    });
-}
 
 const ManagerScheduleService = {
     getManagerSchedule(setManagersSchedule, setManagers) {
@@ -60,14 +37,12 @@ const ManagerScheduleService = {
                 }))
                     .then(response => {
                         this.getAllManagerSchedule(setManagersSchedule);
-                        successAddNotification()
-                    });
+                        notifications.successNotification('Данные были успешно отредактированы!')
+                    })
             })
             .catch(error => {
-                if (error.response.status === 500 || error.response.status === 400) {
-                    console.log(error.message)
-                    errorNotification()
-                }
+                console.log(error.message)
+                notifications.errorNotification('Данные не были отредактированы! Что-то пошло не так!')
             })
     },
     deleteManagerSchedule(key, setManagersSchedule) {
@@ -76,20 +51,12 @@ const ManagerScheduleService = {
                 $api.delete(ROUTS_API.schedules + `/${response.data.scheduleId}`)
                     .then(response => {
                         this.getAllManagerSchedule(setManagersSchedule)
-                        successDeleteNotification()
-                    })
-                    .catch(error => {
-                        if (error.response.status === 500 || error.response.status === 400) {
-                            console.log(error.message)
-                            errorNotification()
-                        }
+                        notifications.successNotification('Данные были успешно удалены!')
                     })
             })
             .catch(error => {
-                if (error.response.status === 500 || error.response.status === 400) {
-                    console.log(error.message)
-                    errorNotification()
-                }
+                console.log(error.message)
+                notifications.errorNotification('Данные не были удалены! Что-то пошло не так!')
             })
     },
     postManagerScheduleDates(setManagersSchedule, setIsManyDatesVisible, selectedValue, date, time) {
@@ -103,8 +70,8 @@ const ManagerScheduleService = {
                 this.getAllManagerSchedule(setManagersSchedule)
                 clear()
                 setIsManyDatesVisible(false)
-                successAddNotification()
-            });
+                notifications.successNotification('Данные были успешно добалены!')
+            })
     },
     postManagerScheduleDate(dateTime, selectedValue, setManagersSchedule, setIsDateVisible) {
         return $api.post(ROUTS_API.schedules, {
@@ -119,17 +86,13 @@ const ManagerScheduleService = {
                             this.getAllManagerSchedule(setManagersSchedule)
                             clear()
                             setIsDateVisible(false)
-                            successAddNotification()
+                            notifications.successNotification('Данные были успешно добавлены!')
                         }
                     )
-                    .catch(error => {
-                        console.log(error.message)
-                        errorNotification()
-                    })
             })
             .catch(error => {
                 console.log(error.message)
-                errorNotification()
+                notifications.errorNotification('Данные не были добавлены! Что-то пошло не так!')
             })
     }
 }

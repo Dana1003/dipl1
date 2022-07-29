@@ -1,16 +1,7 @@
 import $api from '../http';
 import { ROUTS_API } from "../routs";
-
-import { notification } from "antd";
-import { CloseCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-
-function errorNotification() {
-    notification.open({
-        message: 'Что-то пошло не так!',
-        icon: <CloseCircleOutlined style={{color: "red"}}/>
-    });
-}
+import notifications from '../notifications/notifications';
 
 const AuthService = {
     postUser(login, password, navigate) {
@@ -25,7 +16,7 @@ const AuthService = {
             })
             .catch(error => {
                 console.log(error.message)
-                errorNotification()
+                notifications.errorNotification('Данные не были добавлены! Что-то пошло не так!')
             })
     },
     postLogIn(login, password, navigate) {
@@ -47,7 +38,7 @@ const AuthService = {
             })
             .catch(error => {
                 console.log(error.message)
-                errorNotification()
+                notifications.errorNotification(error.message)
             })
     }
 }

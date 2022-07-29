@@ -1,30 +1,7 @@
 import $api from '../http';
 import { ROUTS_API } from "../routs";
-
-import { notification } from "antd";
-import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import TourService from "./tour";
-
-function successDeleteNotification() {
-    notification.open({
-        message: 'Данные успешно удалены!',
-        icon: <DeleteOutlined style={{color: "green"}}/>
-    })
-}
-
-function successAddNotification() {
-    notification.open({
-        message: 'Данные успешно добавлены!',
-        icon: <CheckCircleOutlined style={{color: "green"}}/>
-    })
-}
-
-function errorNotification() {
-    notification.open({
-        message: 'Что-то пошло не так!',
-        icon: <CloseCircleOutlined style={{color: "red"}}/>
-    });
-}
+import notifications from "../notifications/notifications";
 
 const TourHotelService = {
     postTourHotel(selectedTour, selectedHotel,
@@ -34,7 +11,7 @@ const TourHotelService = {
                   setIsHotelsVisible, setSelectedHotel,
                   setSelectedTour, setDate,
                   setCountOfDays, setCountOfAdult,
-                  setCountOfChildren, successNotification) {
+                  setCountOfChildren) {
         return $api.post(ROUTS_API.tourHotel, ({
             "tourId": selectedTour.key,
             "hotelId": selectedHotel.key
@@ -58,16 +35,12 @@ const TourHotelService = {
                         setCountOfDays(0)
                         setCountOfAdult(0)
                         setCountOfChildren(0)
-                        successAddNotification()
-                    })
-                    .catch(error => {
-                        console.log(error.message)
-                        errorNotification()
+                        notifications.successNotification('Данные были успешно добавлены!')
                     })
             })
             .catch(error => {
                 console.log(error.message)
-                errorNotification()
+                notifications.errorNotification('Данные не были добавлены! Что-то пошло не так!')
             })
     },
     postTourHotelToFavourite(selectedTour, selectedHotel, setIsHotelsVisible, setSelectedHotel, setSelectedTour, setTours) {
@@ -86,20 +59,12 @@ const TourHotelService = {
                         setSelectedHotel(null)
                         setSelectedTour(null)
                         TourService.getTours(setTours)
-                        successAddNotification()
-                    })
-                    .catch(error => {
-                        if (error.response.status === 500 || error.response.status === 400) {
-                            console.log(error.message)
-                            errorNotification()
-                        }
+                        notifications.successNotification('Данные были успешно добавлены!')
                     })
             })
             .catch(error => {
-                if (error.response.status === 500 || error.response.status === 400) {
-                    console.log(error.message)
-                    errorNotification()
-                }
+                console.log(error.message)
+                notifications.errorNotification('Данные не были добавлены! Что-то пошло не так!')
             })
     }
 }

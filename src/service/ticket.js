@@ -1,29 +1,6 @@
 import $api from '../http';
 import { ROUTS_API } from "../routs";
-
-import { notification } from "antd";
-import { CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined } from "@ant-design/icons";
-
-function successDeleteNotification() {
-    notification.open({
-        message: 'Данные успешно удалены!',
-        icon: <DeleteOutlined style={{color: "green"}}/>
-    })
-}
-
-function successAddNotification() {
-    notification.open({
-        message: 'Данные успешно добавлены!',
-        icon: <CheckCircleOutlined style={{color: "green"}}/>
-    })
-}
-
-function errorNotification() {
-    notification.open({
-        message: 'Что-то пошло не так!',
-        icon: <CloseCircleOutlined style={{color: "red"}}/>
-    });
-}
+import notifications from "../notifications/notifications";
 
 const TicketService = {
     getTicketByClientId(setTickets) {
@@ -40,11 +17,11 @@ const TicketService = {
         return $api.delete(ROUTS_API.tickets + `/${key}`)
             .then(response => {
                 setTickets(tickets.filter((item) => item.ticketId !== key))
-                successDeleteNotification()
+                notifications.successNotification('Данные были успешно удалены!')
             })
             .catch(error => {
                 console.log(error.message)
-                errorNotification()
+                notifications.errorNotification('Данные не были удалены! Что-то пошло не так!')
             })
     },
     getAllTickets(setTickets) {
@@ -63,13 +40,11 @@ const TicketService = {
         return $api.put(ROUTS_API.tickets + `/${ticket.key}`, ticketToAdd)
             .then(response => {
                 this.getFavouriteByClientId(setTickets)
-                successAddNotification()
+                notifications.successNotification('Данные были успешно отредактированы!')
             })
             .catch(error => {
-                if (error.response.status === 500 || error.response.status === 400) {
-                    console.log(error.message)
-                    errorNotification()
-                }
+                console.log(error.message)
+                notifications.errorNotification('Данные не были добавлены! Что-то пошло не так!')
             })
     }
 }
