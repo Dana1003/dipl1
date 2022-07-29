@@ -1,5 +1,6 @@
 import { notification } from "antd";
-import { CheckCircleOutlined, CloseCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import { CheckCircleOutlined, CloseCircleOutlined, ExclamationCircleOutlined, SmileOutlined } from "@ant-design/icons";
+import React from "@types/react";
 
 function successNotification(message){
     notification.open({
@@ -19,5 +20,11 @@ function warningNotification(message) {
         icon: <ExclamationCircleOutlined style={{color: "yellow"}} />
     })
 }
+function birthdayNotification() {
+    notification.open({
+        message: 'Сумма рассчитанная к оплате будет предоставлена со скидкой в 10%!',
+        icon: <SmileOutlined style={{color: "green"}}/>
+    });
+}
 
-export default {successNotification, warningNotification, errorNotification};
+export default {successNotification, warningNotification, errorNotification, birthdayNotification};
