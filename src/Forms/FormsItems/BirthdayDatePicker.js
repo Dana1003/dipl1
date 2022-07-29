@@ -1,12 +1,12 @@
 import React from 'react';
-import {DatePicker, Form} from "antd";
-import moment from "moment";
+
+import { DatePicker, Form } from "antd";
 
 export function BirthdayDatePicker({onChange, disabledDate}) {
     return (
         <Form.Item
             label="Дата рождения"
-            name="bithDay"
+            name="bithDate"
             hasFeedback
             rules={[
                 {
@@ -16,7 +16,6 @@ export function BirthdayDatePicker({onChange, disabledDate}) {
             ]}
         >
             <DatePicker placeholder={'Введите дату рождения'}
-                        allowClear={false}
                         onChange={onChange}
                         disabledDate={disabledDate}
             />

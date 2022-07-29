@@ -22,14 +22,23 @@ export function PrivateDataForm() {
 
     let clientData = [];
     for (let field in client) {
-        clientData.push({
-            name: [`${field}`],
-            value: client[field]
-        })
+        if(field === 'bithDate')
+        {
+            clientData.push({
+                name: [`${field}`],
+                value: moment(client[field])
+            })
+        }
+        else {
+            clientData.push({
+                name: [`${field}`],
+                value: client[field]
+            })
+        }
     }
 
     useEffect(() => {
-        ClientService.getClient(setClient)
+        ClientService.getClient(setClient, client)
     }, [])
     useEffect(() => {
     }, [client])
@@ -40,6 +49,7 @@ export function PrivateDataForm() {
     const onUpdateClientData = () => {
        ClientService.putClient(client, setClient)
     }
+
 
     return (
         <div className="form">
@@ -89,11 +99,22 @@ export function PrivateDataForm() {
                         return {...pre, phone: e.target.value}
                     })
                 }}/>
+{/*                <DatePicker placeholder={'Введите дату рождения'}
+                            format={'YYYY/MM/DD'}
+                            allowClear={false}
+                            onChange={(e) => {
+                                setClient(pre => {
+                                    return {...pre, bithDate: e}
+                                })
+                            }}
+                            value={moment(client.bithDate)}
+                            disabledDate={disabledDate}
+                />*/}
                 <BirthdayDatePicker onChange={(e) => {
                   setClient(pre => {
                       return {...pre, bithDate: e}
                   })
-                }} disabledDate={disabledDate}/>
+                }} disabledDate={disabledDate} client={client} />
                 <Email onChange={(e) => {
                     setClient(pre => {
                         return {...pre, email: e.target.value}
