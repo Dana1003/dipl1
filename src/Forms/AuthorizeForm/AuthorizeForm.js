@@ -5,33 +5,27 @@ import { Password } from "../FormsItems/Password";
 import { EntryButton } from "../FormsItems/EntryButton";
 import { RegistrationLink } from "../FormsItems/RegistrationLink";
 
+import AuthService from "../../service/auth";
+
 import { Form } from 'antd';
 
 import './AuthorizeForm.scss';
 
 export function AuthorizeForm() {
-    const navigate = useNavigate();
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
 
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
+    const navigate = useNavigate()
 
-    let entryHandler = () => {
-        if (login === 'Admin1' && password === 'Admin1') {
-            return navigate(`/adminMainPage`);
-        }
-        if(login === 'User123' && password === 'User123') {
-            return navigate('/userMainPage');
-        }
-        if(login === 'Manager' && password === 'Manager') {
-            return navigate('/managerMainPage');
-        }
+    async function onAuthorizationHandler() {
+        AuthService.postLogIn(login, password, navigate)
     }
 
     return (
         <div className="main-authorize">
             <h1>Вход в личный кабинет</h1>
             <Form
-                onFinish={entryHandler}
+                onFinish={onAuthorizationHandler}
                 name="basic"
                 labelCol={{
                     span: 9,
